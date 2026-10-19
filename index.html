@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>מדריך למבחן - אלגברה לינארית</title>
+<meta name="theme-color" content="#1F2A47">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%231F2A47%22/%3E%3Cpath d=%22M38 13.5C32 11 28 15 28 23v18c0 8-4 11-9 9.5%22 fill=%22none%22 stroke=%22%23E3B95C%22 stroke-width=%224%22 stroke-linecap=%22round%22/%3E%3Ccircle cx=%2242%22 cy=%2214.5%22 r=%224%22 fill=%22%23E3B95C%22/%3E%3Ccircle cx=%2216%22 cy=%2250%22 r=%224%22 fill=%22%23E3B95C%22/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAJlklEQVR4nOzdbXBUVx3H8XP37mM2G/IIpAESYqAFQ3mSMlBUamhTKAjFN6hoVexIO47xRUcZn2bqOFN1xtEKapWhdtTi2CpSHWxRy1gKsYRSpAmTkNgEzBMJSTbZ3ezz7vUwTFsm9H/Pvbvbm5u7v88wnU57djLhfjn3nHOXrL16aSMDeC92BkBAHEBCHEBCHEBCHEBCHEBCHEBCHEBCHEBCHEBCHEBCHEBCHEBCHEBCHEBCHEBCHEBCHEBCHEBCHEBCHEBCHEBCHEBCHEBCHEBCHEBCHEBCHEBCHO+XhXPkBbPl2cWyw86GJ9IDI6mO3mRaYTMI4ngPRQXSHQvs88rlylJ5bonN7ZQGR1MDY+m+kdTVsVT/aCoSI19b5rM9dJ9n00p3kdc25X9FY0pLZ/yZ45Od/Sk2E0j4EQzvWFVnX7/UtWqRY/E8h/rItwaTLR3x19rj57oS7/xHn0f6zCbPJzZ4XE6bymsVRfnXhdhTx8L9I2ZPBHFct6hK/urOwuW1TqZTJKac7Yyf6Yj/41z00x8reOg+r8YX/rs99vhvAqEoM7N8j6PYKz2yzfvAWg/LTjCS9nlsul7C+/jawYBi4lWIXFxRx/JVfY19/5dLln9A94RxK5dDYjrNr7A77dLrnQlmVvpit5JP3uN5qqmkrGg6fwe2r3PzlQozqzydOfbtKtzdoHV9IMDvC5leXz7fpNLKG10mnTzycebYucG9NetFxrukrFYNG+90MbPKuziWLLA3PVjIcimr+0L1HLtp7yz5FQc/ofrhw7NkW+4uBt9sZL3fmFtq0quQX3F8f4+vpDDX37KUbWpzS2RmSnl0fL5ro2dJtb5d67A/1dmfvDKUml1im18h8wP1wimHGZJ59xrZy6s4CjSOHJlIH/hLiJ97BsNTbxmLq+wbVzgbVriqyt/+reO3lewSueo36Tl6vsSxfb27fJamG8rhE5OHXgrHiN0ln0j4r18dC/MT9xW1Tp9X2rbWXVGc+X0hnuQPbNPMlPIljt0Nmvauj+73v9md1DKyqz/V1R/h/xJPKHu3Zr79Od+VmIyZ9Ag9LxakjatdlaXiPwY/PhLUWMbNXjwbjSUyv7pHm8378C0v4vhco3i18cqbsT+9msl1Gg0oz5+MsIxc6I6/2hZnZmX9OD66zMkfcamP6R9Jffd3AZapp49PdvbpPgIPRdJP/D7ITMz6cdy72i0cs/+FUCyL5xvxBNt3aMIf1LGuTKeVbz8T6DPrUvQG68exsk7wtq7xUPr0xWzn9uFx5Us/9XcPalqyBCPpxw5OnDXxw/obLB5HZYltllfwPR47E83JO274jvTRA+PPnwzz3anKsOaL8UeeHG/pMHsZzPJb2fqFDuGYI6czXE7eKhRWnvzz5OETkQ8vcy6vddbMsc0ulp12NjSe5sua1p7Ea+3xmfLuYmb5OJbVCL7B3mvJIX+Ob/zXJtJHTkX5LzbDWTyOD9YIHqZ0XNF9sJE/rBwHn8/5Ibf6mPbeGXDvny5WjqO+xm4TvXWjvRczB8nKcVSVC6YNfthwqQ9xkKwch9ct2MR2D6biuKvQrByH8L2ZA2MzZlc5LSw9c4jiiMRMfXo97awcR6HotjIZY6DC2msOwYBIdEb9uAzDWXrm8AhnDtxW1OT3mmPGH3C/vywdh0sQRxgzhyorx2ETvR8BKw51+JlgQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQEIcQLJyHLIk+BivBD6qXJWV4yhwC+IIRfAZb2ry+qNDg2F8ypsay8Yh/GhILoiZQ5V14/CIxwQjmDnUWHjmEH1wKGNjQcShxrpxiFaj0RjKELBsHJXlsvoALDiELBvH0gWCby2ABYeIZeNYMt+hPqBvOMVAlTXj4Eejd4hmjtbLCQaqrBnHottkuyxYkLb2IA4Ba8axYZlLfUAypXT04smKgAXj4PeUHesFR2AXryRS2KyITGcc/Cry+X9eub2i5PqB1TV/um8k2dnP/0CLT75VfKTeWeoTnIC19mDaEJueOKrK5S80ejbUu7zuqVeRHz80X4w9fTzSP5LhbmL73eKT8zasRjUwOo4yn+2Lm72b73JRC0afx9b4IU/DSvffWqKHXgyPBvXN/mtud9x1u1N9TCCcbrkUZyAifgCRQw4727vNu22dW7iV4AM+vs7z8AMFTplp5/NI39ldJBx2tDkSx8ShgaFxND3o3bzGrX381rWer+z0ah//rU/5SgoF3xHfpzz3SoSBBsbFsWOde8f6AqYTfwl/oZaRW9e67653CYe9fD46HsLBuSYGxeG0s8/fr7uMG3bdUyDb1C5nYYHE54x9u3xMg8MnMG1oZVAcW9a4y4r0LB9uMq9C/mwDeXO5d7XrD98ovV/b3eqNrsRbg3ikopVBu5WGVeIJX8WeLQV7tnjbr8SHxpWRQCqeUPhmuLJU5v+8dTOs4rmTYQaaGRRHXVUOvtCSaueSapaxU22xU23YwepgRBxlRZLPk+X9K6szU+5/w8nHfxtgoIcRa44FFTlJMPMtRiiSfuzgRASzhk5GzByh6HQ+40qnlW/+OjAwgudsuhkRx1gwJxcmwzvLz/46ea4LB6KZMCKO0UB62J+aXZLhVvY6fkuRFL19xJPK954NnvhPjEFGjDnnkJrbs7tC+svgOe79iR9lZMOgQ7Cjp6PMKLGE8uzL4d0/8Hf247wrKwadc/x3IPXP89FNK3U8dbuJjmnj+OuRXx6bHB7H05McMO79HD/6Y6iu0l4zV99X5A9R7TZxG0P+FL+DvHQ2itPxHJKqlzYyo5T5bL9oKr6tTOvK9PLVZNPPJ/iC485aR+0c+yyv5PVI/Lzc45QmY8pkVOEHGP6AcuZS7FIfmsg9Q+PgCt3siT2zVtY5hSMvdMe/fnAiZNxaBaaSiyvqmIHiSfb3c9GB0dSiKpk6Ux8cS+4/GjrwQiiWyPbUHLJh9Mzx7heW2OIqeXmtY9lCR33N9b+62HY50dqTuNCT7OxLKlhQmsC0xQHmhx81CSTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEASTEAaT/AwAA///2krm4AAAABklEQVQDAN3zv04n5xlDAAAAAElFTkSuQmCC">
+<meta name="apple-mobile-web-app-title" content="אלגברה לינארית">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF6EE;
+    --paper:#FFFFFF;
+    --ink:#23262B;
+    --ink-soft:#5B5F6B;
+    --line:#E4DECF;
+    --indigo:#2C3A5E;
+    --indigo-2:#1F2A47;
+    --indigo-soft:#EDF0F7;
+    --gold:#A8791E;
+    --gold-soft:#FBF3DF;
+    --rust:#A23F35;
+    --rust-soft:#FBEBE8;
+    --teal:#2A6F63;
+    --teal-soft:#E7F3EF;
+    --sidebar-w:305px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Assistant', sans-serif;
+    font-size:17px;
+    line-height:1.75;
+  }
+  ::selection{ background: var(--gold-soft); color:var(--ink); }
+
+  math{
+    font-size:1.06em;
+    vertical-align:middle;
+    direction:ltr;
+    unicode-bidi:isolate;
+  }
+  math[display="block"]{
+    display:block;
+    margin:0 auto;
+    text-align:center;
+  }
+  menclose[notation="box"]{ padding:0 .15em; }
+  mtable{ vertical-align:middle; }
+  mtd{ padding:.15em .35em; }
+
+  h1,h2,h3,h4{
+    font-family:'Frank Ruhl Libre', serif;
+    color:var(--indigo-2);
+    line-height:1.3;
+    margin:0 0 .5em 0;
+  }
+
+  a{ color:inherit; }
+
+  /* ---------- layout ---------- */
+  .layout{
+    display:flex;
+    align-items:flex-start;
+    min-height:100vh;
+  }
+  .sidebar{
+    position:sticky;
+    top:0;
+    height:100vh;
+    width:var(--sidebar-w);
+    flex:0 0 var(--sidebar-w);
+    background:linear-gradient(180deg, var(--indigo-2), var(--indigo));
+    color:#FAF6EE;
+    padding:28px 20px;
+    overflow-y:auto;
+    z-index:10;
+  }
+  .sidebar-title{
+    font-family:'Frank Ruhl Libre', serif;
+    font-size:1.45rem;
+    color:#fff;
+    margin-bottom:3px;
+  }
+  .sidebar-sub{
+    font-size:.86rem;
+    color:#E4DBBE;
+    margin-bottom:16px;
+  }
+
+  .search-box{
+    position:sticky;
+    top:0;
+    background:var(--indigo-2);
+    padding-bottom:10px;
+    margin-bottom:6px;
+    z-index:2;
+  }
+  .search-box input[type="search"]{
+    width:100%;
+    box-sizing:border-box;
+    padding:11px 14px;
+    border-radius:9px;
+    border:1px solid rgba(255,255,255,.25);
+    background:rgba(255,255,255,.08);
+    color:#fff;
+    font-family:'Assistant', sans-serif;
+    font-size:.92rem;
+    outline:none;
+  }
+  .search-box input[type="search"]::placeholder{ color:#CFC5A6; }
+  .search-box input[type="search"]:focus{ border-color:var(--gold); background:rgba(255,255,255,.14); }
+  .search-box input[type="search"]::-webkit-search-cancel-button{ filter:invert(1); opacity:.6; }
+
+  .search-status{
+    color:#D8CEAE;
+    font-size:.82rem;
+    font-weight:600;
+    padding:2px 4px 4px;
+    min-height:1.2em;
+  }
+  .search-empty{ color:#D8CEAE; font-size:.85rem; padding:10px 4px; }
+
+  .collapse-all-btn{
+    display:block;
+    width:100%;
+    text-align:center;
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.18);
+    color:#E7DFC8;
+    font-family:'Assistant', sans-serif;
+    font-size:.8rem;
+    font-weight:600;
+    padding:8px 10px;
+    border-radius:8px;
+    cursor:pointer;
+    margin-bottom:8px;
+  }
+  .collapse-all-btn:hover{ background:rgba(255,255,255,.14); color:#fff; }
+  .toc{
+    list-style:none;
+    margin:0;
+    padding:0;
+    border-top:1px solid rgba(255,255,255,.14);
+  }
+  .toc > li{ border-bottom:1px solid rgba(255,255,255,.14); }
+  .toc a{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    text-decoration:none;
+    color:#F5F0E1;
+    padding:12px 4px;
+    font-size:1.02rem;
+    font-weight:500;
+    transition:color .15s ease;
+  }
+  .toc a .num{
+    font-family:'Frank Ruhl Libre', serif;
+    font-weight:700;
+    color:#E3B95C;
+    min-width:20px;
+    flex:0 0 auto;
+  }
+  .toc a:hover, .toc a.active{
+    color:#fff;
+  }
+  .toc a.active .num{ color:var(--gold); }
+  .toc-details{ margin-top:-4px; }
+  .toc-details summary{
+    display:flex;
+    align-items:center;
+    list-style:none;
+    cursor:pointer;
+    user-select:none;
+  }
+  .toc-details summary::-webkit-details-marker{ display:none; }
+  .toc-details summary::before{
+    content:"▸";
+    color:#E3B95C;
+    font-weight:700;
+    font-size:.8rem;
+    flex:0 0 auto;
+    margin-inline-start:6px;
+  }
+  .toc-details[open] summary::before{ content:"▾"; }
+  .toc-details summary .top-link{ flex:1 1 auto; }
+  .sub-toc{
+    list-style:none;
+    margin:0;
+    padding:0 0 6px 8px;
+  }
+  .sub-toc li{ border-bottom:none; }
+  .sub-toc a{
+    padding:9px 4px 9px 0;
+    font-size:.87rem;
+    font-weight:400;
+    line-height:1.5;
+    color:#E7DFC8;
+    border-right:2px solid rgba(255,255,255,.22);
+    padding-right:12px;
+    margin-right:9px;
+  }
+  .sub-toc a:hover{ color:#fff; border-color:rgba(255,255,255,.55); }
+  .sub-toc a.active{ color:var(--gold); border-color:var(--gold); font-weight:600; }
+  .toc-part-li{ margin-top:10px; }
+  .toc-part-li:first-child{ margin-top:0; }
+  .toc-part-link{
+    font-weight:700;
+    font-size:.8rem;
+    color:#B9E0D4;
+    border-right:2px solid rgba(150,220,195,.4);
+    letter-spacing:.2px;
+  }
+  .toc-part-link:hover{ color:#fff; border-color:#B9E0D4; }
+  .toc-part-link.active{ color:var(--gold); border-color:var(--gold); }
+  .toc-note{
+    margin-top:20px;
+    font-size:.78rem;
+    color:#C2B896;
+    line-height:1.6;
+  }
+
+  .content{
+    flex:1 1 auto;
+    min-width:0;
+    padding:52px 6vw 120px;
+    max-width:900px;
+    margin:0 auto;
+  }
+
+  .hero{
+    margin-bottom:56px;
+    padding-bottom:32px;
+    border-bottom:1px solid var(--line);
+  }
+  .hero h1{
+    font-size:2.4rem;
+    font-weight:700;
+    margin-bottom:.25em;
+  }
+  .hero p{
+    color:var(--ink-soft);
+    max-width:62ch;
+    font-size:1.05rem;
+  }
+  .hero .tags{
+    margin-top:18px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .hero .tags span{
+    font-size:.82rem;
+    padding:5px 12px;
+    border:1px solid var(--line);
+    border-radius:100px;
+    color:var(--ink-soft);
+    background:var(--paper);
+  }
+
+  /* ---------- exercise sections ---------- */
+  .exercise{
+    padding-top:70px;
+    margin-top:-70px;
+    scroll-margin-top:80px;
+  }
+  .ex-header{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-bottom:6px;
+  }
+  .ex-badge{
+    font-family:'Frank Ruhl Libre', serif;
+    font-weight:900;
+    font-size:1.9rem;
+    color:var(--gold);
+    background:var(--gold-soft);
+    border:1px solid #EAD9AD;
+    width:56px;
+    height:56px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex:0 0 auto;
+  }
+  .ex-header h2.ex-title{
+    font-size:1.85rem;
+    margin:0;
+  }
+  .ex-intro{
+    color:var(--ink-soft);
+    max-width:70ch;
+    margin:14px 0 40px;
+    font-size:1.02rem;
+  }
+
+  h3.q{
+    font-size:1.28rem;
+    margin-top:44px;
+    padding-top:14px;
+    border-top:1px solid var(--line);
+    scroll-margin-top:80px;
+  }
+  h4.sub{
+    font-family:'Assistant', sans-serif;
+    font-weight:700;
+    font-size:1.02rem;
+    color:var(--indigo);
+    margin-top:22px;
+    margin-bottom:6px;
+  }
+  p{ margin:0 0 14px 0; }
+  .content > .exercise > p, .exercise p{ max-width:72ch; }
+
+  .formula{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:14px 20px;
+    margin:12px 0 18px;
+    overflow-x:auto;
+    text-align:center;
+  }
+  .formula.tight{ padding:8px 16px; display:inline-block; margin-inline-end:10px;}
+
+  .diagram{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:18px 16px 14px;
+    margin:20px auto;
+    max-width:460px;
+    text-align:center;
+  }
+  .diagram svg{ max-width:100%; height:auto; display:block; margin:0 auto; }
+  .diagram-caption{
+    margin-top:10px;
+    font-size:.88rem;
+    color:var(--ink-soft);
+    line-height:1.6;
+    text-align:right;
+  }
+  .diagram-key{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px 18px;
+    justify-content:center;
+    margin-top:2px;
+    padding-top:12px;
+    border-top:1px dashed var(--line);
+    font-size:.85rem;
+    color:var(--ink);
+  }
+  .diagram-key .dk-item{ display:flex; align-items:center; gap:6px; }
+  .diagram-key .dk-swatch{
+    display:inline-block;
+    width:16px; height:16px;
+    border-radius:4px;
+    flex:0 0 auto;
+  }
+
+
+  .callout{
+    border-radius:10px;
+    padding:16px 20px;
+    margin:18px 0 22px;
+    border-inline-start:4px solid;
+    max-width:76ch;
+  }
+  .callout p:last-child{ margin-bottom:0; }
+  .callout-title{
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:8px;
+    font-size:.98rem;
+  }
+  .callout-star{ background:var(--gold-soft); border-color:var(--gold); }
+  .callout-star .callout-title{ color:#7A5A0F; }
+  .callout-warn{ background:var(--rust-soft); border-color:var(--rust); }
+  .callout-warn .callout-title{ color:var(--rust); }
+  .callout-target{ background:var(--teal-soft); border-color:var(--teal); }
+  .callout-target .callout-title{ color:var(--teal); }
+  .callout-info{ background:var(--indigo-soft); border-color:var(--indigo); }
+  .callout-info .callout-title{ color:var(--indigo); }
+
+  .steps{
+    margin:14px 0 20px;
+    padding-inline-start:0;
+    list-style:none;
+    counter-reset:step;
+    max-width:76ch;
+  }
+  .steps > li{
+    counter-increment:step;
+    position:relative;
+    padding-inline-start:38px;
+    margin-bottom:14px;
+  }
+  .steps > li::before{
+    content: counter(step);
+    position:absolute;
+    inline-size: 26px;
+    block-size: 26px;
+    inset-inline-start:0;
+    top:-1px;
+    background:var(--indigo);
+    color:#fff;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:.82rem;
+    font-weight:700;
+    font-family:'Frank Ruhl Libre',serif;
+  }
+
+  table{
+    border-collapse:collapse;
+    margin:14px 0 22px;
+    width:auto;
+    background:var(--paper);
+  }
+  table caption{ text-align:right; color:var(--ink-soft); margin-bottom:6px; font-size:.9rem;}
+  th,td{
+    border:1px solid var(--line);
+    padding:8px 16px;
+    text-align:center;
+    font-size:.96rem;
+  }
+  th{ background:var(--indigo-soft); color:var(--indigo-2); }
+
+  .divider{
+    border:none;
+    border-top:1px dashed var(--line);
+    margin:34px 0;
+  }
+
+  .summary-sheet{
+    margin-top:60px;
+    background:linear-gradient(180deg, var(--indigo-soft), var(--paper));
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:28px 30px 8px;
+  }
+  .summary-sheet h3.q{ border-top:none; margin-top:0; }
+  .summary-sheet-title{
+    font-family:'Frank Ruhl Libre', serif;
+    font-size:1.4rem;
+    color:var(--indigo-2);
+    margin-bottom:18px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+
+  .key-idea{
+    margin-top:40px;
+    padding:22px 26px;
+    background:var(--indigo-2);
+    color:#F3EFE3;
+    border-radius:14px;
+  }
+  .key-idea h4{
+    color:#fff;
+    font-family:'Frank Ruhl Libre', serif;
+    font-size:1.15rem;
+    margin-bottom:8px;
+  }
+  .key-idea p{ color:#D8D2BE; margin-bottom:0; }
+
+  .end-of-exercise{
+    height:1px;
+    margin-bottom:0;
+  }
+
+  footer.site-footer{
+    max-width:900px;
+    margin:0 auto;
+    padding:0 6vw 60px;
+    color:var(--ink-soft);
+    font-size:.85rem;
+  }
+
+  .top-btn{
+    position:fixed;
+    bottom:26px;
+    left:26px;
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    background:var(--indigo);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
+    text-decoration:none;
+    font-size:1.2rem;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .2s ease;
+    z-index:20;
+  }
+  .top-btn.show{ opacity:1; pointer-events:auto; }
+
+  .mobile-toggle{ display:none; }
+  .menu-toggle-input{ display:none; }
+
+  .drawer-backdrop{
+    display:none;
+    position:fixed; inset:0;
+    background:rgba(20,22,28,.55);
+    z-index:40;
+    opacity:0;
+    pointer-events:none;
+    cursor:pointer;
+    transition:opacity .25s ease;
+  }
+
+  .menu-fab{
+    display:none;
+    position:fixed;
+    bottom:24px;
+    right:22px;
+    z-index:45;
+    align-items:center;
+    gap:8px;
+    background:var(--indigo-2);
+    color:#fff;
+    border:none;
+    border-radius:100px;
+    padding:13px 20px 13px 18px;
+    font-family:'Assistant', sans-serif;
+    font-size:1rem;
+    font-weight:600;
+    box-shadow:0 6px 18px rgba(0,0,0,.3);
+    cursor:pointer;
+  }
+  .menu-fab svg{ width:20px; height:20px; flex:0 0 auto; }
+
+  .sidebar-close{
+    display:none;
+    width:40px; height:40px;
+    align-items:center; justify-content:center;
+    background:rgba(255,255,255,.08);
+    border:none;
+    border-radius:50%;
+    color:#fff;
+    font-size:1.3rem;
+    position:absolute;
+    top:16px; left:16px;
+    cursor:pointer;
+  }
+
+  @media (max-width: 880px){
+    .layout{ display:block; }
+    .sidebar{
+      position:fixed;
+      top:0; right:0;
+      height:100vh;
+      width:86vw;
+      max-width:400px;
+      flex:none;
+      padding:26px 22px;
+      transform:translateX(100%);
+      transition:transform .28s ease;
+      box-shadow:-10px 0 30px rgba(0,0,0,.35);
+      z-index:50;
+    }
+    #menuToggle:checked ~ .layout .sidebar{ transform:translateX(0); }
+    #menuToggle:checked ~ .layout .drawer-backdrop{ opacity:1; pointer-events:auto; }
+    .sidebar-close{ display:flex; }
+    .drawer-backdrop{ display:block; }
+    .menu-fab{ display:flex; }
+    .sidebar-title, .sidebar-sub{ margin-top:26px; }
+    .toc{ max-height:none; overflow:visible; }
+    .toc a{ padding:13px 4px; font-size:1.02rem; min-height:44px; }
+    .toc-details summary::before{ font-size:1rem; }
+    .sub-toc a{ padding:11px 4px 11px 0; font-size:.9rem; min-height:40px; display:flex; align-items:center; }
+    .content{ padding:34px 6vw 110px; }
+    table{ display:block; overflow-x:auto; max-width:100%; -webkit-overflow-scrolling:touch; }
+    .formula{ font-size:.95rem; }
+  }
+
+  @media print{
+    .sidebar, .top-btn, .menu-fab, .drawer-backdrop{ display:none; }
+    .layout{ display:block; }
+    .content{ max-width:100%; padding:0; }
+    .exercise{ padding-top:0; margin-top:0; }
+    html, body{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    .callout, .formula, table, .summary-sheet, .key-idea, .ex-header{ break-inside:avoid; page-break-inside:avoid; }
+    h2, h3.q, h4.sub{ break-after:avoid; page-break-after:avoid; }
+    .exercise{ break-before:page; page-break-before:always; }
+    .hero{ break-before:auto; page-break-before:auto; }
+  }
+  .hebrew-box{
+    font-weight:700;
+    background:rgba(168,121,30,.12);
+    padding:1px 6px;
+    border-radius:4px;
+  }
+  .src-tag{
+    display:block;
+    width:fit-content;
+    font-size:.74rem;
+    color:var(--ink-soft);
+    background:rgba(44,58,94,.06);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:3px 10px;
+    margin:-8px 0 16px;
+    font-weight:600;
+  }
+  .src-tag.missing{
+    background:rgba(162,63,53,.08);
+    border-color:rgba(162,63,53,.3);
+    color:var(--rust);
+  }
+  .src-tag.base{
+    background:rgba(0,0,0,.03);
+    color:var(--ink-soft);
+    font-weight:500;
+  }
+  mark.search-hit{
+    background:var(--gold);
+    color:#1F2A47;
+    padding:0 3px;
+    border-radius:3px;
+    box-shadow:0 0 0 4px rgba(168,121,30,.35);
+    animation:hitFade 2.5s ease-out 1;
+  }
+  @keyframes hitFade{
+    0%{ box-shadow:0 0 0 6px rgba(168,121,30,.5); }
+    100%{ box-shadow:0 0 0 0 rgba(168,121,30,0); }
+  }
+  .search-context-highlight{
+    background:rgba(168,121,30,.14);
+    border-radius:8px;
+    transition:background 2.5s ease;
+  }
+
+/* ===== נספח ד׳: נגישות ומובייל ===== */
+:root{ --gold-text:#7A5610; }                       /* זהב כהה לטקסט קטן על רקע בהיר (ניגודיות 6.0) */
+html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+body{ font-family:'Assistant', system-ui, 'Arial Hebrew', Arial, sans-serif; overflow-wrap:break-word; }
+h1,h2,h3,h4{ font-family:'Frank Ruhl Libre', 'David', 'Times New Roman', serif; }
+svg{ max-width:100%; height:auto; }
+
+/* מסגרת פוקוס גלויה */
+:where(a,button,summary,input,label,[tabindex]):focus-visible{ outline:3px solid var(--gold); outline-offset:2px; border-radius:4px; }
+.sidebar :where(a,button,summary,input,label,[tabindex]):focus-visible{ outline-color:#E3B95C; }
+
+/* ניגודיות בסרגל הכהה: פריט פעיל בזהב בהיר */
+.sub-toc a.active, .toc-part-link.active{ color:#E3B95C; border-color:#E3B95C; }
+.toc a.active .num{ color:#E3B95C; }
+
+/* גדלי טקסט מינימליים */
+.src-tag{ font-size:.8rem; }
+.toc-note, .search-status{ font-size:.85rem; }
+.diagram-caption{ font-size:.92rem; }
+
+/* תנועה מופחתת */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *, *::before, *::after{ animation:none !important; transition:none !important; }
+}
+
+/* נייד */
+@media (max-width:880px){
+  .sidebar{ height:100dvh; overscroll-behavior:contain; }
+  .menu-fab{ bottom:calc(24px + env(safe-area-inset-bottom)); right:calc(22px + env(safe-area-inset-right)); min-height:44px; }
+  .top-btn{ bottom:calc(26px + env(safe-area-inset-bottom)); left:calc(20px + env(safe-area-inset-left)); width:44px; height:44px; }
+  .toc-details summary, .collapse-all-btn, .sidebar-close{ min-height:44px; }
+  .sub-toc a{ display:flex; align-items:center; min-height:44px; padding-block:6px; }
+  /* נוסחה ארוכה בתוך פסקה גוללת אופקית בתוך הפסקה ולא מרחיבה את העמוד (נבדק ב-320px) */
+  .content math{ max-width:100%; }
+  .content p:has(math), .content li:has(math), .content h3:has(math), .content h4:has(math){ overflow-x:auto; overflow-y:hidden; }
+  .content{ padding-inline:max(16px, 5vw); }
+}
+.toc-group{ margin:0; }
+
+</style>
+</head>
+<body>
+<input type="checkbox" id="menuToggle" class="menu-toggle-input">
+<div class="layout">
+
+  <nav class="sidebar" id="sidebar" aria-label="תוכן עניינים">
+    <label for="menuToggle" class="sidebar-close" aria-label="סגור תפריט">✕</label>
+    <div class="sidebar-title">מדריך למבחן - אלגברה לינארית</div>
+    <div class="sidebar-sub">שיטות פתרון כלליות - כל תרגיל</div>
+
+    <div class="search-box">
+      <input type="search" id="siteSearch" placeholder="🔍 חיפוש בכל המסמך…" autocomplete="off" aria-label="חיפוש בכל המסמך">
+      <div class="search-status" id="searchStatus" aria-live="polite"></div>
+    </div>
+
+    <button type="button" class="collapse-all-btn" id="collapseAllBtn">▴ כווץ הכול</button>
+
+    <ul class="toc" id="tocList">
+      <li><a href="#intro"><span class="num">·</span><span>פתיחה</span></a></li>
+      <li class="toc-group">
+        <details class="toc-details" id="details-0">
+          <summary><a href="#ex0" class="top-link" data-ex="0"><span class="num">0</span><span>תרגיל הקדמה - פולינומים</span></a></summary>
+          <ul class="sub-toc">
+            <li><a href="#ex0-s1" data-ex="0">1. מושגי יסוד: פולינום, דרגה ושורש</a></li>
+            <li><a href="#ex0-s2" data-ex="0">2. איך מפרקים טרינום ריבועי?</a></li>
+            <li><a href="#ex0-s3" data-ex="0">3. פירוק בעזרת נוסחאות כפל מקוצר</a></li>
+            <li><a href="#ex0-s4" data-ex="0">4. איך מחלקים פולינום בפולינום (חילוק ארוך)?</a></li>
+            <li><a href="#ex0-s5" data-ex="0">5. חלוקה מהירה ב-(x-a): שיטת הורנר</a></li>
+            <li><a href="#ex0-s6" data-ex="0">6. מצאתי שורש אחד - איך מפרקים את כל הפולינום?</a></li>
+            <li><a href="#ex0-s7" data-ex="0">7. פירוק בקבוצות (הוצאת גורם משותף)</a></li>
+            <li><a href="#ex0-s8" data-ex="0">8. מציאת פרמטר כך שהפולינום מתחלק ב-(x-a)</a></li>
+            <li><a href="#ex0-s9" data-ex="0">9. איך מוצאים שורשים רציונליים?</a></li>
+            <li><a href="#ex0-s10" data-ex="0">10. האלגוריתם המלא: מצאי את כל השורשים ופרקי לגורמים</a></li>
+          </ul>
+        </details>
+      </li>
+    </ul>
+    <div class="toc-note">טיפ: אפשר לחפש בעמוד עם Ctrl+F - כל התוכן נמצא באותו דף אחד.</div>
+  </nav>
+
+  <label for="menuToggle" class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></label>
+  <label for="menuToggle" class="menu-fab" id="menuFab">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+    <span>תוכן עניינים</span>
+  </label>
+
+  <main class="content">
+
+    <section class="hero" id="intro">
+      <h1>מדריך פתרון כללי לכל שאלה במבחן באלגברה לינארית</h1>
+      <p>כל תרגיל מסוכם כאן לפי סוגי השאלות שבו: איך מזהים את סוג השאלה, אילו כללים להשתמש בהם, מהם שלבי הפתרון הקבועים, ומהן הטעויות הנפוצות. הכול בצורה כללית (עם a,b,x,y ופונקציות כלליות) כדי שאפשר יהיה להשתמש באותה שיטה על כל שאלה דומה, לא משנה אילו נתונים ספציפיים יופיעו במבחן.</p>
+      <div class="tags"><span>פולינומים</span><span>חלוקה עם שארית</span><span>שורשים</span><span>פירוק לגורמים</span><span>שורשים רציונליים</span></div>
+      <div class="callout callout-info">
+        <div class="callout-title">🧠 לפני שמתחילים</div>
+        <p>שימי לב: השיטות באתר זה נוסחו ללא פתרונות רשמיים מהקורס. מומלץ להשוות לפתרונות המרצה או המתרגל לפני המבחן.</p>
+      </div>
+    </section>
+
+    <section class="exercise" id="ex0">
+      <div class="ex-header">
+        <div class="ex-badge">0</div>
+        <h2 class="ex-title">תרגיל הקדמה: חלוקת פולינומים, שורשים ופירוק לגורמים</h2>
+      </div>
+      <p class="ex-intro">סוגי השאלות בתרגיל ההקדמה: פירוק טרינום ריבועי, נוסחאות כפל מקוצר, חלוקת פולינומים עם שארית, ניחוש שורש וחלוקה ב-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><mi>a</mi><mo stretchy="false">&#x00029;</mo></mrow></math>, פירוק בקבוצות, מציאת פרמטר לפי תנאי חלוקה, ומציאת שורשים רציונליים.</p>
+
+      <h3 class="q" id="ex0-s1">1. מושגי יסוד: פולינום, דרגה ושורש</h3>
+      <div class="src-tag base">🔧 כלי יסוד - ההגדרות שבראש דף תרגיל ההקדמה, נדרשות לכל השאלות</div>
+      <p><b>פולינום</b> הוא סכום סופי של חזקות שלמות ואי-שליליות של <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math>, כל אחת כפול מקדם ממשי:</p>
+      <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>P</mi><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>a</mi><mi>n</mi></msub><msup><mi>x</mi><mi>n</mi></msup><mo>&#x0002B;</mo><msub><mi>a</mi><mrow><mi>n</mi><mo>&#x02212;</mo><mn>1</mn></mrow></msub><msup><mi>x</mi><mrow><mi>n</mi><mo>&#x02212;</mo><mn>1</mn></mrow></msup><mo>&#x0002B;</mo><mo>&#x02026;</mo><mo>&#x0002B;</mo><msub><mi>a</mi><mn>1</mn></msub><mi>x</mi><mo>&#x0002B;</mo><msub><mi>a</mi><mn>0</mn></msub></mrow></math></div>
+      <div class="callout callout-info">
+        <div class="callout-title">🔤 מקרא</div>
+        <p><b><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>a</mi><mi>n</mi></msub><mo>&#x0002C;</mo><mo>&#x02026;</mo><mo>&#x0002C;</mo><msub><mi>a</mi><mn>0</mn></msub></mrow></math></b> - המקדמים (מספרים ממשיים) &nbsp;|&nbsp; <b><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>a</mi><mi>n</mi></msub></mrow></math></b> - המקדם המוביל &nbsp;|&nbsp; <b><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>a</mi><mn>0</mn></msub></mrow></math></b> - המקדם החופשי &nbsp;|&nbsp; <b><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>n</mi></mrow></math></b> - הדרגה</p>
+      </div>
+      <ul>
+        <li><b>דרגה:</b> אם <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>a</mi><mi>n</mi></msub><mo>&#x02260;</mo><mn>0</mn></mrow></math> אז <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>deg</mi><mo stretchy="false">&#x00028;</mo><mi>P</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mi>n</mi></mrow></math>. למשל <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>deg</mi><mo stretchy="false">&#x00028;</mo><mn>3</mn><msup><mi>x</mi><mn>4</mn></msup><mo>&#x02212;</mo><mn>7</mn><msup><mi>x</mi><mn>2</mn></msup><mo>&#x02212;</mo><mn>4</mn><mi>x</mi><mo>&#x0002B;</mo><mn>8</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>4</mn></mrow></math>.</li>
+        <li><b>שורש:</b> <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi></mrow></math> הוא שורש של <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi></mrow></math> אם ורק אם <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi><mo stretchy="false">&#x00028;</mo><mi>a</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>0</mn></mrow></math>.</li>
+        <li><b>סימון:</b> <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x0211D;</mi><mi>n</mi></msub><mo stretchy="false">[</mo><mi>x</mi><mo stretchy="false">]</mo></mrow></math> - כל הפולינומים עם מקדמים ממשיים מדרגה <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>n</mi></mrow></math> לכל היותר.</li>
+      </ul>
+      <div class="callout callout-star">
+        <div class="callout-title">⭐ הקשר שעליו בנוי כל התרגיל</div>
+        <p><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi></mrow></math> שורש של <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi></mrow></math> <span class="hebrew-box">אם ורק אם</span> <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><mi>a</mi><mo stretchy="false">&#x00029;</mo></mrow></math> מחלק את <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi></mrow></math> ללא שארית. כלומר אם <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi><mo stretchy="false">&#x00028;</mo><mi>a</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>0</mn></mrow></math> אז <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><mi>a</mi><mo stretchy="false">&#x00029;</mo><mspace width="0.167em" /><mi>Q</mi><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo stretchy="false">&#x00029;</mo></mrow></math> כאשר <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>deg</mi><mo stretchy="false">&#x00028;</mo><mi>Q</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mi>n</mi><mo>&#x02212;</mo><mn>1</mn></mrow></math>.</p>
+      </div>
+      <p>לכן <b>מציאת שורש = מציאת גורם</b>, ו<b>פירוק לגורמים = מציאת כל השורשים</b>. גרפית, שורש הוא נקודה שבה הגרף פוגש את ציר <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math>:</p>
+      <div class="diagram">
+        <svg viewBox="0 0 420 250" role="img" aria-label="גרף של פולינום ממעלה שלישית עם שני שורשים: במינוס 2 הגרף חותך את ציר x, ב-1 הגרף נוגע בציר ולא חוצה אותו כי זה שורש כפול" xmlns="http://www.w3.org/2000/svg" font-family="Assistant, sans-serif"><line x1="20" y1="165" x2="400" y2="165" stroke="#23262B" stroke-width="1.5"/><line x1="230" y1="235" x2="230" y2="15" stroke="#23262B" stroke-width="1.5"/><text x="405" y="170" font-size="14" font-style="italic" font-weight="700" fill="#23262B" text-anchor="end" direction="ltr" dy="-10">x</text><path d="M70.4,231.3 L72.3,223.8 L74.2,216.5 L76.1,209.5 L78.1,202.7 L80.0,196.1 L81.9,189.7 L83.8,183.5 L85.7,177.6 L87.6,171.8 L89.6,166.2 L91.5,160.9 L93.4,155.7 L95.3,150.7 L97.2,145.9 L99.1,141.3 L101.1,136.9 L103.0,132.7 L104.9,128.6 L106.8,124.8 L108.7,121.1 L110.6,117.5 L112.6,114.2 L114.5,111.0 L116.4,107.9 L118.3,105.1 L120.2,102.3 L122.1,99.8 L124.1,97.4 L126.0,95.1 L127.9,93.0 L129.8,91.0 L131.7,89.2 L133.6,87.5 L135.6,86.0 L137.5,84.6 L139.4,83.3 L141.3,82.1 L143.2,81.1 L145.1,80.2 L147.1,79.4 L149.0,78.7 L150.9,78.2 L152.8,77.7 L154.7,77.4 L156.6,77.2 L158.5,77.0 L160.5,77.0 L162.4,77.1 L164.3,77.2 L166.2,77.5 L168.1,77.9 L170.0,78.3 L172.0,78.8 L173.9,79.4 L175.8,80.1 L177.7,80.9 L179.6,81.7 L181.5,82.6 L183.5,83.6 L185.4,84.6 L187.3,85.7 L189.2,86.9 L191.1,88.1 L193.0,89.4 L195.0,90.7 L196.9,92.1 L198.8,93.5 L200.7,95.0 L202.6,96.5 L204.5,98.1 L206.5,99.6 L208.4,101.3 L210.3,102.9 L212.2,104.6 L214.1,106.3 L216.0,108.0 L218.0,109.8 L219.9,111.5 L221.8,113.3 L223.7,115.1 L225.6,116.9 L227.5,118.7 L229.4,120.5 L231.4,122.3 L233.3,124.1 L235.2,125.9 L237.1,127.7 L239.0,129.5 L240.9,131.2 L242.9,133.0 L244.8,134.7 L246.7,136.4 L248.6,138.1 L250.5,139.8 L252.4,141.4 L254.4,143.0 L256.3,144.6 L258.2,146.1 L260.1,147.6 L262.0,149.1 L263.9,150.5 L265.9,151.9 L267.8,153.2 L269.7,154.4 L271.6,155.6 L273.5,156.7 L275.4,157.8 L277.4,158.8 L279.3,159.8 L281.2,160.7 L283.1,161.5 L285.0,162.2 L286.9,162.8 L288.9,163.4 L290.8,163.9 L292.7,164.3 L294.6,164.6 L296.5,164.8 L298.4,165.0 L300.4,165.0 L302.3,164.9 L304.2,164.8 L306.1,164.5 L308.0,164.1 L309.9,163.6 L311.8,163.0 L313.8,162.3 L315.7,161.4 L317.6,160.5 L319.5,159.4 L321.4,158.2 L323.3,156.8 L325.3,155.4 L327.2,153.8 L329.1,152.0 L331.0,150.1 L332.9,148.1 L334.8,145.9 L336.8,143.6 L338.7,141.1 L340.6,138.5 L342.5,135.7 L344.4,132.8 L346.3,129.7 L348.3,126.4 L350.2,123.0 L352.1,119.4 L354.0,115.6 L355.9,111.7 L357.8,107.5 L359.8,103.2 L361.7,98.7 L363.6,94.1 L365.5,89.2 L367.4,84.1 L369.3,78.9 L371.3,73.4 L373.2,67.8 L375.1,61.9 L377.0,55.9" fill="none" stroke="#2C3A5E" stroke-width="3"/><text x="352.5" y="40" font-size="14" font-style="italic" font-weight="700" fill="#2C3A5E" direction="ltr">P(x)</text><circle cx="90.0" cy="165" r="5.5" fill="#A8791E"/><text x="116.0" y="189" font-size="15" font-weight="700" fill="#A8791E" text-anchor="middle" direction="ltr">−2</text><text x="116.0" y="209" font-size="14" fill="#23262B" text-anchor="middle">חותך</text><circle cx="300.0" cy="165" r="5.5" fill="#A8791E"/><text x="300.0" y="189" font-size="15" font-weight="700" fill="#A8791E" text-anchor="middle" direction="ltr">1</text><text x="300.0" y="209" font-size="14" fill="#23262B" text-anchor="middle">נוגע</text></svg>
+        <div class="diagram-key"><span class="dk-item"><span class="dk-swatch" style="background:#2C3A5E"></span>קו כחול = הגרף של P</span><span class="dk-item"><span class="dk-swatch" style="background:#A8791E"></span>נקודה זהובה = שורש</span></div>
+        <div class="diagram-caption">בשורש <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>2</mn></mrow></math> (גורם בחזקה 1) הגרף חותך את הציר. בשורש <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn></mrow></math> (גורם בריבוע, שורש כפול) הגרף רק נוגע בציר וחוזר. הפולינום בגרף:</div>
+        <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>P</mi><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x0002B;</mo><mn>2</mn><mo stretchy="false">&#x00029;</mo><msup><mrow><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo></mrow><mn>2</mn></msup></mrow></math></div>
+      </div>
+
+      <h3 class="q" id="ex0-s2">2. איך מפרקים טרינום ריבועי?</h3>
+      <div class="src-tag">🔧 שאלה 1 (א,ב) מתרגיל הקדמה (לא צורף פתרון) - נפתר ונבדק עצמאית</div>
+      <p><b>איך מזהים:</b> פולינום מדרגה 2, <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mi>b</mi><mi>x</mi><mo>&#x0002B;</mo><mi>c</mi></mrow></math>. מופיע גם בסוף כמעט כל שאלה, אחרי שמחלקים פולינום גבוה עד שנשאר ריבועי.</p>
+      <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>&#x00394;</mi><mo>&#x0003D;</mo><msup><mi>b</mi><mn>2</mn></msup><mo>&#x02212;</mo><mn>4</mn><mi>a</mi><mi>c</mi><mspace width="2em" /><msub><mi>x</mi><mrow><mn>1</mn><mo>&#x0002C;</mo><mn>2</mn></mrow></msub><mo>&#x0003D;</mo><mfrac><mrow><mo>&#x02212;</mo><mi>b</mi><mo>&#x000B1;</mo><msqrt><mrow><mi>&#x00394;</mi></mrow></msqrt></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac></mrow></math></div>
+      <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>a</mi><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mi>b</mi><mi>x</mi><mo>&#x0002B;</mo><mi>c</mi><mo>&#x0003D;</mo><mi>a</mi><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><msub><mi>x</mi><mn>2</mn></msub><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+      <div class="callout callout-info">
+        <div class="callout-title">🔤 מקרא</div>
+        <p><b><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><mo>&#x0002C;</mo><mi>b</mi><mo>&#x0002C;</mo><mi>c</mi></mrow></math></b> - המקדמים &nbsp;|&nbsp; <b><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00394;</mi></mrow></math></b> - הדיסקרימיננטה &nbsp;|&nbsp; <b><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>&#x0002C;</mo><msub><mi>x</mi><mn>2</mn></msub></mrow></math></b> - השורשים</p>
+      </div>
+      <ol class="steps">
+        <li><b>חשבי <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00394;</mi></mrow></math>.</b> הסימן שלה קובע כמה שורשים ממשיים יש.</li>
+        <li><b><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00394;</mi><mo>&#x0003E;</mo><mn>0</mn></mrow></math>:</b> שני שורשים, <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><msub><mi>x</mi><mn>2</mn></msub><mo stretchy="false">&#x00029;</mo></mrow></math>. <b><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00394;</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math>:</b> שורש כפול, <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><msup><mrow><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">&#x00029;</mo></mrow><mn>2</mn></msup></mrow></math>. <b><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00394;</mi><mo>&#x0003C;</mo><mn>0</mn></mrow></math>:</b> אין שורשים ממשיים, והביטוי <span class="hebrew-box">לא מתפרק מעל הממשיים</span>.</li>
+        <li><b>אל תשכחי את <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi></mrow></math></b> מקדימה כשהמקדם המוביל אינו 1.</li>
+      </ol>
+      <div class="diagram">
+        <svg viewBox="0 0 420 190" role="img" aria-label="שלוש פרבולות: כשהדיסקרימיננטה חיובית הפרבולה חותכת את ציר x בשתי נקודות, כשהיא אפס הפרבולה נוגעת בציר בנקודה אחת, וכשהיא שלילית הפרבולה לא פוגשת את הציר" xmlns="http://www.w3.org/2000/svg" font-family="Assistant, sans-serif"><line x1="8" y1="115" x2="132" y2="115" stroke="#23262B" stroke-width="1.5"/><line x1="70" y1="155" x2="70" y2="20" stroke="#B9B2A0" stroke-width="1" stroke-dasharray="3 4"/><path d="M14.0,53.1 L14.7,55.4 L15.4,57.7 L16.1,59.9 L16.8,62.1 L17.5,64.3 L18.2,66.4 L18.9,68.5 L19.6,70.6 L20.3,72.6 L21.0,74.7 L21.7,76.7 L22.4,78.6 L23.1,80.6 L23.8,82.5 L24.5,84.3 L25.2,86.2 L25.9,88.0 L26.6,89.8 L27.3,91.6 L28.0,93.3 L28.7,95.0 L29.4,96.7 L30.1,98.4 L30.8,100.0 L31.5,101.6 L32.2,103.1 L32.9,104.7 L33.6,106.2 L34.3,107.7 L35.0,109.1 L35.7,110.5 L36.4,111.9 L37.1,113.3 L37.8,114.6 L38.5,115.9 L39.2,117.2 L39.9,118.5 L40.6,119.7 L41.3,120.9 L42.0,122.0 L42.7,123.2 L43.4,124.3 L44.1,125.3 L44.8,126.4 L45.5,127.4 L46.2,128.4 L46.9,129.4 L47.6,130.3 L48.3,131.2 L49.0,132.1 L49.7,132.9 L50.4,133.7 L51.1,134.5 L51.8,135.3 L52.5,136.0 L53.2,136.7 L53.9,137.4 L54.6,138.1 L55.3,138.7 L56.0,139.3 L56.7,139.8 L57.4,140.3 L58.1,140.9 L58.8,141.3 L59.5,141.8 L60.2,142.2 L60.9,142.6 L61.6,142.9 L62.3,143.3 L63.0,143.6 L63.7,143.8 L64.4,144.1 L65.1,144.3 L65.8,144.5 L66.5,144.6 L67.2,144.8 L67.9,144.9 L68.6,144.9 L69.3,145.0 L70.0,145.0 L70.7,145.0 L71.4,144.9 L72.1,144.9 L72.8,144.8 L73.5,144.6 L74.2,144.5 L74.9,144.3 L75.6,144.1 L76.3,143.8 L77.0,143.6 L77.7,143.3 L78.4,142.9 L79.1,142.6 L79.8,142.2 L80.5,141.8 L81.2,141.3 L81.9,140.9 L82.6,140.3 L83.3,139.8 L84.0,139.3 L84.7,138.7 L85.4,138.1 L86.1,137.4 L86.8,136.7 L87.5,136.0 L88.2,135.3 L88.9,134.5 L89.6,133.7 L90.3,132.9 L91.0,132.1 L91.7,131.2 L92.4,130.3 L93.1,129.4 L93.8,128.4 L94.5,127.4 L95.2,126.4 L95.9,125.3 L96.6,124.3 L97.3,123.2 L98.0,122.0 L98.7,120.9 L99.4,119.7 L100.1,118.5 L100.8,117.2 L101.5,115.9 L102.2,114.6 L102.9,113.3 L103.6,111.9 L104.3,110.5 L105.0,109.1 L105.7,107.7 L106.4,106.2 L107.1,104.7 L107.8,103.1 L108.5,101.6 L109.2,100.0 L109.9,98.4 L110.6,96.7 L111.3,95.0 L112.0,93.3 L112.7,91.6 L113.4,89.8 L114.1,88.0 L114.8,86.2 L115.5,84.3 L116.2,82.5 L116.9,80.6 L117.6,78.6 L118.3,76.7 L119.0,74.7 L119.7,72.6 L120.4,70.6 L121.1,68.5 L121.8,66.4 L122.5,64.3 L123.2,62.1 L123.9,59.9 L124.6,57.7 L125.3,55.4 L126.0,53.1" fill="none" stroke="#2C3A5E" stroke-width="3"/><circle cx="38.0" cy="115" r="5" fill="#A8791E"/><circle cx="102.0" cy="115" r="5" fill="#A8791E"/><text x="70" y="177" text-anchor="middle" font-size="15" font-weight="700" fill="#23262B" direction="ltr">Δ > 0</text><text x="70" y="155" text-anchor="middle" font-size="14" fill="#A8791E" font-weight="700" direction="ltr">2</text><line x1="148" y1="115" x2="272" y2="115" stroke="#23262B" stroke-width="1.5"/><line x1="210" y1="155" x2="210" y2="20" stroke="#B9B2A0" stroke-width="1" stroke-dasharray="3 4"/><path d="M154.0,23.1 L154.7,25.4 L155.4,27.7 L156.1,29.9 L156.8,32.1 L157.5,34.3 L158.2,36.4 L158.9,38.5 L159.6,40.6 L160.3,42.6 L161.0,44.7 L161.7,46.7 L162.4,48.6 L163.1,50.6 L163.8,52.5 L164.5,54.3 L165.2,56.2 L165.9,58.0 L166.6,59.8 L167.3,61.6 L168.0,63.3 L168.7,65.0 L169.4,66.7 L170.1,68.4 L170.8,70.0 L171.5,71.6 L172.2,73.1 L172.9,74.7 L173.6,76.2 L174.3,77.7 L175.0,79.1 L175.7,80.5 L176.4,81.9 L177.1,83.3 L177.8,84.6 L178.5,85.9 L179.2,87.2 L179.9,88.5 L180.6,89.7 L181.3,90.9 L182.0,92.0 L182.7,93.2 L183.4,94.3 L184.1,95.3 L184.8,96.4 L185.5,97.4 L186.2,98.4 L186.9,99.4 L187.6,100.3 L188.3,101.2 L189.0,102.1 L189.7,102.9 L190.4,103.7 L191.1,104.5 L191.8,105.3 L192.5,106.0 L193.2,106.7 L193.9,107.4 L194.6,108.1 L195.3,108.7 L196.0,109.3 L196.7,109.8 L197.4,110.3 L198.1,110.9 L198.8,111.3 L199.5,111.8 L200.2,112.2 L200.9,112.6 L201.6,112.9 L202.3,113.3 L203.0,113.6 L203.7,113.8 L204.4,114.1 L205.1,114.3 L205.8,114.5 L206.5,114.6 L207.2,114.8 L207.9,114.9 L208.6,114.9 L209.3,115.0 L210.0,115.0 L210.7,115.0 L211.4,114.9 L212.1,114.9 L212.8,114.8 L213.5,114.6 L214.2,114.5 L214.9,114.3 L215.6,114.1 L216.3,113.8 L217.0,113.6 L217.7,113.3 L218.4,112.9 L219.1,112.6 L219.8,112.2 L220.5,111.8 L221.2,111.3 L221.9,110.9 L222.6,110.3 L223.3,109.8 L224.0,109.3 L224.7,108.7 L225.4,108.1 L226.1,107.4 L226.8,106.7 L227.5,106.0 L228.2,105.3 L228.9,104.5 L229.6,103.7 L230.3,102.9 L231.0,102.1 L231.7,101.2 L232.4,100.3 L233.1,99.4 L233.8,98.4 L234.5,97.4 L235.2,96.4 L235.9,95.3 L236.6,94.3 L237.3,93.2 L238.0,92.0 L238.7,90.9 L239.4,89.7 L240.1,88.5 L240.8,87.2 L241.5,85.9 L242.2,84.6 L242.9,83.3 L243.6,81.9 L244.3,80.5 L245.0,79.1 L245.7,77.7 L246.4,76.2 L247.1,74.7 L247.8,73.1 L248.5,71.6 L249.2,70.0 L249.9,68.4 L250.6,66.7 L251.3,65.0 L252.0,63.3 L252.7,61.6 L253.4,59.8 L254.1,58.0 L254.8,56.2 L255.5,54.3 L256.2,52.5 L256.9,50.6 L257.6,48.6 L258.3,46.7 L259.0,44.7 L259.7,42.6 L260.4,40.6 L261.1,38.5 L261.8,36.4 L262.5,34.3 L263.2,32.1 L263.9,29.9 L264.6,27.7 L265.3,25.4 L266.0,23.1" fill="none" stroke="#2C3A5E" stroke-width="3"/><circle cx="210.0" cy="115" r="5" fill="#A8791E"/><text x="210" y="177" text-anchor="middle" font-size="15" font-weight="700" fill="#23262B" direction="ltr">Δ = 0</text><text x="210" y="155" text-anchor="middle" font-size="14" fill="#A8791E" font-weight="700" direction="ltr">1</text><line x1="288" y1="115" x2="412" y2="115" stroke="#23262B" stroke-width="1.5"/><line x1="350" y1="155" x2="350" y2="20" stroke="#B9B2A0" stroke-width="1" stroke-dasharray="3 4"/><path d="M294.0,-0.9 L294.7,1.4 L295.4,3.7 L296.1,5.9 L296.8,8.1 L297.5,10.3 L298.2,12.4 L298.9,14.5 L299.6,16.6 L300.3,18.6 L301.0,20.7 L301.7,22.7 L302.4,24.6 L303.1,26.6 L303.8,28.5 L304.5,30.3 L305.2,32.2 L305.9,34.0 L306.6,35.8 L307.3,37.6 L308.0,39.3 L308.7,41.0 L309.4,42.7 L310.1,44.4 L310.8,46.0 L311.5,47.6 L312.2,49.1 L312.9,50.7 L313.6,52.2 L314.3,53.7 L315.0,55.1 L315.7,56.5 L316.4,57.9 L317.1,59.3 L317.8,60.6 L318.5,61.9 L319.2,63.2 L319.9,64.5 L320.6,65.7 L321.3,66.9 L322.0,68.0 L322.7,69.2 L323.4,70.3 L324.1,71.3 L324.8,72.4 L325.5,73.4 L326.2,74.4 L326.9,75.4 L327.6,76.3 L328.3,77.2 L329.0,78.1 L329.7,78.9 L330.4,79.7 L331.1,80.5 L331.8,81.3 L332.5,82.0 L333.2,82.7 L333.9,83.4 L334.6,84.1 L335.3,84.7 L336.0,85.3 L336.7,85.8 L337.4,86.3 L338.1,86.9 L338.8,87.3 L339.5,87.8 L340.2,88.2 L340.9,88.6 L341.6,88.9 L342.3,89.3 L343.0,89.6 L343.7,89.8 L344.4,90.1 L345.1,90.3 L345.8,90.5 L346.5,90.6 L347.2,90.8 L347.9,90.9 L348.6,90.9 L349.3,91.0 L350.0,91.0 L350.7,91.0 L351.4,90.9 L352.1,90.9 L352.8,90.8 L353.5,90.6 L354.2,90.5 L354.9,90.3 L355.6,90.1 L356.3,89.8 L357.0,89.6 L357.7,89.3 L358.4,88.9 L359.1,88.6 L359.8,88.2 L360.5,87.8 L361.2,87.3 L361.9,86.9 L362.6,86.3 L363.3,85.8 L364.0,85.3 L364.7,84.7 L365.4,84.1 L366.1,83.4 L366.8,82.7 L367.5,82.0 L368.2,81.3 L368.9,80.5 L369.6,79.7 L370.3,78.9 L371.0,78.1 L371.7,77.2 L372.4,76.3 L373.1,75.4 L373.8,74.4 L374.5,73.4 L375.2,72.4 L375.9,71.3 L376.6,70.3 L377.3,69.2 L378.0,68.0 L378.7,66.9 L379.4,65.7 L380.1,64.5 L380.8,63.2 L381.5,61.9 L382.2,60.6 L382.9,59.3 L383.6,57.9 L384.3,56.5 L385.0,55.1 L385.7,53.7 L386.4,52.2 L387.1,50.7 L387.8,49.1 L388.5,47.6 L389.2,46.0 L389.9,44.4 L390.6,42.7 L391.3,41.0 L392.0,39.3 L392.7,37.6 L393.4,35.8 L394.1,34.0 L394.8,32.2 L395.5,30.3 L396.2,28.5 L396.9,26.6 L397.6,24.6 L398.3,22.7 L399.0,20.7 L399.7,18.6 L400.4,16.6 L401.1,14.5 L401.8,12.4 L402.5,10.3 L403.2,8.1 L403.9,5.9 L404.6,3.7 L405.3,1.4 L406.0,-0.9" fill="none" stroke="#2C3A5E" stroke-width="3"/><text x="350" y="177" text-anchor="middle" font-size="15" font-weight="700" fill="#23262B" direction="ltr">Δ < 0</text><text x="350" y="155" text-anchor="middle" font-size="14" fill="#A8791E" font-weight="700" direction="ltr">0</text></svg>
+        <div class="diagram-key"><span class="dk-item"><span class="dk-swatch" style="background:#2C3A5E"></span>קו כחול = הגרף של הטרינום</span><span class="dk-item"><span class="dk-swatch" style="background:#A8791E"></span>נקודה זהובה = שורש (המספר מתחת = כמה שורשים)</span><span class="dk-item"><span class="dk-swatch" style="background:#23262B"></span>קו שחור = ציר x</span></div>
+        <div class="diagram-caption">הסימן של Δ קובע כמה פעמים הפרבולה פוגשת את ציר x: שתי נקודות, נקודה אחת (שורש כפול), או אף נקודה. כשאין נקודות - אין שורשים ממשיים והטרינום לא מתפרק.</div>
+      </div>
+      <h4 class="sub">דוגמה כללית</h4>
+      <p>ב-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>3</mn><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mn>8</mn><mi>x</mi><mo>&#x02212;</mo><mn>3</mn></mrow></math>: <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00394;</mi><mo>&#x0003D;</mo><mn>64</mn><mo>&#x0002B;</mo><mn>36</mn><mo>&#x0003D;</mo><mn>100</mn></mrow></math>, השורשים <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo>&#x0003D;</mo><mstyle displaystyle="false" scriptlevel="0"><mfrac><mn>1</mn><mn>3</mn></mfrac></mstyle></mrow></math> ו-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>3</mn></mrow></math>, ולכן <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>3</mn><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mn>8</mn><mi>x</mi><mo>&#x02212;</mo><mn>3</mn><mo>&#x0003D;</mo><mn>3</mn><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><mstyle displaystyle="false" scriptlevel="0"><mfrac><mn>1</mn><mn>3</mn></mfrac></mstyle><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x0002B;</mo><mn>3</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mn>3</mn><mi>x</mi><mo>&#x02212;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x0002B;</mo><mn>3</mn><mo stretchy="false">&#x00029;</mo></mrow></math>.</p>
+      <div class="callout callout-star">
+        <div class="callout-title">⭐ קיצור דרך (וייטה)</div>
+        <p>כש-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><mo>&#x0003D;</mo><mn>1</mn></mrow></math>: מחפשים שני מספרים שסכומם <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mi>b</mi></mrow></math> ומכפלתם <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>c</mi></mrow></math>. למשל ב-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mi>x</mi><mo>&#x02212;</mo><mn>12</mn></mrow></math>: סכום <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>1</mn></mrow></math> ומכפלה <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>12</mn></mrow></math>, כלומר <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>3</mn></mrow></math> ו-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>4</mn></mrow></math>.</p>
+      </div>
+      <div class="callout callout-warn">
+        <div class="callout-title">❗ טעויות נפוצות</div>
+        <p>שכחת המקדם <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi></mrow></math> בפירוק. כתיבת "אין פתרון" כש-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00394;</mi><mo>&#x0003C;</mo><mn>0</mn></mrow></math> בשאלת פירוק: התשובה הנכונה היא שהגורם הריבועי נשאר כפי שהוא.</p>
+      </div>
+      <p><b>בדיקה:</b> פתחי סוגריים וודאי שחוזרים לפולינום המקורי.</p>
+
+      <h3 class="q" id="ex0-s3">3. פירוק בעזרת נוסחאות כפל מקוצר</h3>
+      <div class="src-tag">🔧 שאלה 1 (ג,ד) מתרגיל הקדמה (לא צורף פתרון) - נפתר ונבדק עצמאית</div>
+      <p><b>איך מזהים:</b> שני איברים בלבד, שניהם חזקות "יפות": <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mn>3</mn></msup><mo>&#x000B1;</mo><msup><mi>k</mi><mn>3</mn></msup></mrow></math> או <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mrow><mn>2</mn><mi>n</mi></mrow></msup><mo>&#x02212;</mo><msup><mi>k</mi><mn>2</mn></msup></mrow></math>.</p>
+      <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mi>a</mi><mn>2</mn></msup><mo>&#x02212;</mo><msup><mi>b</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mi>a</mi><mo>&#x02212;</mo><mi>b</mi><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><mi>a</mi><mo>&#x0002B;</mo><mi>b</mi><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+      <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mi>a</mi><mn>3</mn></msup><mo>&#x0002B;</mo><msup><mi>b</mi><mn>3</mn></msup><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mi>a</mi><mo>&#x0002B;</mo><mi>b</mi><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><msup><mi>a</mi><mn>2</mn></msup><mo>&#x02212;</mo><mi>a</mi><mi>b</mi><mo>&#x0002B;</mo><msup><mi>b</mi><mn>2</mn></msup><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+      <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mi>a</mi><mn>3</mn></msup><mo>&#x02212;</mo><msup><mi>b</mi><mn>3</mn></msup><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mi>a</mi><mo>&#x02212;</mo><mi>b</mi><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><msup><mi>a</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mi>a</mi><mi>b</mi><mo>&#x0002B;</mo><msup><mi>b</mi><mn>2</mn></msup><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+      <div class="callout callout-info">
+        <div class="callout-title">🔤 מקרא</div>
+        <p><b><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><mo>&#x0002C;</mo><mi>b</mi></mrow></math></b> - כל ביטוי (למשל <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><mo>&#x0003D;</mo><mi>x</mi></mrow></math>, <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>b</mi><mo>&#x0003D;</mo><mn>3</mn></mrow></math>, או <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><mo>&#x0003D;</mo><msup><mi>x</mi><mn>2</mn></msup></mrow></math>, <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>b</mi><mo>&#x0003D;</mo><mn>1</mn></mrow></math>)</p>
+      </div>
+      <ol class="steps">
+        <li><b>כתבי כל איבר כחזקה:</b> <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>27</mn><mo>&#x0003D;</mo><msup><mn>3</mn><mn>3</mn></msup></mrow></math>, <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn><mo>&#x0003D;</mo><msup><mn>1</mn><mn>2</mn></msup></mrow></math>, <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mn>4</mn></msup><mo>&#x0003D;</mo><msup><mrow><mo stretchy="false">&#x00028;</mo><msup><mi>x</mi><mn>2</mn></msup><mo stretchy="false">&#x00029;</mo></mrow><mn>2</mn></msup></mrow></math>.</li>
+        <li><b>הפעילי את הנוסחה</b> המתאימה.</li>
+        <li><b>בדקי כל גורם שנוצר:</b> אם הוא שוב הפרש ריבועים - ממשיכים לפרק. גורם ריבועי עם <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00394;</mi><mo>&#x0003C;</mo><mn>0</mn></mrow></math> נשאר.</li>
+      </ol>
+      <h4 class="sub">דוגמה כללית</h4>
+      <p><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mn>3</mn></msup><mo>&#x0002B;</mo><mn>27</mn><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x0002B;</mo><mn>3</mn><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><msup><mi>x</mi><mn>2</mn></msup><mo>&#x02212;</mo><mn>3</mn><mi>x</mi><mo>&#x0002B;</mo><mn>9</mn><mo stretchy="false">&#x00029;</mo></mrow></math>, ובגורם הריבועי <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00394;</mi><mo>&#x0003D;</mo><mn>9</mn><mo>&#x02212;</mo><mn>36</mn><mo>&#x0003C;</mo><mn>0</mn></mrow></math>. השורש הממשי היחיד: <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>3</mn></mrow></math>.</p>
+      <p><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mn>4</mn></msup><mo>&#x02212;</mo><mn>1</mn><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><msup><mi>x</mi><mn>2</mn></msup><mo>&#x02212;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x0002B;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo></mrow></math>. השורשים הממשיים: <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo>&#x0003D;</mo><mo>&#x000B1;</mo><mn>1</mn></mrow></math>.</p>
+      <div class="callout callout-warn">
+        <div class="callout-title">❗ טעויות נפוצות</div>
+        <p><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>a</mi><mn>2</mn></msup><mo>&#x0002B;</mo><msup><mi>b</mi><mn>2</mn></msup></mrow></math> <span class="hebrew-box">לא מתפרק</span> מעל הממשיים. ובנוסחת סכום/הפרש שלישיות: הסימן של <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><mi>b</mi></mrow></math> בגורם הריבועי הפוך לסימן שבגורם הלינארי.</p>
+      </div>
+
+      <h3 class="q" id="ex0-s4">4. איך מחלקים פולינום בפולינום (חילוק ארוך)?</h3>
+      <div class="src-tag">🔧 שאלה 2 (א,ב,ג) מתרגיל הקדמה (לא צורף פתרון) - נפתר ונבדק עצמאית</div>
+      <p><b>איך מזהים:</b> "מצאו את המנה והשארית בחלוקת <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo stretchy="false">&#x00029;</mo></mrow></math> ב-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo stretchy="false">&#x00029;</mo></mrow></math>".</p>
+      <div class="callout callout-star">
+        <div class="callout-title">⭐ משפט החלוקה עם שארית</div>
+        <p>לכל <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi></mrow></math> ולכל <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi><mo>&#x02260;</mo><mn>0</mn></mrow></math> עם <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>deg</mi><mo stretchy="false">&#x00028;</mo><mi>B</mi><mo stretchy="false">&#x00029;</mo><mo>&#x02264;</mo><mi>deg</mi><mo stretchy="false">&#x00028;</mo><mi>A</mi><mo stretchy="false">&#x00029;</mo></mrow></math> קיימים פולינומים <b>יחידים</b> <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>Q</mi></mrow></math> ו-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>R</mi></mrow></math> כך ש:</p>
+        <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><menclose notation="box"><mrow><mi>A</mi><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mi>B</mi><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo stretchy="false">&#x00029;</mo><mspace width="0.167em" /><mi>Q</mi><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002B;</mo><mi>R</mi><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo stretchy="false">&#x00029;</mo></mrow></menclose><mspace width="2em" /><mi>deg</mi><mo stretchy="false">&#x00028;</mo><mi>R</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003C;</mo><mi>deg</mi><mo stretchy="false">&#x00028;</mo><mi>B</mi><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+        <p>אם <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>R</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math> אז <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi></mrow></math> <span class="hebrew-box">מחלק את</span> <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi></mrow></math>.</p>
+      </div>
+      <div class="callout callout-info">
+        <div class="callout-title">🔤 מקרא</div>
+        <p><b><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi></mrow></math></b> - המחולק &nbsp;|&nbsp; <b><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi></mrow></math></b> - המחלק &nbsp;|&nbsp; <b><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>Q</mi></mrow></math></b> - המנה &nbsp;|&nbsp; <b><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>R</mi></mrow></math></b> - השארית</p>
+      </div>
+      <ol class="steps">
+        <li><b>סדרי</b> את <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi></mrow></math> ואת <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi></mrow></math> לפי חזקות יורדות, והשלימי חזקות חסרות עם מקדם 0 (למשל <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mn>4</mn></msup><mo>&#x0002B;</mo><mn>2</mn><mo>&#x0003D;</mo><msup><mi>x</mi><mn>4</mn></msup><mo>&#x0002B;</mo><mn>0</mn><msup><mi>x</mi><mn>3</mn></msup><mo>&#x0002B;</mo><mn>0</mn><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mn>0</mn><mi>x</mi><mo>&#x0002B;</mo><mn>2</mn></mrow></math>).</li>
+        <li><b>חלקי את האיבר המוביל</b> של מה שנשאר באיבר המוביל של <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi></mrow></math>. התוצאה היא האיבר הבא במנה.</li>
+        <li><b>הכפילי</b> את האיבר הזה ב-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi></mrow></math> <b>והחסירי</b> ממה שנשאר.</li>
+        <li><b>חזרי</b> על שלבים 2-3 עד שדרגת מה שנשאר קטנה מ-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>deg</mi><mo stretchy="false">&#x00028;</mo><mi>B</mi><mo stretchy="false">&#x00029;</mo></mrow></math>. מה שנשאר הוא <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>R</mi></mrow></math>.</li>
+      </ol>
+      <h4 class="sub">דוגמה כללית: <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><msup><mi>x</mi><mn>4</mn></msup><mo>&#x0002B;</mo><mn>2</mn><msup><mi>x</mi><mn>3</mn></msup><mo>&#x02212;</mo><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mn>3</mn><mi>x</mi><mo>&#x02212;</mo><mn>2</mn><mo stretchy="false">&#x00029;</mo><mo>&#x000F7;</mo><mo stretchy="false">&#x00028;</mo><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo></mrow></math></h4>
+      <table>
+        <thead><tr><th scope="col">שלב</th><th scope="col">איבר במנה</th><th scope="col">מחסירים</th><th scope="col">מה נשאר</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mn>4</mn></msup><mo>&#x000F7;</mo><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0003D;</mo><msup><mi>x</mi><mn>2</mn></msup></mrow></math></td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mn>4</mn></msup><mo>&#x0002B;</mo><msup><mi>x</mi><mn>2</mn></msup></mrow></math></td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn><msup><mi>x</mi><mn>3</mn></msup><mo>&#x02212;</mo><mn>2</mn><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mn>3</mn><mi>x</mi><mo>&#x02212;</mo><mn>2</mn></mrow></math></td></tr>
+          <tr><td>2</td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn><msup><mi>x</mi><mn>3</mn></msup><mo>&#x000F7;</mo><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>2</mn><mi>x</mi></mrow></math></td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn><msup><mi>x</mi><mn>3</mn></msup><mo>&#x0002B;</mo><mn>2</mn><mi>x</mi></mrow></math></td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>2</mn><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mi>x</mi><mo>&#x02212;</mo><mn>2</mn></mrow></math></td></tr>
+          <tr><td>3</td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>2</mn><msup><mi>x</mi><mn>2</mn></msup><mo>&#x000F7;</mo><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>2</mn></mrow></math></td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>2</mn><msup><mi>x</mi><mn>2</mn></msup><mo>&#x02212;</mo><mn>2</mn></mrow></math></td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></td></tr>
+        </tbody>
+      </table>
+      <p>הדרגה של <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math> היא 1, קטנה מ-2, ולכן עוצרים: <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>Q</mi><mo>&#x0003D;</mo><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mn>2</mn><mi>x</mi><mo>&#x02212;</mo><mn>2</mn></mrow></math>, <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>R</mi><mo>&#x0003D;</mo><mi>x</mi></mrow></math>.</p>
+      <div class="callout callout-warn">
+        <div class="callout-title">❗ טעויות נפוצות</div>
+        <p>שכחת חזקות חסרות (עמודות 0). טעות סימן בחיסור: מחסירים את <b>כל</b> השורה, כלומר כל סימן מתהפך. עצירה מוקדמת מדי או מאוחרת מדי: עוצרים בדיוק כשדרגת השארית קטנה מדרגת <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi></mrow></math>.</p>
+      </div>
+      <p><b>בדיקה:</b> חשבי <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi><mo>&#x000B7;</mo><mi>Q</mi><mo>&#x0002B;</mo><mi>R</mi></mrow></math> וודאי שיוצא <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi></mrow></math>. אפשר גם להציב מספר נוח (למשל <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo>&#x0003D;</mo><mn>1</mn></mrow></math>) בשני הצדדים.</p>
+
+      <h3 class="q" id="ex0-s5">5. חלוקה מהירה ב-(x-a): שיטת הורנר</h3>
+      <div class="src-tag base">🔧 כלי יסוד - נדרש לפתרון שאלות 3 ו-5 מתרגיל הקדמה</div>
+      <p><b>מתי משתמשים:</b> כשהמחלק הוא <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo>&#x02212;</mo><mi>a</mi></mrow></math> (מקדם מוביל 1). מהיר יותר מחילוק ארוך ופחות מועד לטעויות סימן.</p>
+      <ol class="steps">
+        <li><b>כתבי בשורה</b> את כל המקדמים של <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi></mrow></math>, כולל 0 לחזקות חסרות.</li>
+        <li><b>הורידי</b> את המקדם הראשון כמו שהוא.</li>
+        <li><b>הכפילי ב-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi></mrow></math></b> את מה שהורדת, <b>הוסיפי</b> למקדם הבא, וחזרי עד הסוף.</li>
+        <li><b>המספר האחרון הוא השארית</b> (<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x0003D;</mo><mi>P</mi><mo stretchy="false">&#x00028;</mo><mi>a</mi><mo stretchy="false">&#x00029;</mo></mrow></math>). השאר הם מקדמי המנה, מדרגה אחת פחות.</li>
+      </ol>
+      <h4 class="sub">דוגמה כללית: <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><msup><mi>x</mi><mn>3</mn></msup><mo>&#x0002B;</mo><mi>x</mi><mo>&#x02212;</mo><mn>2</mn><mo stretchy="false">&#x00029;</mo><mo>&#x000F7;</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo></mrow></math></h4>
+      <table>
+        <thead><tr><th scope="col"></th><th scope="col"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mn>3</mn></msup></mrow></math></th><th scope="col"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mn>2</mn></msup></mrow></math></th><th scope="col"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></th><th scope="col">חופשי</th></tr></thead>
+        <tbody>
+          <tr><td>מקדמים</td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn></mrow></math></td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn></mrow></math></td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn></mrow></math></td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>2</mn></mrow></math></td></tr>
+          <tr><td>כפול <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><mo>&#x0003D;</mo><mn>1</mn></mrow></math></td><td></td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn></mrow></math></td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn></mrow></math></td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn></mrow></math></td></tr>
+          <tr><td>סכום</td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn></mrow></math></td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn></mrow></math></td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn></mrow></math></td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn></mrow></math></td></tr>
+        </tbody>
+      </table>
+      <p>השארית 0, והמנה <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mi>x</mi><mo>&#x0002B;</mo><mn>2</mn></mrow></math>. לכן <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mn>3</mn></msup><mo>&#x0002B;</mo><mi>x</mi><mo>&#x02212;</mo><mn>2</mn><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mi>x</mi><mo>&#x0002B;</mo><mn>2</mn><mo stretchy="false">&#x00029;</mo></mrow></math>.</p>
+      <div class="callout callout-warn">
+        <div class="callout-title">❗ שימי לב לכיוון!</div>
+        <p>בחלוקה ב-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo>&#x0002B;</mo><mn>2</mn></mrow></math> מציבים <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>2</mn></mrow></math>, כי <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo>&#x0002B;</mo><mn>2</mn><mo>&#x0003D;</mo><mi>x</mi><mo>&#x02212;</mo><mo stretchy="false">&#x00028;</mo><mo>&#x02212;</mo><mn>2</mn><mo stretchy="false">&#x00029;</mo></mrow></math>. בחלוקה ב-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>k</mi><mi>x</mi><mo>&#x02212;</mo><mi>p</mi><mo stretchy="false">&#x00029;</mo></mrow></math>: מחלקים ב-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo>&#x02212;</mo><mstyle displaystyle="false" scriptlevel="0"><mfrac><mrow><mi>p</mi></mrow><mrow><mi>k</mi></mrow></mfrac></mstyle></mrow></math> ואחר כך מוציאים את <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>k</mi></mrow></math> מהמנה.</p>
+      </div>
+
+      <h3 class="q" id="ex0-s6">6. מצאתי שורש אחד - איך מפרקים את כל הפולינום?</h3>
+      <div class="src-tag">🔧 שאלה 3 (א,ב,ה) מתרגיל הקדמה (לא צורף פתרון) - נפתר ונבדק עצמאית</div>
+      <p><b>איך מזהים:</b> פולינום מדרגה 3 ומעלה, בלי גורם משותף ובלי נוסחת כפל מקוצר ברורה. "מצאו את כל השורשים ופרקו לגורמים".</p>
+      <ol class="steps">
+        <li><b>נחשי שורש</b> מבין המחלקים של המקדם החופשי <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>a</mi><mn>0</mn></msub></mrow></math>: קודם <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x000B1;</mo><mn>1</mn></mrow></math>, אחר כך <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x000B1;</mo><mn>2</mn></mrow></math> וכן הלאה.</li>
+        <li><b>הציבי ובדקי</b> ש-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi><mo stretchy="false">&#x00028;</mo><mi>a</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>0</mn></mrow></math>.</li>
+        <li><b>חלקי ב-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><mi>a</mi><mo stretchy="false">&#x00029;</mo></mrow></math></b> (הורנר או חילוק ארוך) וקבלי <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><mi>a</mi><mo stretchy="false">&#x00029;</mo><mi>Q</mi><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo stretchy="false">&#x00029;</mo></mrow></math>.</li>
+        <li><b>המשיכי לפרק את <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>Q</mi></mrow></math></b>: אם הוא ריבועי - דיסקרימיננטה; אם גבוה יותר - חוזרים לשלב 1 (גם <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi></mrow></math> עצמו יכול להיות שוב שורש!).</li>
+        <li><b>כתבי את הפירוק הסופי</b> ואת רשימת השורשים הממשיים.</li>
+      </ol>
+      <div class="callout callout-star">
+        <div class="callout-title">⭐ בדיקות מהירות לפני ניחוש</div>
+        <p><b>סכום המקדמים 0</b> אז <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo>&#x0003D;</mo><mn>1</mn></mrow></math> שורש (כי <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi><mo stretchy="false">&#x00028;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo></mrow></math> הוא סכום המקדמים). <b>סכום המקדמים בחזקות זוגיות = סכום המקדמים בחזקות אי-זוגיות</b> אז <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>1</mn></mrow></math> שורש.</p>
+      </div>
+      <h4 class="sub">דוגמה כללית</h4>
+      <p>ב-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mn>4</mn></msup><mo>&#x0002B;</mo><mn>2</mn><msup><mi>x</mi><mn>3</mn></msup><mo>&#x02212;</mo><mn>4</mn><msup><mi>x</mi><mn>2</mn></msup><mo>&#x02212;</mo><mn>10</mn><mi>x</mi><mo>&#x02212;</mo><mn>5</mn></mrow></math>: <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi><mo stretchy="false">&#x00028;</mo><mo>&#x02212;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>0</mn></mrow></math>. חלוקה ב-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x0002B;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo></mrow></math> נותנת <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mn>3</mn></msup><mo>&#x0002B;</mo><msup><mi>x</mi><mn>2</mn></msup><mo>&#x02212;</mo><mn>5</mn><mi>x</mi><mo>&#x02212;</mo><mn>5</mn></mrow></math>, ושוב <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>1</mn></mrow></math> שורש: <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x0002B;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><msup><mi>x</mi><mn>2</mn></msup><mo>&#x02212;</mo><mn>5</mn><mo stretchy="false">&#x00029;</mo></mrow></math>. סה"כ <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mrow><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x0002B;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo></mrow><mn>2</mn></msup><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><msqrt><mn>5</mn></msqrt><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x0002B;</mo><msqrt><mn>5</mn></msqrt><mo stretchy="false">&#x00029;</mo></mrow></math>.</p>
+      <div class="callout callout-info">
+        <div class="callout-title">🧠 שורש כפול</div>
+        <p>גורם שמופיע בריבוע, כמו <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mrow><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x0002B;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo></mrow><mn>2</mn></msup></mrow></math>, נקרא <b>שורש כפול</b>. בגרף הוא נראה כמו נקודה שבה הגרף <span class="hebrew-box">נוגע בציר ולא חוצה אותו</span> (ראי הדיאגרמה בסעיף 1).</p>
+      </div>
+      <div class="callout callout-warn">
+        <div class="callout-title">❗ טעויות נפוצות</div>
+        <p>להפסיק אחרי שורש אחד. לשכוח לבדוק שוב את אותו שורש במנה (שורש כפול). לרשום שורשים "מהגורם הריבועי" כש-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00394;</mi><mo>&#x0003C;</mo><mn>0</mn></mrow></math>.</p>
+      </div>
+      <p><b>בדיקה:</b> מספר השורשים (עם ריבוי) לא עולה על הדרגה, ומכפלת הגורמים מחזירה את <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi></mrow></math>.</p>
+
+      <h3 class="q" id="ex0-s7">7. פירוק בקבוצות (הוצאת גורם משותף)</h3>
+      <div class="src-tag">🔧 שאלה 3 (ג,ד) ושאלה 5 (א,ו,ז) מתרגיל הקדמה (לא צורף פתרון) - נפתר ונבדק עצמאית</div>
+      <p><b>איך מזהים:</b> ארבעה איברים, שבהם יחס המקדמים בזוג הראשון שווה ליחס בזוג השני. למשל <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mn>3</mn></msup><mo>&#x02212;</mo><msup><mi>x</mi><mn>2</mn></msup></mrow></math> ו-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>3</mn><mi>x</mi><mo>&#x0002B;</mo><mn>3</mn></mrow></math>: בשני הזוגות היחס הוא <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn><mi>:</mi><mo>&#x02212;</mo><mn>1</mn></mrow></math>.</p>
+      <ol class="steps">
+        <li><b>חלקי לשני זוגות</b> (בדרך כלל שני הראשונים ושני האחרונים).</li>
+        <li><b>הוציאי גורם משותף מכל זוג</b> כך שבסוגריים יישאר אותו ביטוי.</li>
+        <li><b>הוציאי את הסוגריים המשותפים</b> החוצה.</li>
+        <li><b>המשיכי לפרק</b> כל גורם (הפרש ריבועים, דיסקרימיננטה).</li>
+      </ol>
+      <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>a</mi><msup><mi>x</mi><mn>3</mn></msup><mo>&#x0002B;</mo><mi>b</mi><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mi>k</mi><mi>a</mi><mi>x</mi><mo>&#x0002B;</mo><mi>k</mi><mi>b</mi><mo>&#x0003D;</mo><msup><mi>x</mi><mn>2</mn></msup><mo stretchy="false">&#x00028;</mo><mi>a</mi><mi>x</mi><mo>&#x0002B;</mo><mi>b</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002B;</mo><mi>k</mi><mo stretchy="false">&#x00028;</mo><mi>a</mi><mi>x</mi><mo>&#x0002B;</mo><mi>b</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mi>a</mi><mi>x</mi><mo>&#x0002B;</mo><mi>b</mi><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mi>k</mi><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+      <div class="callout callout-info">
+        <div class="callout-title">🔤 מקרא</div>
+        <p><b><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><mo>&#x0002C;</mo><mi>b</mi></mrow></math></b> - מקדמי הזוג הראשון &nbsp;|&nbsp; <b><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>k</mi></mrow></math></b> - הפקטור שבו הזוג השני הוא כפולה של הראשון</p>
+      </div>
+      <h4 class="sub">דוגמה כללית</h4>
+      <p><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mn>3</mn></msup><mo>&#x02212;</mo><msup><mi>x</mi><mn>2</mn></msup><mo>&#x02212;</mo><mn>3</mn><mi>x</mi><mo>&#x0002B;</mo><mn>3</mn><mo>&#x0003D;</mo><msup><mi>x</mi><mn>2</mn></msup><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo><mo>&#x02212;</mo><mn>3</mn><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><msup><mi>x</mi><mn>2</mn></msup><mo>&#x02212;</mo><mn>3</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><msqrt><mn>3</mn></msqrt><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x0002B;</mo><msqrt><mn>3</mn></msqrt><mo stretchy="false">&#x00029;</mo></mrow></math>.</p>
+      <p><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mn>4</mn></msup><mo>&#x02212;</mo><msup><mi>x</mi><mn>3</mn></msup><mo>&#x02212;</mo><mi>x</mi><mo>&#x0002B;</mo><mn>1</mn><mo>&#x0003D;</mo><msup><mi>x</mi><mn>3</mn></msup><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo><mo>&#x02212;</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><msup><mi>x</mi><mn>3</mn></msup><mo>&#x02212;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msup><mrow><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo></mrow><mn>2</mn></msup><mo stretchy="false">&#x00028;</mo><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mi>x</mi><mo>&#x0002B;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo></mrow></math>, והגורם האחרון עם <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00394;</mi><mo>&#x0003C;</mo><mn>0</mn></mrow></math>.</p>
+      <div class="callout callout-warn">
+        <div class="callout-title">❗ טעויות נפוצות</div>
+        <p>סימן מינוס לפני הזוג השני: <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>3</mn><mi>x</mi><mo>&#x0002B;</mo><mn>3</mn><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>3</mn><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo></mrow></math>, לא <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>3</mn><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x0002B;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo></mrow></math>. אם הסוגריים לא יצאו זהים - נסי לסדר את הזוגות אחרת או עברי לניחוש שורש.</p>
+      </div>
+      <p><b>בדיקה:</b> חלוקה זו נותנת לך גם שורש מיידי: כל גורם לינארי <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>a</mi><mi>x</mi><mo>&#x0002B;</mo><mi>b</mi><mo stretchy="false">&#x00029;</mo></mrow></math> נותן <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mstyle displaystyle="false" scriptlevel="0"><mfrac><mrow><mi>b</mi></mrow><mrow><mi>a</mi></mrow></mfrac></mstyle></mrow></math>.</p>
+
+      <h3 class="q" id="ex0-s8">8. מציאת פרמטר כך שהפולינום מתחלק ב-(x-a)</h3>
+      <div class="src-tag">🔧 שאלה 4 מתרגיל הקדמה (לא צורף פתרון) - נפתר ונבדק עצמאית</div>
+      <p><b>איך מזהים:</b> בפולינום יש פרמטר (<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>m</mi></mrow></math>, <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>k</mi></mrow></math>...) והשאלה היא "לאילו ערכים <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi></mrow></math> מתחלק ללא שארית ב-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><mi>a</mi><mo stretchy="false">&#x00029;</mo></mrow></math>".</p>
+      <div class="callout callout-star">
+        <div class="callout-title">⭐ כלל זהב</div>
+        <p><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><mi>a</mi><mo stretchy="false">&#x00029;</mo></mrow></math> מחלק את <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi></mrow></math> <span class="hebrew-box">אם ורק אם</span> <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi><mo stretchy="false">&#x00028;</mo><mi>a</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>0</mn></mrow></math>. אין צורך לבצע חלוקה בכלל.</p>
+      </div>
+      <ol class="steps">
+        <li><b>הציבי <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo>&#x0003D;</mo><mi>a</mi></mrow></math></b> בפולינום (הפרמטר נשאר כמשתנה).</li>
+        <li><b>השווי ל-0</b> וקבלי משוואה בפרמטר.</li>
+        <li><b>פתרי</b> את המשוואה. כל הפתרונות הם תשובות.</li>
+      </ol>
+      <h4 class="sub">דוגמה כללית</h4>
+      <p><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msup><mi>x</mi><mn>3</mn></msup><mo>&#x0002B;</mo><mn>2</mn><mi>m</mi><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><msup><mi>m</mi><mn>2</mn></msup><mi>x</mi><mo>&#x02212;</mo><mn>4</mn></mrow></math>, מחלק <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo>&#x02212;</mo><mn>1</mn></mrow></math>: <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi><mo stretchy="false">&#x00028;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>1</mn><mo>&#x0002B;</mo><mn>2</mn><mi>m</mi><mo>&#x0002B;</mo><msup><mi>m</mi><mn>2</mn></msup><mo>&#x02212;</mo><mn>4</mn><mo>&#x0003D;</mo><msup><mi>m</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mn>2</mn><mi>m</mi><mo>&#x02212;</mo><mn>3</mn><mo>&#x0003D;</mo><mn>0</mn></mrow></math>, ולכן <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>m</mi><mo>&#x0002B;</mo><mn>3</mn><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><mi>m</mi><mo>&#x02212;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>0</mn></mrow></math>, כלומר <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>m</mi><mo>&#x0003D;</mo><mn>1</mn></mrow></math> או <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>m</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>3</mn></mrow></math>.</p>
+      <div class="callout callout-warn">
+        <div class="callout-title">❗ טעויות נפוצות</div>
+        <p>הצבת <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mi>a</mi></mrow></math> במקום <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo>&#x0003D;</mo><mi>a</mi></mrow></math> (כשהמחלק הוא <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo>&#x0002B;</mo><mi>a</mi></mrow></math>, מציבים <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mi>a</mi></mrow></math>). שכחת אחד מפתרונות המשוואה הריבועית בפרמטר.</p>
+      </div>
+      <p><b>בדיקה:</b> הציבי כל ערך פרמטר שמצאת בחזרה ל-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi></mrow></math> ובדקי ש-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi><mo stretchy="false">&#x00028;</mo><mi>a</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>0</mn></mrow></math>.</p>
+
+      <h3 class="q" id="ex0-s9">9. איך מוצאים שורשים רציונליים?</h3>
+      <div class="src-tag">🔧 שאלה 5 (א-ז) מתרגיל הקדמה (לא צורף פתרון) - נפתר ונבדק עצמאית</div>
+      <p><b>איך מזהים:</b> פולינום עם מקדמים שלמים, ובמיוחד כשהמקדם המוביל אינו 1 (למשל <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn><msup><mi>x</mi><mn>3</mn></msup></mrow></math>, <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>3</mn><msup><mi>x</mi><mn>3</mn></msup></mrow></math>), כך שניחוש של <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x000B1;</mo><mn>1</mn><mo>&#x0002C;</mo><mo>&#x000B1;</mo><mn>2</mn></mrow></math> לא מספיק.</p>
+      <div class="callout callout-star">
+        <div class="callout-title">⭐ משפט השורש הרציונלי</div>
+        <p>אם <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>r</mi><mo>&#x0003D;</mo><mstyle displaystyle="false" scriptlevel="0"><mfrac><mrow><mi>p</mi></mrow><mrow><mi>q</mi></mrow></mfrac></mstyle></mrow></math> (שבר מצומצם) הוא שורש של <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi></mrow></math> עם מקדמים שלמים, אז <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>p</mi></mrow></math> <b>מחלק את</b> <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>a</mi><mn>0</mn></msub></mrow></math> ו-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>q</mi></mrow></math> <b>מחלק את</b> <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>a</mi><mi>n</mi></msub></mrow></math>.</p>
+      </div>
+      <div class="callout callout-info">
+        <div class="callout-title">🔤 מקרא</div>
+        <p><b><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>p</mi></mrow></math></b> - המונה, מחלק של המקדם החופשי <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>a</mi><mn>0</mn></msub></mrow></math> &nbsp;|&nbsp; <b><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>q</mi></mrow></math></b> - המכנה, מחלק של המקדם המוביל <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>a</mi><mi>n</mi></msub></mrow></math></p>
+      </div>
+      <ol class="steps">
+        <li><b>רשמי את מחלקי <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>a</mi><mn>0</mn></msub></mrow></math></b> (חיוביים ושליליים) ואת מחלקי <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>a</mi><mi>n</mi></msub></mrow></math> (חיוביים).</li>
+        <li><b>בני את רשימת המועמדים</b> <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x000B1;</mo><mstyle displaystyle="false" scriptlevel="0"><mfrac><mrow><mi>p</mi></mrow><mrow><mi>q</mi></mrow></mfrac></mstyle></mrow></math>.</li>
+        <li><b>הציבי מועמדים</b> עד שמוצאים שורש. עדיף להתחיל מהשלמים.</li>
+        <li><b>חלקי</b> ב-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><mi>r</mi><mo stretchy="false">&#x00029;</mo></mrow></math> (או ב-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>q</mi><mi>x</mi><mo>&#x02212;</mo><mi>p</mi><mo stretchy="false">&#x00029;</mo></mrow></math>) והמשיכי כמו בסעיף 6.</li>
+      </ol>
+      <h4 class="sub">דוגמה כללית</h4>
+      <p>ב-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>3</mn><msup><mi>x</mi><mn>3</mn></msup><mo>&#x02212;</mo><mn>14</mn><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mn>5</mn><mi>x</mi><mo>&#x0002B;</mo><mn>2</mn></mrow></math>: מחלקי <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn></mrow></math> הם <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x000B1;</mo><mn>1</mn><mo>&#x0002C;</mo><mo>&#x000B1;</mo><mn>2</mn></mrow></math> ומחלקי <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>3</mn></mrow></math> הם <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn><mo>&#x0002C;</mo><mn>3</mn></mrow></math>. המועמדים: <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x000B1;</mo><mn>1</mn><mo>&#x0002C;</mo><mo>&#x000B1;</mo><mn>2</mn><mo>&#x0002C;</mo><mo>&#x000B1;</mo><mstyle displaystyle="false" scriptlevel="0"><mfrac><mn>1</mn><mn>3</mn></mfrac></mstyle><mo>&#x0002C;</mo><mo>&#x000B1;</mo><mstyle displaystyle="false" scriptlevel="0"><mfrac><mn>2</mn><mn>3</mn></mfrac></mstyle></mrow></math>. מתקבל <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi><mo stretchy="false">&#x00028;</mo><mstyle displaystyle="false" scriptlevel="0"><mfrac><mn>2</mn><mn>3</mn></mfrac></mstyle><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>0</mn></mrow></math>, וחלוקה נותנת <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mn>3</mn><mi>x</mi><mo>&#x02212;</mo><mn>2</mn><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><msup><mi>x</mi><mn>2</mn></msup><mo>&#x02212;</mo><mn>4</mn><mi>x</mi><mo>&#x02212;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo></mrow></math>, ולכן השורשים <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mstyle displaystyle="false" scriptlevel="0"><mfrac><mn>2</mn><mn>3</mn></mfrac></mstyle></mrow></math> ו-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn><mo>&#x000B1;</mo><msqrt><mn>5</mn></msqrt></mrow></math>.</p>
+      <div class="callout callout-info">
+        <div class="callout-title">🧠 דרך קלה לזכור</div>
+        <p><span class="hebrew-box">מונה מהסוף, מכנה מההתחלה</span>: <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>p</mi></mrow></math> מגיע מהמקדם האחרון (<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>a</mi><mn>0</mn></msub></mrow></math>), <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>q</mi></mrow></math> מהמקדם הראשון (<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>a</mi><mi>n</mi></msub></mrow></math>).</p>
+      </div>
+      <div class="callout callout-warn">
+        <div class="callout-title">❗ טעויות נפוצות</div>
+        <p>המשפט נותן רק <b>מועמדים</b>, לא מבטיח שיש שורש רציונלי. אם אף מועמד לא מתאפס - אין שורש רציונלי (השורשים יכולים להיות אי-רציונליים, כמו <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msqrt><mn>2</mn></msqrt></mrow></math>). שכחת המועמדים השליליים.</p>
+      </div>
+      <p><b>בדיקה:</b> אחרי החלוקה השארית חייבת להיות 0. אם לא - הייתה טעות בהצבה או בחלוקה.</p>
+
+      <h3 class="q" id="ex0-s10">10. האלגוריתם המלא: מצאי את כל השורשים ופרקי לגורמים</h3>
+      <div class="src-tag">🔧 מגובש מתוך שאלות 1, 3 ו-5 מתרגיל הקדמה (לא צורף פתרון) - נפתר ונבדק עצמאית</div>
+      <div class="callout callout-target">
+        <div class="callout-title">🎯 האלגוריתם</div>
+        <ol class="steps">
+          <li><b>גורם משותף:</b> אם <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>a</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math> - הוציאי <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math> (או חזקה של <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math>).</li>
+          <li><b>שני איברים:</b> נוסחאות כפל מקוצר (סעיף 3).</li>
+          <li><b>דרגה 2:</b> דיסקרימיננטה (סעיף 2).</li>
+          <li><b>ארבעה איברים:</b> נסי פירוק בקבוצות (סעיף 7).</li>
+          <li><b>אחרת:</b> נחשי שורש (<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x000B1;</mo><mn>1</mn></mrow></math>, מחלקי <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>a</mi><mn>0</mn></msub></mrow></math>, או מועמדים רציונליים - סעיפים 6 ו-9) וחלקי ב-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><mi>a</mi><mo stretchy="false">&#x00029;</mo></mrow></math>.</li>
+          <li><b>חזרי</b> על התהליך על המנה עד שכל הגורמים לינאריים או ריבועיים עם <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00394;</mi><mo>&#x0003C;</mo><mn>0</mn></mrow></math>.</li>
+        </ol>
+      </div>
+      <div class="callout callout-star">
+        <div class="callout-title">⭐ איך נראית תשובה סופית "מעל הממשיים"</div>
+        <p>מכפלה של המקדם המוביל, גורמים לינאריים <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">&#x00029;</mo></mrow></math> (אולי בחזקה) וגורמים ריבועיים עם <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00394;</mi><mo>&#x0003C;</mo><mn>0</mn></mrow></math>. למשל <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn><msup><mi>x</mi><mn>3</mn></msup><mo>&#x02212;</mo><mn>5</mn><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mn>4</mn><mi>x</mi><mo>&#x02212;</mo><mn>10</mn><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mn>2</mn><mi>x</mi><mo>&#x02212;</mo><mn>5</mn><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mn>2</mn><mo stretchy="false">&#x00029;</mo></mrow></math>, והשורש הממשי היחיד <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo>&#x0003D;</mo><mstyle displaystyle="false" scriptlevel="0"><mfrac><mn>5</mn><mn>2</mn></mfrac></mstyle></mrow></math>.</p>
+      </div>
+
+      <div class="summary-sheet">
+        <div class="summary-sheet-title">✅ סיכום תרגיל הקדמה - דף נוסחאות מחשבתי</div>
+        <p><b>שורש וגורם:</b> <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi><mo stretchy="false">&#x00028;</mo><mi>a</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>0</mn></mrow></math> <span class="hebrew-box">אם ורק אם</span> <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><mi>a</mi><mo stretchy="false">&#x00029;</mo><mi>Q</mi><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo stretchy="false">&#x00029;</mo></mrow></math>.</p>
+        <p><b>טרינום ריבועי:</b> <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00394;</mi><mo>&#x0003D;</mo><msup><mi>b</mi><mn>2</mn></msup><mo>&#x02212;</mo><mn>4</mn><mi>a</mi><mi>c</mi></mrow></math>, ואז <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><msub><mi>x</mi><mn>1</mn></msub><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><msub><mi>x</mi><mn>2</mn></msub><mo stretchy="false">&#x00029;</mo></mrow></math>; כש-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00394;</mi><mo>&#x0003C;</mo><mn>0</mn></mrow></math> לא מתפרק.</p>
+        <p><b>כפל מקוצר:</b> <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>a</mi><mn>2</mn></msup><mo>&#x02212;</mo><msup><mi>b</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mi>a</mi><mo>&#x02212;</mo><mi>b</mi><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><mi>a</mi><mo>&#x0002B;</mo><mi>b</mi><mo stretchy="false">&#x00029;</mo></mrow></math>, <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>a</mi><mn>3</mn></msup><mo>&#x000B1;</mo><msup><mi>b</mi><mn>3</mn></msup><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mi>a</mi><mo>&#x000B1;</mo><mi>b</mi><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><msup><mi>a</mi><mn>2</mn></msup><mo>&#x02213;</mo><mi>a</mi><mi>b</mi><mo>&#x0002B;</mo><msup><mi>b</mi><mn>2</mn></msup><mo stretchy="false">&#x00029;</mo></mrow></math>.</p>
+        <p><b>חלוקה עם שארית:</b> <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi><mo>&#x0003D;</mo><mi>B</mi><mi>Q</mi><mo>&#x0002B;</mo><mi>R</mi></mrow></math>, <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>deg</mi><mo stretchy="false">&#x00028;</mo><mi>R</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003C;</mo><mi>deg</mi><mo stretchy="false">&#x00028;</mo><mi>B</mi><mo stretchy="false">&#x00029;</mo></mrow></math>; משלימים חזקות חסרות ב-0.</p>
+        <p><b>הורנר:</b> מורידים, כופלים ב-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi></mrow></math>, מוסיפים; המספר האחרון <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x0003D;</mo><mi>P</mi><mo stretchy="false">&#x00028;</mo><mi>a</mi><mo stretchy="false">&#x00029;</mo></mrow></math>.</p>
+        <p><b>ניחוש שורש:</b> סכום מקדמים 0 אז <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo>&#x0003D;</mo><mn>1</mn></mrow></math>; מועמדים - מחלקי <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>a</mi><mn>0</mn></msub></mrow></math>.</p>
+        <p><b>פירוק בקבוצות:</b> שני זוגות, אותם סוגריים, מוציאים החוצה.</p>
+        <p><b>פרמטר:</b> מתחלק ב-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><mi>a</mi><mo stretchy="false">&#x00029;</mo></mrow></math> אז פותרים <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi><mo stretchy="false">&#x00028;</mo><mi>a</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>0</mn></mrow></math>.</p>
+        <p><b>שורש רציונלי:</b> <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mstyle displaystyle="false" scriptlevel="0"><mfrac><mrow><mi>p</mi></mrow><mrow><mi>q</mi></mrow></mfrac></mstyle></mrow></math> עם <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>p</mi><mo>&#x02223;</mo><msub><mi>a</mi><mn>0</mn></msub></mrow></math> ו-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>q</mi><mo>&#x02223;</mo><msub><mi>a</mi><mi>n</mi></msub></mrow></math>.</p>
+      </div>
+      <div class="key-idea">
+        <h4>💡 הדבר שהכי חשוב להבין מכל תרגיל ההקדמה</h4>
+        <p>כל השיטות כאן הן דרכים שונות לאותו דבר: <span class="hebrew-box">כל שורש שמוצאים הוא גורם שמוציאים</span>. מוצאים שורש, מחלקים, ומקבלים פולינום קטן יותר, עד שנשארים רק גורמים לינאריים וריבועיים שלא מתפרקים.</p>
+      </div>
+    </section>
+
+
+    <footer class="site-footer">נבנה עבורך לצורך חזרה למבחן - כל השיטות מנוסחות באופן כללי כדי שיתאימו לכל שאלה מאותו סוג.</footer>
+  </main>
+</div>
+
+<a href="#intro" class="top-btn" id="topBtn" aria-label="חזרה למעלה">↑</a>
+<script>
+try {
+  const menuToggle = document.getElementById('menuToggle');
+  const allLinks = Array.from(document.querySelectorAll('.toc a'));
+
+  const tracked = allLinks
+    .map(a => ({ a, el: document.querySelector(a.getAttribute('href')) }))
+    .filter(x => x.el);
+
+  function currentExOf(a){
+    return a.dataset.ex || null;
+  }
+
+  function setOpen(exNum){
+    document.querySelectorAll('.toc-details').forEach(d => {
+      d.open = (d.id === 'details-' + exNum);
+    });
+  }
+
+  const collapseAllBtn = document.getElementById('collapseAllBtn');
+  if(collapseAllBtn){
+    collapseAllBtn.addEventListener('click', () => {
+      document.querySelectorAll('.toc-details').forEach(d => { d.open = false; });
+    });
+  }
+
+  function clearSearchHighlights(){
+    document.querySelectorAll('mark.search-hit').forEach(m => {
+      const parent = m.parentNode;
+      if(!parent) return;
+      parent.replaceChild(document.createTextNode(m.textContent), m);
+      parent.normalize();
+    });
+    document.querySelectorAll('.search-context-highlight').forEach(el => {
+      el.classList.remove('search-context-highlight');
+    });
+  }
+
+  function highlightTextInElement(el, query){
+    const qLow = query.toLowerCase();
+    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+      acceptNode(node){
+        let p = node.parentElement;
+        while(p && p !== el){
+          if(p.tagName === 'MATH') return NodeFilter.FILTER_REJECT;
+          p = p.parentElement;
+        }
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    let node;
+    while(node = walker.nextNode()){
+      const text = node.textContent;
+      const idx = text.toLowerCase().indexOf(qLow);
+      if(idx === -1) continue;
+      const before = text.slice(0, idx);
+      const matchText = text.slice(idx, idx + query.length);
+      const after = text.slice(idx + query.length);
+      const mark = document.createElement('mark');
+      mark.className = 'search-hit';
+      mark.textContent = matchText;
+      const parent = node.parentNode;
+      parent.insertBefore(document.createTextNode(before), node);
+      parent.insertBefore(mark, node);
+      parent.insertBefore(document.createTextNode(after), node);
+      parent.removeChild(node);
+      return mark;
+    }
+    return null;
+  }
+
+  function goTo(id){
+    try { clearSearchHighlights(); } catch(e){}
+    let scrollTarget = document.getElementById(id);
+    try {
+      const state = window.__searchState;
+      if(state && state.query && state.matches && state.matches.has(id)){
+        const container = state.matches.get(id);
+        const mark = highlightTextInElement(container, state.query);
+        if(mark){ scrollTarget = mark; }
+        else { container.classList.add('search-context-highlight'); scrollTarget = container; }
+      }
+    } catch(e){}
+    if(!scrollTarget) return;
+    const rect = scrollTarget.getBoundingClientRect();
+    const elTop = rect.top + window.scrollY;
+    const OFFSET = 45; // small gap below the top of the viewport
+    const target = Math.max(0, elTop - OFFSET);
+    window.scrollTo({ top: target, behavior: (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) ? 'auto' : 'smooth' });
+    try {
+      if(history && history.replaceState){ history.replaceState(null, '', '#' + id); }
+    } catch(e){}
+  }
+
+  function linkClickHandler(e){
+    const a = e.currentTarget;
+    const href = a.getAttribute('href') || '';
+    if(href.charAt(0) !== '#') return;
+    e.preventDefault();
+    goTo(href.slice(1));
+    if(menuToggle) menuToggle.checked = false;
+  }
+
+  // event delegation on the sidebar covers all TOC links in one place
+  const sidebarEl = document.getElementById('sidebar');
+  if(sidebarEl){
+    sidebarEl.addEventListener('click', (e) => {
+      const a = e.target.closest('a[href^="#"]');
+      if(!a || !sidebarEl.contains(a)) return;
+      linkClickHandler({ currentTarget: a, preventDefault: () => e.preventDefault() });
+    });
+  }
+
+  function onScroll(){
+    if(!tracked.length) return;
+    let current = tracked[0];
+    const y = window.scrollY + 130;
+    for(const t of tracked){
+      if(t.el.offsetTop <= y) current = t;
+    }
+    allLinks.forEach(a => a.classList.toggle('active', a === current.a));
+    const ex = currentExOf(current.a);
+    if(ex) setOpen(ex);
+    const topBtn = document.getElementById('topBtn');
+    if(topBtn) topBtn.classList.toggle('show', window.scrollY > 500);
+  }
+  window.addEventListener('scroll', onScroll);
+  onScroll();
+
+} catch(err){}
+</script>
+<script>
+  // ---- full-document search: filters the TOC down to headings that contain a match, no extra detail shown ----
+  try {
+    const input = document.getElementById('siteSearch');
+    const statusBox = document.getElementById('searchStatus');
+    if(input && statusBox){
+      const nodes = document.querySelectorAll(
+        '.exercise h2[id], .exercise h3, .exercise p, .exercise li, .exercise h4, .exercise td, .exercise summary'
+      );
+      let currentSubId = null;
+      const index = [];
+      nodes.forEach(el => {
+        // h3.q headings and h2 "part" headings both start a new grouping context
+        if(el.tagName === 'H2' || el.classList.contains('q')){ currentSubId = el.id; }
+        const text = (el.textContent || '').replace(/\s+/g, ' ').trim();
+        if(!text || !currentSubId) return;
+        index.push({ el, text, subId: currentSubId });
+      });
+
+      window.__searchState = { query: '', matches: new Map() };
+
+      function clearResults(){
+        document.querySelectorAll('.toc-group').forEach(el => { el.style.display = ''; });
+        document.querySelectorAll('.sub-toc li').forEach(el => { el.style.display = ''; });
+      }
+
+      function runSearch(){
+        try {
+          const q = input.value.trim();
+          clearResults();
+          if(q.length < 2){
+            statusBox.textContent = '';
+            window.__searchState = { query: '', matches: new Map() };
+            try { if(typeof clearSearchHighlights === 'function') clearSearchHighlights(); } catch(e){}
+            return;
+          }
+          const qLow = q.toLowerCase();
+          const matchedSubIds = new Set();
+          const matchEls = new Map(); // subId -> first matching element
+          for(const item of index){
+            if(item.text.toLowerCase().indexOf(qLow) !== -1){
+              matchedSubIds.add(item.subId);
+              if(!matchEls.has(item.subId)) matchEls.set(item.subId, item.el);
+            }
+          }
+          window.__searchState = { query: q, matches: matchEls };
+
+          if(matchedSubIds.size === 0){
+            statusBox.textContent = 'אין תוצאות עבור "' + q + '"';
+            document.querySelectorAll('.toc-group').forEach(g => { g.style.display = 'none'; });
+            return;
+          }
+          statusBox.textContent = matchedSubIds.size + ' כותרות תואמות';
+
+          document.querySelectorAll('.toc-group').forEach(group => {
+            const details = group.querySelector('.toc-details');
+            let groupHasMatch = false;
+            group.querySelectorAll('.sub-toc li').forEach(li => {
+              const a = li.querySelector('a');
+              const subId = (a.getAttribute('href') || '').slice(1);
+              if(matchedSubIds.has(subId)){
+                groupHasMatch = true;
+                li.style.display = '';
+              } else {
+                li.style.display = 'none';
+              }
+            });
+            if(groupHasMatch){
+              group.style.display = '';
+              if(details) details.open = true;
+            } else {
+              group.style.display = 'none';
+            }
+          });
+        } catch(err){
+          statusBox.textContent = 'שגיאה בחיפוש: ' + String(err && err.message || err);
+        }
+      }
+
+      ['input', 'keyup', 'search', 'change'].forEach(evt => input.addEventListener(evt, runSearch));
+    }
+  } catch(err){
+    const statusBox = document.getElementById('searchStatus');
+    if(statusBox) statusBox.textContent = 'שגיאת אתחול חיפוש: ' + String(err && err.message || err);
+  }
+
+</script>
+<script>
+  // ---- remember scroll position across app switches ----
+  try {
+    const SCROLL_KEY = 'examGuideScrollY_v1';
+    function restoreScroll(){
+      try {
+        const saved = localStorage.getItem(SCROLL_KEY);
+        if(saved === null) return;
+        const y = parseFloat(saved);
+        if(!isNaN(y) && y > 0){ window.scrollTo(0, y); }
+      } catch(e){}
+    }
+    let saveTimer = null;
+    function saveScroll(){
+      try { localStorage.setItem(SCROLL_KEY, String(window.scrollY)); } catch(e){}
+    }
+    requestAnimationFrame(() => requestAnimationFrame(restoreScroll));
+    window.addEventListener('load', () => setTimeout(restoreScroll, 60));
+    window.addEventListener('scroll', () => {
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(saveScroll, 200);
+    });
+    document.addEventListener('visibilitychange', () => {
+      if(document.visibilityState === 'hidden') saveScroll();
+    });
+    window.addEventListener('pagehide', saveScroll);
+  } catch(err){}
+
+</script>
+<script>
+try {
+  const t = document.getElementById('menuToggle');
+  document.querySelectorAll('label.menu-fab, label.sidebar-close').forEach(l => {
+    l.setAttribute('tabindex', '0');
+    l.setAttribute('role', 'button');
+    l.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); t.checked = !t.checked; }
+    });
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && t.checked) t.checked = false; });
+} catch (err) {}
+
+</script>
+</body>
+</html>
