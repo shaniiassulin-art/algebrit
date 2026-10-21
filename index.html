@@ -2263,22 +2263,21 @@ try {
     </div>
     <p class="ai-sub">העלי תמונה של תרגיל, או כתבי אותו במילים. Claude יבין מה התרגיל שואל ויפנה אותך לסעיפים באתר שצריך בשבילו.</p>
     <div class="ai-setup" id="aiSetup" hidden>
-      <div class="ai-setup-title">🔑 הגדרה חד-פעמית: מפתח API</div>
-      <p>באתר הזה החיפוש החכם מתחבר ל-Claude דרך מפתח אישי של Anthropic. עושים את זה פעם אחת בכל מחשב או טלפון:</p>
+      <div class="ai-setup-title">🔑 הגדרה חד-פעמית (חינם): מפתח של Google</div>
+      <p>באתר הזה החיפוש החכם עובד דרך Gemini של Google, שיש לו שימוש חינמי. צריך רק "מפתח" - מעין סיסמה שמחברת את האתר לחשבון Google שלך. בלי כרטיס אשראי ובלי תשלום. עושים את זה פעם אחת בכל מחשב או טלפון:</p>
       <ol>
-        <li>נכנסים ל-<a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">console.anthropic.com</a> ומתחברים (או נרשמים).</li>
-        <li>בעמוד <b dir="ltr">Billing</b> מוסיפים אמצעי תשלום וטוענים קרדיט. כל חיפוש עולה סנטים בודדים.</li>
-        <li>בעמוד <b dir="ltr">API Keys</b> לוחצים <b dir="ltr">Create Key</b> ומעתיקים את המפתח (הוא מתחיל באותיות <span dir="ltr">sk-ant</span>).</li>
+        <li>נכנסים ל-<a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a> עם חשבון Google (Gmail) ומאשרים את התנאים.</li>
+        <li>לוחצים <b dir="ltr">Create API key</b> ומעתיקים את המפתח (הוא מתחיל באותיות <span dir="ltr">AIza</span>).</li>
         <li>מדביקים אותו בתיבה כאן ולוחצים "שמירה".</li>
       </ol>
       <div class="ai-setup-row">
-        <input type="password" id="aiKey" placeholder="sk-ant-..." autocomplete="off" aria-label="מפתח API">
+        <input type="password" id="aiKey" placeholder="AIza..." autocomplete="off" aria-label="מפתח של Google">
         <button type="button" id="aiKeySave">שמירה</button>
       </div>
-      <p class="ai-setup-note">המפתח נשמר רק בדפדפן הזה ונשלח רק ל-Anthropic. אל תשלחי אותו לאף אחד ואל תכניסי אותו לקוד באתר.</p>
-      <p class="ai-setup-note">אפשר גם בלי מפתח: בגרסת האתר שבתוך Claude החיפוש עובד ישירות על החשבון שלך - <a href="https://claude.ai/artifact/Lgm3uLt2gRdczrivXoWwwi" target="_blank" rel="noopener">פתיחת הגרסה ב-Claude</a>.</p>
+      <p class="ai-setup-note">המפתח נשמר רק בדפדפן הזה ונשלח רק ל-Google. אל תשלחי אותו לאף אחד. בשימוש החינמי יש מגבלה של כמה בקשות בדקה, ו-Google עשויה להשתמש בתרגילים ששולחים כדי לשפר את המוצרים שלה.</p>
+      <p class="ai-setup-note">בלי מפתח בכלל: בגרסת האתר שבתוך Claude החיפוש עובד ישירות על החשבון שלך - <a href="https://claude.ai/artifact/Lgm3uLt2gRdczrivXoWwwi" target="_blank" rel="noopener">פתיחת הגרסה ב-Claude</a>.</p>
     </div>
-    <div class="ai-keyok" id="aiKeyOk" hidden>🔑 מפתח API שמור בדפדפן הזה <button type="button" id="aiKeyClear">החלפת מפתח</button></div>
+    <div class="ai-keyok" id="aiKeyOk" hidden>🔑 מפתח Google שמור בדפדפן הזה <button type="button" id="aiKeyClear">החלפת מפתח</button></div>
     <label for="aiText" class="ai-status">התרגיל במילים (לא חובה אם יש תמונה)</label>
     <textarea id="aiText" placeholder="למשל: מצאו את כל הפתרונות של z^4 = -16 ושרטטו אותם"></textarea>
     <div class="ai-drop" id="aiDrop" tabindex="0" role="button" aria-label="העלאת תמונה">
@@ -2303,7 +2302,7 @@ try {
   const overlay=$('aiOverlay'), textEl=$('aiText'), fileEl=$('aiFile'), drop=$('aiDrop'), thumbs=$('aiThumbs'),
         goBtn=$('aiGo'), stopBtn=$('aiStop'), statusEl=$('aiStatus'), undBox=$('aiUnderstood'), undText=$('aiUnderstoodText'),
         results=$('aiResults'), setupBox=$('aiSetup'), keyOk=$('aiKeyOk'), keyIn=$('aiKey');
-  const KEY_STORE='algebraAiKey_v1';
+  const KEY_STORE='algebraGeminiKey_v1';
   let images=[];            // File/Blob list
   let mode=null;            // 'claude' | 'api' | 'none'
   let sample=null, imgLimits=null, ctl=null;
@@ -2435,21 +2434,29 @@ try {
   async function askApi(prompt, signal){
     const key=getKey();
     if(!key){ refreshKeyBox(); throw {code:'no_key'}; }
-    const content=[];
-    for(const f of images){ content.push({type:'image', source:{type:'base64', media_type:'image/jpeg', data: await toJpegBase64(f)}}); }
-    content.push({type:'text', text:prompt});
-    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',signal,
-      headers:{'content-type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-      body:JSON.stringify({model:'claude-sonnet-5-5', max_tokens:1200, messages:[{role:'user',content}]})});
-    if(!r.ok){ throw {code: r.status===401? 'bad_key' : (r.status===429? 'rate_limited':'upstream_error')}; }
+    const parts=[];
+    for(const f of images){ parts.push({inline_data:{mime_type:'image/jpeg', data: await toJpegBase64(f)}}); }
+    parts.push({text:prompt});
+    const r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent',{method:'POST',signal,
+      headers:{'content-type':'application/json','x-goog-api-key':key},
+      body:JSON.stringify({contents:[{role:'user',parts}], generationConfig:{responseMimeType:'application/json', temperature:0.2}})});
+    if(!r.ok){
+      let msg=''; try{ msg=JSON.stringify(await r.json()); }catch(e){}
+      if(r.status===429) throw {code:'rate_limited'};
+      if(r.status===400 && /API_KEY|api key/i.test(msg)) throw {code:'bad_key'};
+      if(r.status===401 || r.status===403) throw {code:'bad_key'};
+      throw {code:'upstream_error'};
+    }
     const data=await r.json();
-    const text=(data.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('');
+    const cand=(data.candidates||[])[0];
+    if(!cand){ throw {code:'refused'}; }
+    const text=((cand.content&&cand.content.parts)||[]).map(p=>p.text||'').join('');
     return parseJsonLoose(text);
   }
-  const MSG={not_granted:'לא אושר שימוש ב-Claude בדף הזה.', sampling_disabled:'Claude לא זמין בחשבון הזה.', rate_limited:'יותר מדי בקשות כרגע. נסי שוב בעוד כמה דקות.',
+  const MSG={not_granted:'לא אושר שימוש ב-Claude בדף הזה.', sampling_disabled:'Claude לא זמין בחשבון הזה.', rate_limited:'הגעת למגבלת השימוש החינמי לרגע זה. חכי דקה ונסי שוב.',
     session_expired:'צריך להתחבר מחדש ל-Claude.', image_rejected:'התמונה לא התקבלה. נסי תמונה אחרת (JPG או PNG).', images_unavailable:'אי אפשר לשלוח תמונות בתצוגה הזאת - כתבי את התרגיל במילים.',
-    refused:'הבקשה לא עובדה. נסי לנסח את התרגיל אחרת.', invalid_json:'התשובה לא הגיעה בפורמט הנכון. נסי שוב.', no_key:'קודם צריך לשמור מפתח API בתיבה הצהובה למעלה.',
-    bad_key:'מפתח ה-API לא תקין. לחצי על "החלפת מפתח" והדביקי אותו שוב.', prompt_too_large:'הטקסט ארוך מדי. קצרי אותו.'};
+    refused:'הבקשה לא עובדה. נסי לנסח את התרגיל אחרת.', invalid_json:'התשובה לא הגיעה בפורמט הנכון. נסי שוב.', no_key:'קודם צריך לשמור מפתח בתיבה הצהובה למעלה.',
+    bad_key:'המפתח לא תקין. לחצי על "החלפת מפתח" והדביקי אותו שוב.', prompt_too_large:'הטקסט ארוך מדי. קצרי אותו.'};
 
   // ---------- run ----------
   goBtn.onclick=async ()=>{
