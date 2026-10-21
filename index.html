@@ -857,6 +857,14 @@ details.solution[open] > summary{ margin:10px 0 10px; }
 
 /* מקרא */
 .legend{ margin-top:22px; }
+details.legend{ background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:0 16px; }
+details.legend[open]{ padding-bottom:14px; }
+details.legend > summary{ cursor:pointer; list-style:none; display:flex; align-items:center; gap:10px; padding:12px 0; margin:0 !important; }
+details.legend > summary::-webkit-details-marker{ display:none; }
+details.legend > summary::before{ content:"◀"; font-size:.8rem; color:var(--gold); transition:transform .2s ease; display:inline-block; }
+details.legend[open] > summary::before{ transform:rotate(-90deg); }
+details.legend > summary::after{ content:"לחצי לפתיחה"; font-family:'Assistant',sans-serif; font-weight:400; font-size:.85rem; color:var(--ink-soft); margin-inline-start:auto; }
+details.legend[open] > summary::after{ content:"לחצי לסגירה"; }
 .legend-title{ font-family:'Frank Ruhl Libre',serif; font-weight:700; font-size:1.15rem; color:var(--indigo-2); margin-bottom:10px; }
 .legend-grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(230px,1fr)); gap:10px; }
 .legend-grid > *{ margin:0 !important; max-width:none; }
@@ -938,8 +946,8 @@ details.solution[open] > summary{ margin:10px 0 10px; }
         <a href="#ex2"><b>ב. מטריצות</b><span>הגדרות, סוגים, חיבור וכפל, צירוף לינארי, משוחלפת, עקבה</span></a>
       </div>
       <button type="button" class="ai-hero-btn" data-ai-open>✨ יש לך תרגיל? <small>העלי תמונה או הדביקי טקסט - ואעביר אותך לחומר המתאים</small></button>
-      <div class="legend">
-        <div class="legend-title">מקרא: מה כל סוג תיבה מראה</div>
+      <details class="legend">
+        <summary class="legend-title">מקרא: מה כל סוג תיבה מראה</summary>
         <div class="legend-grid">
           <div class="box box-def"><div class="box-title"></div><p>מה המושג אומר בדיוק</p></div>
           <div class="box box-thm"><div class="box-title"></div><p>הנוסחה או הכלל שצריך לזכור</p></div>
@@ -950,7 +958,7 @@ details.solution[open] > summary{ margin:10px 0 10px; }
           <div class="callout callout-info"><div class="callout-title"></div><p>הבהרה או הרחבה קטנה</p></div>
           <details class="proof"><summary></summary><p>למה הנוסחה נכונה (נפתח בלחיצה)</p></details>
         </div>
-      </div>
+      </details>
     </section>
 
     <section class="exercise" id="ex1">
