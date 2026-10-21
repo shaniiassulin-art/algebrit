@@ -805,6 +805,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
 .ai-setup-note{ font-size:.85rem; color:#6B5A2E; margin:8px 0 0; }
 .ai-keyok{ margin:0 0 12px; font-size:.88rem; color:var(--teal); display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
 .ai-keyok button{ padding:4px 12px; border-radius:7px; border:1px solid var(--line); background:var(--paper); cursor:pointer; font-family:'Assistant',sans-serif; color:var(--ink); }
+.ai-saved{ margin-top:14px; font-size:.88rem; color:var(--ink-soft); background:var(--paper); border:1px dashed var(--line); border-radius:8px; padding:6px 12px; }
 .ai-flash{ animation:aiFlash 2.6s ease-out 1; border-radius:8px; }
 @keyframes aiFlash{ 0%{ background:rgba(227,185,92,.55); box-shadow:0 0 0 8px rgba(227,185,92,.35);} 100%{ background:transparent; box-shadow:0 0 0 0 rgba(227,185,92,0);} }
 @media (max-width:880px){ .ai-panel{ padding:18px 16px 16px; } }
@@ -2220,33 +2221,15 @@ try {
 
 </script>
 <script>
-  // ---- remember scroll position across app switches ----
+  // ---- always open at the top of the page ----
   try {
-    const SCROLL_KEY = 'theoryGuideScrollY_v1';
-    function restoreScroll(){
-      try {
-        const saved = localStorage.getItem(SCROLL_KEY);
-        if(saved === null) return;
-        const y = parseFloat(saved);
-        if(!isNaN(y) && y > 0){ window.scrollTo(0, y); }
-      } catch(e){}
-    }
-    let saveTimer = null;
-    function saveScroll(){
-      try { localStorage.setItem(SCROLL_KEY, String(window.scrollY)); } catch(e){}
-    }
-    requestAnimationFrame(() => requestAnimationFrame(restoreScroll));
-    window.addEventListener('load', () => setTimeout(restoreScroll, 60));
-    window.addEventListener('scroll', () => {
-      clearTimeout(saveTimer);
-      saveTimer = setTimeout(saveScroll, 200);
-    });
-    document.addEventListener('visibilitychange', () => {
-      if(document.visibilityState === 'hidden') saveScroll();
-    });
-    window.addEventListener('pagehide', saveScroll);
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    try { localStorage.removeItem('theoryGuideScrollY_v1'); } catch(e){}
+    if (location.hash) { try { history.replaceState(null, '', location.pathname + location.search); } catch(e){} }
+    window.scrollTo(0, 0);
+    window.addEventListener('load', () => window.scrollTo(0, 0));
+    window.addEventListener('pageshow', (e) => { if (e.persisted) window.scrollTo(0, 0); });
   } catch(err){}
-
 </script>
 <script>
 try {
@@ -2296,6 +2279,7 @@ try {
     <div class="ai-actions">
       <button type="button" class="ai-go" id="aiGo">חיפוש</button>
       <button type="button" class="ai-stop" id="aiStop" hidden>עצירה</button>
+      <button type="button" class="ai-stop" id="aiClear" hidden>ניקוי וחיפוש חדש</button>
       <span class="ai-status" id="aiStatus" aria-live="polite"></span>
     </div>
     <div class="ai-understood" id="aiUnderstood" hidden><div class="lbl">מה הבנתי מהתרגיל</div><div id="aiUnderstoodText"></div></div>
@@ -2310,6 +2294,7 @@ try {
   const overlay=$('aiOverlay'), textEl=$('aiText'), fileEl=$('aiFile'), drop=$('aiDrop'), thumbs=$('aiThumbs'),
         goBtn=$('aiGo'), stopBtn=$('aiStop'), statusEl=$('aiStatus'), undBox=$('aiUnderstood'), undText=$('aiUnderstoodText'),
         results=$('aiResults'), setupBox=$('aiSetup'), keyOk=$('aiKeyOk'), keyIn=$('aiKey');
+  const LAST_STORE='algebraAiLast_v1';
   const KEY_STORE='algebraGeminiKey_v1';
   let images=[];            // File/Blob list
   let mode=null;            // 'claude' | 'api' | 'none'
@@ -2472,7 +2457,7 @@ try {
     if(!userText && !images.length){ setStatus('כתבי את התרגיל או העלי תמונה.', true); return; }
     if(mode==='pending'){ setStatus('מתחבר ל-Claude, נסי שוב בעוד רגע.'); return; }
     if(mode==='none'){ setStatus('החיפוש החכם לא זמין בתצוגה הזאת.', true); return; }
-    results.textContent=''; undBox.hidden=true;
+    results.textContent=''; undBox.hidden=true; savedNote(false);
     goBtn.disabled=true; stopBtn.hidden=false; setStatus('Claude קורא את התרגיל…');
     ctl=new AbortController();
     try {
@@ -2485,7 +2470,7 @@ try {
       } else {
         ans=await askApi(prompt, ctl.signal);
       }
-      show(ans); setStatus('');
+      show(ans); setStatus(''); await saveLast(userText, ans);
     } catch(e){
       if(e && (e.code==='cancelled' || e.name==='AbortError')) setStatus('נעצר.');
       else setStatus((e && MSG[e.code]) || 'משהו השתבש בחיבור. נסי שוב.', true);
@@ -2521,6 +2506,31 @@ try {
     el.classList.remove('ai-flash'); void el.offsetWidth; el.classList.add('ai-flash');
   }
 
+  // ---------- remember the last search until a new one ----------
+  function savedNote(on){ let n=$('aiSavedNote'); if(!n){ n=document.createElement('div'); n.id='aiSavedNote'; n.className='ai-saved'; n.textContent='🕘 זה החיפוש האחרון שלך - הוא נשמר עד שתחפשי משהו אחר או תלחצי "ניקוי".'; undBox.parentNode.insertBefore(n, undBox); } n.hidden=!on; $('aiClear').hidden=!on && !results.childElementCount; }
+  function smallDataUrl(file){
+    return new Promise((res)=>{ const img=new Image(); const url=URL.createObjectURL(file);
+      img.onload=()=>{ const M=1200; let w=img.naturalWidth,h=img.naturalHeight; const s=Math.min(1,M/Math.max(w,h)); w=Math.round(w*s); h=Math.round(h*s);
+        const c=document.createElement('canvas'); c.width=w; c.height=h; const g=c.getContext('2d'); g.fillStyle='#fff'; g.fillRect(0,0,w,h); g.drawImage(img,0,0,w,h); URL.revokeObjectURL(url); res(c.toDataURL('image/jpeg',0.8)); };
+      img.onerror=()=>{ URL.revokeObjectURL(url); res(null); }; img.src=url; });
+  }
+  async function saveLast(text, ans){
+    let imgs=[]; try { for(const f of images){ const d=await smallDataUrl(f); if(d) imgs.push(d); } } catch(e){}
+    const rec={text, ans, imgs, t:Date.now()};
+    try { localStorage.setItem(LAST_STORE, JSON.stringify(rec)); }
+    catch(e){ try { rec.imgs=[]; localStorage.setItem(LAST_STORE, JSON.stringify(rec)); } catch(e2){} }
+    $('aiClear').hidden=false;
+  }
+  function dataUrlToBlob(d){ const [h,b]=d.split(','); const mime=(h.match(/data:([^;]+)/)||[])[1]||'image/jpeg'; const bin=atob(b); const u=new Uint8Array(bin.length); for(let i=0;i<bin.length;i++) u[i]=bin.charCodeAt(i); return new Blob([u],{type:mime}); }
+  function loadLast(){
+    let rec=null; try { rec=JSON.parse(localStorage.getItem(LAST_STORE)||'null'); } catch(e){ rec=null; }
+    if(!rec || !rec.ans) return;
+    textEl.value=rec.text||'';
+    images=(rec.imgs||[]).map(d=>{ try{ return dataUrlToBlob(d); }catch(e){ return null; } }).filter(Boolean);
+    renderThumbs(); show(rec.ans); savedNote(true);
+  }
+  $('aiClear').onclick=()=>{ try{ localStorage.removeItem(LAST_STORE); }catch(e){} textEl.value=''; images=[]; renderThumbs(); results.textContent=''; undBox.hidden=true; savedNote(false); $('aiClear').hidden=true; setStatus(''); textEl.focus(); };
+  loadLast();
   detect();
   } catch(err){ console.error(err); }
 })();
