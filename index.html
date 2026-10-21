@@ -756,6 +756,52 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
 .diagram svg{ direction:ltr; }
 .formula > math[display="block"]{ display:inline-block; margin:0 auto; max-width:100%; }
 @media print{ details.proof{ break-inside:avoid; } .box{ break-inside:avoid; } }
+
+/* ===== חיפוש חכם (AI) ===== */
+[hidden]{ display:none !important; }
+.ai-open-btn{ display:flex; align-items:center; justify-content:center; gap:8px; width:100%; margin:0 0 10px; padding:11px 12px; border-radius:9px; border:1px solid #E3B95C; background:linear-gradient(180deg,#E3B95C,#C99A3A); color:#1F2A47; font-family:'Assistant',sans-serif; font-weight:700; font-size:.95rem; cursor:pointer; }
+.ai-open-btn:hover{ filter:brightness(1.05); }
+.ai-hero-btn{ display:inline-flex; align-items:center; gap:10px; margin-top:18px; padding:13px 20px; border-radius:12px; border:none; background:var(--indigo-2); color:#fff; font-family:'Assistant',sans-serif; font-weight:700; font-size:1.02rem; cursor:pointer; box-shadow:0 4px 14px rgba(31,42,71,.25); }
+.ai-hero-btn small{ font-weight:400; color:#D8CEAE; font-size:.85rem; }
+.ai-hero-btn:hover{ background:var(--indigo); }
+.ai-overlay{ position:fixed; inset:0; z-index:100; background:rgba(20,22,28,.55); display:flex; align-items:flex-start; justify-content:center; overflow-y:auto; padding:max(24px, env(safe-area-inset-top,0px)) max(12px, env(safe-area-inset-right,0px)) max(24px, env(safe-area-inset-bottom,0px)) max(12px, env(safe-area-inset-left,0px)); }
+.ai-panel{ background:var(--bg); color:var(--ink); width:100%; max-width:640px; border-radius:16px; box-shadow:0 20px 50px rgba(0,0,0,.35); padding:22px 24px 20px; margin:auto 0; }
+.ai-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:6px; }
+.ai-head h2{ font-size:1.35rem; margin:0; }
+.ai-close{ width:40px; height:40px; border-radius:50%; border:1px solid var(--line); background:var(--paper); font-size:1.1rem; cursor:pointer; color:var(--ink); flex:0 0 auto; }
+.ai-sub{ color:var(--ink-soft); font-size:.95rem; margin:0 0 14px; }
+.ai-panel textarea{ width:100%; min-height:110px; resize:vertical; box-sizing:border-box; border:1px solid var(--line); border-radius:10px; padding:12px 14px; font-family:'Assistant',sans-serif; font-size:1rem; background:var(--paper); color:var(--ink); }
+.ai-panel textarea:focus{ outline:3px solid var(--gold-soft); border-color:var(--gold); }
+.ai-drop{ margin-top:10px; border:2px dashed #CFC3A6; border-radius:12px; padding:14px; text-align:center; background:var(--paper); cursor:pointer; color:var(--ink-soft); font-size:.95rem; }
+.ai-drop.drag{ border-color:var(--gold); background:var(--gold-soft); }
+.ai-drop b{ color:var(--indigo); }
+.ai-thumbs{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+.ai-thumb{ position:relative; width:96px; height:96px; border-radius:10px; overflow:hidden; border:1px solid var(--line); background:var(--paper); }
+.ai-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+.ai-thumb button{ position:absolute; top:4px; left:4px; width:26px; height:26px; border-radius:50%; border:none; background:rgba(20,22,28,.7); color:#fff; cursor:pointer; font-size:.8rem; }
+.ai-actions{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; align-items:center; }
+.ai-go{ padding:11px 22px; border-radius:10px; border:none; background:var(--indigo-2); color:#fff; font-family:'Assistant',sans-serif; font-weight:700; font-size:1rem; cursor:pointer; }
+.ai-go:disabled{ opacity:.55; cursor:default; }
+.ai-stop{ padding:10px 16px; border-radius:10px; border:1px solid var(--line); background:var(--paper); color:var(--ink); font-family:'Assistant',sans-serif; cursor:pointer; }
+.ai-status{ color:var(--ink-soft); font-size:.92rem; }
+.ai-status.err{ color:var(--rust); font-weight:600; }
+.ai-understood{ margin-top:16px; padding:12px 16px; border-radius:10px; background:var(--indigo-soft); border-inline-start:4px solid var(--indigo); }
+.ai-understood .lbl{ font-weight:700; color:var(--indigo); font-size:.9rem; margin-bottom:4px; }
+.ai-results{ display:grid; gap:10px; margin-top:12px; }
+.ai-result{ display:block; width:100%; text-align:right; border:1px solid var(--line); border-radius:12px; background:var(--paper); padding:12px 16px; cursor:pointer; font-family:'Assistant',sans-serif; color:var(--ink); }
+.ai-result:hover{ border-color:var(--gold); background:var(--gold-soft); }
+.ai-result .t{ font-family:'Frank Ruhl Libre',serif; font-weight:700; color:var(--indigo-2); font-size:1.05rem; display:flex; justify-content:space-between; gap:10px; }
+.ai-result .t .part{ font-family:'Assistant',sans-serif; font-weight:600; font-size:.78rem; color:var(--ink-soft); white-space:nowrap; }
+.ai-result .w{ color:var(--ink-soft); font-size:.93rem; margin-top:4px; line-height:1.6; }
+.ai-result .go{ color:var(--teal); font-weight:700; font-size:.88rem; margin-top:6px; }
+.ai-key{ margin-top:16px; border-top:1px dashed var(--line); padding-top:12px; font-size:.9rem; color:var(--ink-soft); }
+.ai-key summary{ cursor:pointer; font-weight:600; color:var(--indigo); }
+.ai-key input{ width:100%; box-sizing:border-box; margin-top:8px; padding:9px 12px; border-radius:8px; border:1px solid var(--line); font-family:monospace; direction:ltr; background:var(--paper); color:var(--ink); }
+.ai-key .row{ display:flex; gap:8px; margin-top:8px; flex-wrap:wrap; }
+.ai-key .row button{ padding:7px 14px; border-radius:8px; border:1px solid var(--line); background:var(--paper); cursor:pointer; font-family:'Assistant',sans-serif; color:var(--ink); }
+.ai-flash{ animation:aiFlash 2.6s ease-out 1; border-radius:8px; }
+@keyframes aiFlash{ 0%{ background:rgba(227,185,92,.55); box-shadow:0 0 0 8px rgba(227,185,92,.35);} 100%{ background:transparent; box-shadow:0 0 0 0 rgba(227,185,92,0);} }
+@media (max-width:880px){ .ai-panel{ padding:18px 16px 16px; } }
 </style>
 </head>
 <body>
@@ -772,6 +818,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
       <div class="search-status" id="searchStatus" aria-live="polite"></div>
     </div>
 
+    <button type="button" class="ai-open-btn" data-ai-open>✨ חיפוש חכם - העלאת תרגיל</button>
     <button type="button" class="collapse-all-btn" id="collapseAllBtn">▴ כווץ הכול</button>
 
     <ul class="toc" id="tocList">
@@ -830,6 +877,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
         <a href="#ex1"><b>א. מספרים מרוכבים</b><span>i, פעולות, צמוד, מודול, הצגה קוטבית, דה מואבר, שורשים, משוואות ריבועיות</span></a>
         <a href="#ex2"><b>ב. מטריצות</b><span>הגדרות, סוגים, חיבור וכפל, צירוף לינארי, משוחלפת, עקבה</span></a>
       </div>
+      <button type="button" class="ai-hero-btn" data-ai-open>✨ יש לך תרגיל? <small>העלי תמונה או הדביקי טקסט - ואעביר אותך לחומר המתאים</small></button>
       <div class="callout callout-info">
         <div class="callout-title">🧭 איך לקרוא את האתר</div>
         <p><b style="color:var(--indigo)">הגדרה</b> - מה המושג אומר. &nbsp;<b style="color:var(--gold-text)">נוסחה / משפט</b> - מה צריך לזכור. &nbsp;<b style="color:var(--teal)">דוגמה</b> - איך זה נראה במספרים. &nbsp;תיבות <b>הוכחה</b> נפתחות בלחיצה. בתחילת כל נושא יש <b style="color:#5A3F8C">שאלה לדוגמה</b> - נסי לפתור לבד ואז לחצי על "הצג פתרון".</p>
@@ -844,7 +892,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
       <p class="ex-intro">החומר כולו לפי סדר המצגת: הגדרת המספר <b>i</b> והמספר המרוכב, פעולות חשבון, המספר הצמוד, המודול, ההצגה הקוטבית, כפל וחילוק בהצגה קוטבית, נוסחת דה מואבר, הוצאת שורש n-י, ומשוואות ריבועיות עם פתרונות מרוכבים.</p>
 
       <!-- ===================== 1 ===================== -->
-      <h3 class="q" id="ex1-s1">1. ההגדרה: המספר i והמספר המרוכב</h3>
+      <h3 class="q" id="ex1-s1" data-plain="1. ההגדרה: המספר i והמספר המרוכב">1. ההגדרה: המספר i והמספר המרוכב</h3>
       <div class="src-tag base">📑 מצגת מספרים מרוכבים - פרק 1: הגדרה</div>
       <div class="box box-q">
         <div class="box-title">שאלה לדוגמה</div>
@@ -869,7 +917,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
       </div>
       <p><b>דוגמאות למספרים מרוכבים:</b> <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>3</mn><mo>&#x02212;</mo><mi>i</mi><msqrt><mrow><mn>2</mn></mrow></msqrt></mrow></math>, <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>5</mn><mo>&#x0002B;</mo><mn>4</mn><mi>i</mi></mrow></math>, <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mi>&#x003C0;</mi><mo>&#x02212;</mo><mn>7</mn><mi>i</mi></mrow></math>, <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>6</mn><mi>i</mi></mrow></math>, <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>3</mn></mrow></math>.</p>
 
-      <h4 class="sub">החלק הממשי והחלק המדומה</h4>
+      <h4 class="sub" id="ex1-s1-t1">החלק הממשי והחלק המדומה</h4>
       <p>במספר <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi><mo>&#x0003D;</mo><mi>a</mi><mo>&#x0002B;</mo><mi>i</mi><mi>b</mi></mrow></math>:</p>
       <ul>
         <li><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi></mrow></math> נקרא <b>החלק הממשי</b> של <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math>, ומסמנים <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>Re</mo><mo stretchy="false">&#x00028;</mo><mi>z</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mi>a</mi></mrow></math>.</li>
@@ -884,7 +932,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
         <p>החלק המדומה הוא המספר הממשי <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>b</mi></mrow></math> - <b>בלי</b> ה-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>i</mi></mrow></math>. עבור <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi><mo>&#x0003D;</mo><mn>3</mn><mo>&#x02212;</mo><mi>i</mi><msqrt><mn>2</mn></msqrt></mrow></math> כותבים <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>Im</mo><mo stretchy="false">&#x00028;</mo><mi>z</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo>&#x02212;</mo><msqrt><mn>2</mn></msqrt></mrow></math> ולא <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mi>i</mi><msqrt><mn>2</mn></msqrt></mrow></math>.</p>
       </div>
 
-      <h4 class="sub">מקרים מיוחדים</h4>
+      <h4 class="sub" id="ex1-s1-t2">מקרים מיוחדים</h4>
       <table>
         <tr><th>תנאי</th><th>שם</th><th>דוגמה</th></tr>
         <tr><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>b</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math></td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math> <b>מספר ממשי</b></td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi><mo>&#x0003D;</mo><mn>3</mn></mrow></math></td></tr>
@@ -897,7 +945,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
       <p>הכתיבה <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><mo>&#x0002B;</mo><mi>i</mi><mi>b</mi></mrow></math> נקראת <span class="hebrew-box">הצורה הקרטזית</span> (או האלגברית) של <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math>.</p>
 
       <!-- ===================== 2 ===================== -->
-      <h3 class="q" id="ex1-s2">2. פעולות בין מספרים מרוכבים: חיבור, כפל וחילוק</h3>
+      <h3 class="q" id="ex1-s2" data-plain="2. פעולות בין מספרים מרוכבים: חיבור, כפל וחילוק">2. פעולות בין מספרים מרוכבים: חיבור, כפל וחילוק</h3>
       <div class="src-tag base">📑 מצגת מספרים מרוכבים - פרק 2: פעולות בין מספרים מרוכבים</div>
       <div class="box box-q">
         <div class="box-title">שאלה לדוגמה</div>
@@ -911,7 +959,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
       </div>
       <p>בכל הסעיף: <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>z</mi><mn>1</mn></msub><mo>&#x0003D;</mo><msub><mi>a</mi><mn>1</mn></msub><mo>&#x0002B;</mo><mi>i</mi><msub><mi>b</mi><mn>1</mn></msub></mrow></math> ו-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>z</mi><mn>2</mn></msub><mo>&#x0003D;</mo><msub><mi>a</mi><mn>2</mn></msub><mo>&#x0002B;</mo><mi>i</mi><msub><mi>b</mi><mn>2</mn></msub></mrow></math>.</p>
 
-      <h4 class="sub">חיבור (וחיסור)</h4>
+      <h4 class="sub" id="ex1-s2-t1">חיבור (וחיסור)</h4>
       <p>מחברים חלק ממשי עם חלק ממשי, וחלק מדומה עם חלק מדומה:</p>
       <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>z</mi><mn>1</mn></msub><mo>&#x0002B;</mo><msub><mi>z</mi><mn>2</mn></msub><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><msub><mi>a</mi><mn>1</mn></msub><mo>&#x0002B;</mo><msub><mi>a</mi><mn>2</mn></msub><mo stretchy="false">&#x00029;</mo><mo>&#x0002B;</mo><mi>i</mi><mo stretchy="false">&#x00028;</mo><msub><mi>b</mi><mn>1</mn></msub><mo>&#x0002B;</mo><msub><mi>b</mi><mn>2</mn></msub><mo stretchy="false">&#x00029;</mo></mrow></math></div>
       <p>חיסור באותו אופן: <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>z</mi><mn>1</mn></msub><mo>&#x02212;</mo><msub><mi>z</mi><mn>2</mn></msub><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><msub><mi>a</mi><mn>1</mn></msub><mo>&#x02212;</mo><msub><mi>a</mi><mn>2</mn></msub><mo stretchy="false">&#x00029;</mo><mo>&#x0002B;</mo><mi>i</mi><mo stretchy="false">&#x00028;</mo><msub><mi>b</mi><mn>1</mn></msub><mo>&#x02212;</mo><msub><mi>b</mi><mn>2</mn></msub><mo stretchy="false">&#x00029;</mo></mrow></math>.</p>
@@ -920,7 +968,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
         <p><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>z</mi><mn>1</mn></msub><mo>&#x0003D;</mo><mn>2</mn><mo>&#x0002B;</mo><mn>3</mn><mi>i</mi><mo>&#x0002C;</mo><mtext>&#x000A0;</mtext><msub><mi>z</mi><mn>2</mn></msub><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>7</mn><mo>&#x0002B;</mo><mn>6</mn><mi>i</mi></mrow></math> &nbsp;⇐&nbsp; <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>z</mi><mn>1</mn></msub><mo>&#x0002B;</mo><msub><mi>z</mi><mn>2</mn></msub><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>5</mn><mo>&#x0002B;</mo><mn>9</mn><mi>i</mi></mrow></math></p>
       </div>
 
-      <h4 class="sub">כפל</h4>
+      <h4 class="sub" id="ex1-s2-t2">כפל</h4>
       <p>פותחים סוגריים כמו בכפל רגיל, ומשתמשים ב-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>i</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>1</mn></mrow></math>:</p>
       <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo stretchy="false">&#x00028;</mo><msub><mi>a</mi><mn>1</mn></msub><mo>&#x0002B;</mo><mi>i</mi><msub><mi>b</mi><mn>1</mn></msub><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><msub><mi>a</mi><mn>2</mn></msub><mo>&#x0002B;</mo><mi>i</mi><msub><mi>b</mi><mn>2</mn></msub><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>a</mi><mn>1</mn></msub><msub><mi>a</mi><mn>2</mn></msub><mo>&#x0002B;</mo><mi>i</mi><msub><mi>a</mi><mn>1</mn></msub><msub><mi>b</mi><mn>2</mn></msub><mo>&#x0002B;</mo><mi>i</mi><msub><mi>b</mi><mn>1</mn></msub><msub><mi>a</mi><mn>2</mn></msub><mo>&#x0002B;</mo><munder><munder><mrow><msup><mi>i</mi><mn>2</mn></msup></mrow><mo>&#x23DF;</mo></munder><mrow><mo>&#x02212;</mo><mn>1</mn></mrow></munder><msub><mi>b</mi><mn>1</mn></msub><msub><mi>b</mi><mn>2</mn></msub></mrow></math></div>
       <p>ולכן:</p>
@@ -939,7 +987,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
         <p>ההגדרות של החיבור והכפל במספרים מרוכבים הן <b>הרחבות</b> של החיבור והכפל במספרים ממשיים: כאשר <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>b</mi><mn>1</mn></msub><mo>&#x0003D;</mo><msub><mi>b</mi><mn>2</mn></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math> מקבלים בדיוק את החיבור והכפל הרגילים.</p>
       </div>
 
-      <h4 class="sub">חילוק</h4>
+      <h4 class="sub" id="ex1-s2-t3">חילוק</h4>
       <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mfrac><mrow><msub><mi>z</mi><mn>1</mn></msub></mrow><mrow><msub><mi>z</mi><mn>2</mn></msub></mrow></mfrac><mo>&#x0003D;</mo><mfrac><mrow><msub><mi>a</mi><mn>1</mn></msub><mo>&#x0002B;</mo><mi>i</mi><msub><mi>b</mi><mn>1</mn></msub></mrow><mrow><msub><mi>a</mi><mn>2</mn></msub><mo>&#x0002B;</mo><mi>i</mi><msub><mi>b</mi><mn>2</mn></msub></mrow></mfrac></mrow></math></div>
       <p>כדי לקבל את <b>הצורה הקרטזית</b> של המנה, <span class="hebrew-box">כופלים את המונה ואת המכנה בצמוד של המכנה</span> <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>z</mi><mo stretchy="true">&#x000AF;</mo></mover><mn>2</mn></msub><mo>&#x0003D;</mo><msub><mi>a</mi><mn>2</mn></msub><mo>&#x02212;</mo><mi>i</mi><msub><mi>b</mi><mn>2</mn></msub></mrow></math> (ראי סעיף 3). המכנה הופך למספר ממשי:</p>
       <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mfrac><mrow><msub><mi>z</mi><mn>1</mn></msub></mrow><mrow><msub><mi>z</mi><mn>2</mn></msub></mrow></mfrac><mo>&#x0003D;</mo><mfrac><mrow><mo stretchy="false">&#x00028;</mo><msub><mi>a</mi><mn>1</mn></msub><mo>&#x0002B;</mo><mi>i</mi><msub><mi>b</mi><mn>1</mn></msub><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><msub><mi>a</mi><mn>2</mn></msub><mo>&#x02212;</mo><mi>i</mi><msub><mi>b</mi><mn>2</mn></msub><mo stretchy="false">&#x00029;</mo></mrow><mrow><mo stretchy="false">&#x00028;</mo><msub><mi>a</mi><mn>2</mn></msub><mo>&#x0002B;</mo><mi>i</mi><msub><mi>b</mi><mn>2</mn></msub><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><msub><mi>a</mi><mn>2</mn></msub><mo>&#x02212;</mo><mi>i</mi><msub><mi>b</mi><mn>2</mn></msub><mo stretchy="false">&#x00029;</mo></mrow></mfrac><mo>&#x0003D;</mo><mfrac><mrow><mo stretchy="false">&#x00028;</mo><msub><mi>a</mi><mn>1</mn></msub><mo>&#x0002B;</mo><mi>i</mi><msub><mi>b</mi><mn>1</mn></msub><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><msub><mi>a</mi><mn>2</mn></msub><mo>&#x02212;</mo><mi>i</mi><msub><mi>b</mi><mn>2</mn></msub><mo stretchy="false">&#x00029;</mo></mrow><mrow><msubsup><mi>a</mi><mn>2</mn><mn>2</mn></msubsup><mo>&#x0002B;</mo><msubsup><mi>b</mi><mn>2</mn><mn>2</mn></msubsup></mrow></mfrac></mrow></math></div>
@@ -951,7 +999,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
       </div>
 
       <!-- ===================== 3 ===================== -->
-      <h3 class="q" id="ex1-s3">3. המספר המרוכב הצמוד</h3>
+      <h3 class="q" id="ex1-s3" data-plain="3. המספר המרוכב הצמוד">3. המספר המרוכב הצמוד</h3>
       <div class="src-tag base">📑 מצגת מספרים מרוכבים - פרק 2: המספר המרוכב הצמוד</div>
       <div class="box box-q">
         <div class="box-title">שאלה לדוגמה</div>
@@ -974,7 +1022,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
         <p><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi><mo>&#x0003D;</mo><mn>3</mn><mo>&#x02212;</mo><mi>i</mi><msqrt><mn>2</mn></msqrt></mrow></math> &nbsp;⇐&nbsp; <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mover><mi>z</mi><mo stretchy="true">&#x000AF;</mo></mover><mo>&#x0003D;</mo><mn>3</mn><mo>&#x0002B;</mo><mi>i</mi><msqrt><mn>2</mn></msqrt></mrow></math></p>
       </div>
 
-      <h4 class="sub">תכונות הצמוד</h4>
+      <h4 class="sub" id="ex1-s3-t1">תכונות הצמוד</h4>
       <table class="props">
         <tr><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mover><mrow><mover><mi>z</mi><mo stretchy="true">&#x000AF;</mo></mover></mrow><mo stretchy="true">&#x000AF;</mo></mover><mo>&#x0003D;</mo><mi>z</mi></mrow></math></td><td>צמוד של צמוד מחזיר את המספר</td></tr>
         <tr><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mrow class="ovl"><msub><mi>z</mi><mn>1</mn></msub><mo>&#x0002B;</mo><msub><mi>z</mi><mn>2</mn></msub></mrow><mo>&#x0003D;</mo><msub><mover><mi>z</mi><mo stretchy="true">&#x000AF;</mo></mover><mn>1</mn></msub><mo>&#x0002B;</mo><msub><mover><mi>z</mi><mo stretchy="true">&#x000AF;</mo></mover><mn>2</mn></msub></mrow></math></td><td>הצמוד של סכום = סכום הצמודים</td></tr>
@@ -1009,7 +1057,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
       </div>
 
       <!-- ===================== 4 ===================== -->
-      <h3 class="q" id="ex1-s4">4. המודול (הערך המוחלט) של מספר מרוכב</h3>
+      <h3 class="q" id="ex1-s4" data-plain="4. המודול (הערך המוחלט) של מספר מרוכב">4. המודול (הערך המוחלט) של מספר מרוכב</h3>
       <div class="src-tag base">📑 מצגת מספרים מרוכבים - פרק 2: מודול של מספר מרוכב</div>
       <div class="box box-q">
         <div class="box-title">שאלה לדוגמה</div>
@@ -1031,7 +1079,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
         <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo stretchy="false">&#x0007C;</mo><mn>3</mn><mo>&#x0002B;</mo><mi>i</mi><msqrt><mn>2</mn></msqrt><mo stretchy="false">&#x0007C;</mo><mo>&#x0003D;</mo><msqrt><mrow><msup><mn>3</mn><mn>2</mn></msup><mo>&#x0002B;</mo><msup><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><msqrt><mn>2</mn></msqrt><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><mn>2</mn></msup></mrow></msqrt><mo>&#x0003D;</mo><msqrt><mrow><mn>11</mn></mrow></msqrt></mrow></math></div>
       </div>
 
-      <h4 class="sub">תכונות המודול</h4>
+      <h4 class="sub" id="ex1-s4-t1">תכונות המודול</h4>
       <table class="props">
         <tr><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi><mover><mi>z</mi><mo stretchy="true">&#x000AF;</mo></mover><mo>&#x0003D;</mo><mo stretchy="false">&#x0007C;</mo><mi>z</mi><msup><mo stretchy="false">&#x0007C;</mo><mn>2</mn></msup></mrow></math></td><td>הקשר בין צמוד למודול</td></tr>
         <tr><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x0007C;</mo><msub><mi>z</mi><mn>1</mn></msub><mo>&#x000B7;</mo><msub><mi>z</mi><mn>2</mn></msub><mo stretchy="false">&#x0007C;</mo><mo>&#x0003D;</mo><mo stretchy="false">&#x0007C;</mo><msub><mi>z</mi><mn>1</mn></msub><mo stretchy="false">&#x0007C;</mo><mo>&#x000B7;</mo><mo stretchy="false">&#x0007C;</mo><msub><mi>z</mi><mn>2</mn></msub><mo stretchy="false">&#x0007C;</mo></mrow></math></td><td>מודול של מכפלה = מכפלת המודולים</td></tr>
@@ -1056,7 +1104,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
       </div>
 
       <!-- ===================== 5 ===================== -->
-      <h3 class="q" id="ex1-s5">5. תזכורת: הפונקציות הטריגונומטריות</h3>
+      <h3 class="q" id="ex1-s5" data-plain="5. תזכורת: הפונקציות הטריגונומטריות">5. תזכורת: הפונקציות הטריגונומטריות</h3>
       <div class="src-tag base">📑 מצגת מספרים מרוכבים - פרק 3: תזכורת טריגונומטריה</div>
       <div class="box box-q">
         <div class="box-title">שאלה לדוגמה</div>
@@ -1095,7 +1143,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
           <span class="dk-item"><span class="dk-swatch" style="background:#2A6F63"></span>tan α</span>
         </div>
       </div>
-      <h4 class="sub">טבלת הערכים שחייבים לזכור</h4>
+      <h4 class="sub" id="ex1-s5-t1">טבלת הערכים שחייבים לזכור</h4>
       <table>
         <tr><th><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B1;</mi></mrow></math></th><th><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn></mrow></math></th><th><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mfrac><mrow><mi>&#x003C0;</mi></mrow><mrow><mn>6</mn></mrow></mfrac></mrow></math></th><th><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mfrac><mrow><mi>&#x003C0;</mi></mrow><mrow><mn>4</mn></mrow></mfrac></mrow></math></th><th><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mfrac><mrow><mi>&#x003C0;</mi></mrow><mrow><mn>3</mn></mrow></mfrac></mrow></math></th><th><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mfrac><mrow><mi>&#x003C0;</mi></mrow><mrow><mn>2</mn></mrow></mfrac></mrow></math></th></tr>
         <tr><th><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>sin</mi><mi>&#x003B1;</mi></mrow></math></th><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn></mrow></math></td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow></math></td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mfrac><mrow><msqrt><mn>2</mn></msqrt></mrow><mrow><mn>2</mn></mrow></mfrac></mrow></math></td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mfrac><mrow><msqrt><mn>3</mn></msqrt></mrow><mrow><mn>2</mn></mrow></mfrac></mrow></math></td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn></mrow></math></td></tr>
@@ -1109,7 +1157,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
       <p>זהויות שימושיות: <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>cos</mi><mn>2</mn></msup><mi>&#x003B1;</mi><mo>&#x0002B;</mo><msup><mi>sin</mi><mn>2</mn></msup><mi>&#x003B1;</mi><mo>&#x0003D;</mo><mn>1</mn></mrow></math>, &nbsp; <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>cos</mi><mo stretchy="false">&#x00028;</mo><mi>&#x003B1;</mi><mo>&#x0002B;</mo><mi>&#x003B2;</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mi>cos</mi><mi>&#x003B1;</mi><mi>cos</mi><mi>&#x003B2;</mi><mo>&#x02212;</mo><mi>sin</mi><mi>&#x003B1;</mi><mi>sin</mi><mi>&#x003B2;</mi></mrow></math>, &nbsp; <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>sin</mi><mo stretchy="false">&#x00028;</mo><mi>&#x003B1;</mi><mo>&#x0002B;</mo><mi>&#x003B2;</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mi>sin</mi><mi>&#x003B1;</mi><mi>cos</mi><mi>&#x003B2;</mi><mo>&#x0002B;</mo><mi>cos</mi><mi>&#x003B1;</mi><mi>sin</mi><mi>&#x003B2;</mi></mrow></math>.</p>
 
       <!-- ===================== 6 ===================== -->
-      <h3 class="q" id="ex1-s6">6. ההצגה הקוטבית של מספר מרוכב</h3>
+      <h3 class="q" id="ex1-s6" data-plain="6. ההצגה הקוטבית של מספר מרוכב">6. ההצגה הקוטבית של מספר מרוכב</h3>
       <div class="src-tag base">📑 מצגת מספרים מרוכבים - פרק 3: הצגה קוטבית של מספר מרוכב</div>
       <div class="box box-q">
         <div class="box-title">שאלה לדוגמה</div>
@@ -1157,7 +1205,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
         <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>cos</mi><mi>&#x003B8;</mi><mo>&#x0002B;</mo><mi>i</mi><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x0003D;</mo><msup><mi>e</mi><mrow><mi>i</mi><mi>&#x003B8;</mi></mrow></msup><mspace width="2em" /><mi>&#x027F9;</mi><mspace width="2em" /><mi>z</mi><mo>&#x0003D;</mo><mi>r</mi><msup><mi>e</mi><mrow><mi>i</mi><mi>&#x003B8;</mi></mrow></msup></mrow></math></div>
       </div>
 
-      <h4 class="sub">איך מוצאים את ההצגה הקוטבית - שלב אחר שלב</h4>
+      <h4 class="sub" id="ex1-s6-t1">איך מוצאים את ההצגה הקוטבית - שלב אחר שלב</h4>
       <ol class="steps">
         <li><b>המודול:</b> <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>r</mi><mo>&#x0003D;</mo><mo stretchy="false">&#x0007C;</mo><mi>z</mi><mo stretchy="false">&#x0007C;</mo><mo>&#x0003D;</mo><msqrt><mrow><msup><mi>a</mi><mn>2</mn></msup><mo>&#x0002B;</mo><msup><mi>b</mi><mn>2</mn></msup></mrow></msqrt></mrow></math>.</li>
         <li><b>הזווית מהטנגנס:</b> מחשבים <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>tan</mi><mi>&#x003B8;</mi><mo>&#x0003D;</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mi>b</mi><mi>a</mi></mfrac></mstyle></mrow></math> ומוצאים זווית בסיס מהטבלה.</li>
@@ -1181,7 +1229,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
         <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>z</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>5</mn><mo>&#x0002B;</mo><mn>5</mn><mi>i</mi><mo>&#x0003D;</mo><mn>5</mn><msqrt><mn>2</mn></msqrt><mspace width="0.167em" /><msup><mi>e</mi><mrow><mi>i</mi><mfrac><mrow><mn>3</mn><mi>&#x003C0;</mi></mrow><mrow><mn>4</mn></mrow></mfrac></mrow></msup><mo>&#x0003D;</mo><mn>5</mn><msqrt><mn>2</mn></msqrt><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mi>cos</mi><mfrac><mrow><mn>3</mn><mi>&#x003C0;</mi></mrow><mn>4</mn></mfrac><mo>&#x0002B;</mo><mi>i</mi><mi>sin</mi><mfrac><mrow><mn>3</mn><mi>&#x003C0;</mi></mrow><mn>4</mn></mfrac><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow></mrow></math></div>
       </div>
 
-      <h4 class="sub">מספרים על הצירים - בלי חישוב</h4>
+      <h4 class="sub" id="ex1-s6-t2">מספרים על הצירים - בלי חישוב</h4>
       <p>כשהמספר ממשי או מדומה טהור, רואים את המודול והארגומנט ישר מהשרטוט:</p>
       <table>
         <tr><th><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></th><th><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x0007C;</mo><mi>z</mi><mo stretchy="false">&#x0007C;</mo></mrow></math></th><th><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>arg</mo><mo stretchy="false">&#x00028;</mo><mi>z</mi><mo stretchy="false">&#x00029;</mo></mrow></math></th><th>הצגה קוטבית</th></tr>
@@ -1195,12 +1243,12 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
         <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mi>e</mi><mrow><mi>i</mi><mn>0</mn></mrow></msup><mo>&#x0003D;</mo><mn>1</mn><mspace width="2em" /><msup><mi>e</mi><mrow><mi>i</mi><mi>&#x003C0;</mi></mrow></msup><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>1</mn><mspace width="2em" /><msup><mi>e</mi><mrow><mi>i</mi><mfrac><mi>&#x003C0;</mi><mn>2</mn></mfrac></mrow></msup><mo>&#x0003D;</mo><mi>i</mi><mspace width="2em" /><msup><mi>e</mi><mrow><mo>&#x02212;</mo><mi>i</mi><mfrac><mi>&#x003C0;</mi><mn>2</mn></mfrac></mrow></msup><mo>&#x0003D;</mo><mo>&#x02212;</mo><mi>i</mi></mrow></math></div>
       </div>
 
-      <h4 class="sub">מתי שתי הצגות קוטביות שוות?</h4>
+      <h4 class="sub" id="ex1-s6-t3">מתי שתי הצגות קוטביות שוות?</h4>
       <p>נניח <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>z</mi><mn>1</mn></msub><mo>&#x0003D;</mo><msub><mi>a</mi><mn>1</mn></msub><mo>&#x0002B;</mo><mi>i</mi><msub><mi>b</mi><mn>1</mn></msub><mo>&#x0003D;</mo><msub><mi>r</mi><mn>1</mn></msub><msup><mi>e</mi><mrow><mi>i</mi><msub><mi>&#x003B8;</mi><mn>1</mn></msub></mrow></msup></mrow></math> ו-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>z</mi><mn>2</mn></msub><mo>&#x0003D;</mo><msub><mi>a</mi><mn>2</mn></msub><mo>&#x0002B;</mo><mi>i</mi><msub><mi>b</mi><mn>2</mn></msub><mo>&#x0003D;</mo><msub><mi>r</mi><mn>2</mn></msub><msup><mi>e</mi><mrow><mi>i</mi><msub><mi>&#x003B8;</mi><mn>2</mn></msub></mrow></msup></mrow></math>. אז</p>
       <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>z</mi><mn>1</mn></msub><mo>&#x0003D;</mo><msub><mi>z</mi><mn>2</mn></msub><mspace width="1em" /><mi>&#x027FA;</mi><mspace width="1em" /><mrow><mo stretchy="true" fence="true" form="prefix">&#x0007B;</mo><mtable><mtr><mtd columnalign="left"><msub><mi>a</mi><mn>1</mn></msub><mo>&#x0003D;</mo><msub><mi>a</mi><mn>2</mn></msub></mtd></mtr><mtr><mtd columnalign="left"><msub><mi>b</mi><mn>1</mn></msub><mo>&#x0003D;</mo><msub><mi>b</mi><mn>2</mn></msub></mtd></mtr></mtable></mrow><mspace width="1em" /><mi>&#x027FA;</mi><mspace width="1em" /><mrow><mo stretchy="true" fence="true" form="prefix">&#x0007B;</mo><mtable><mtr><mtd columnalign="left"><msub><mi>r</mi><mn>1</mn></msub><mo>&#x0003D;</mo><msub><mi>r</mi><mn>2</mn></msub></mtd></mtr><mtr><mtd columnalign="left"><msub><mi>&#x003B8;</mi><mn>1</mn></msub><mo>&#x0003D;</mo><msub><mi>&#x003B8;</mi><mn>2</mn></msub><mo>&#x0002B;</mo><mn>2</mn><mi>k</mi><mi>&#x003C0;</mi></mtd></mtr></mtable></mrow></mrow></math></div>
       <p>הזווית נקבעת רק <b>עד כדי כפולה שלמה של</b> <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn><mi>&#x003C0;</mi></mrow></math> (סיבוב שלם מחזיר לאותה נקודה). למשל <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn><msup><mi>e</mi><mrow><mi>i</mi><mfrac><mi>&#x003C0;</mi><mn>3</mn></mfrac></mrow></msup><mo>&#x0003D;</mo><mn>2</mn><msup><mi>e</mi><mrow><mi>i</mi><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mfrac><mi>&#x003C0;</mi><mn>3</mn></mfrac><mo>&#x0002B;</mo><mn>2</mn><mi>&#x003C0;</mi><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow></mrow></msup><mo>&#x0003D;</mo><mn>2</mn><msup><mi>e</mi><mrow><mi>i</mi><mfrac><mrow><mn>7</mn><mi>&#x003C0;</mi></mrow><mn>3</mn></mfrac></mrow></msup></mrow></math>. העובדה הזאת היא הבסיס להוצאת שורשים (סעיף 9).</p>
 
-      <h4 class="sub">הצמוד בהצגה קוטבית</h4>
+      <h4 class="sub" id="ex1-s6-t4">הצמוד בהצגה קוטבית</h4>
       <p>השיקוף ביחס לציר הממשי משאיר את המרחק ומחליף את סימן הזווית:</p>
       <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>z</mi><mo>&#x0003D;</mo><mi>a</mi><mo>&#x0002B;</mo><mi>i</mi><mi>b</mi><mo>&#x0003D;</mo><mi>r</mi><msup><mi>e</mi><mrow><mi>i</mi><mi>&#x003B8;</mi></mrow></msup><mspace width="2em" /><mi>&#x027F9;</mi><mspace width="2em" /><mover><mi>z</mi><mo stretchy="true">&#x000AF;</mo></mover><mo>&#x0003D;</mo><mi>a</mi><mo>&#x02212;</mo><mi>i</mi><mi>b</mi><mo>&#x0003D;</mo><mi>r</mi><msup><mi>e</mi><mrow><mo>&#x02212;</mo><mi>i</mi><mi>&#x003B8;</mi></mrow></msup></mrow></math></div>
       <div class="box box-ex">
@@ -1209,7 +1257,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
       </div>
 
       <!-- ===================== 7 ===================== -->
-      <h3 class="q" id="ex1-s7">7. כפל וחילוק בהצגה קוטבית</h3>
+      <h3 class="q" id="ex1-s7" data-plain="7. כפל וחילוק בהצגה קוטבית">7. כפל וחילוק בהצגה קוטבית</h3>
       <div class="src-tag base">📑 מצגת מספרים מרוכבים - פרק 3: כפל וחילוק של מספרים מרוכבים בהצגה קוטבית</div>
       <div class="box box-q">
         <div class="box-title">שאלה לדוגמה</div>
@@ -1257,7 +1305,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
       </div>
 
       <!-- ===================== 8 ===================== -->
-      <h3 class="q" id="ex1-s8">8. נוסחת דה מואבר (De Moivre)</h3>
+      <h3 class="q" id="ex1-s8" data-plain="8. נוסחת דה מואבר (De Moivre)">8. נוסחת דה מואבר (De Moivre)</h3>
       <div class="src-tag base">📑 מצגת מספרים מרוכבים - פרק 4: נוסחת דה מואבר</div>
       <div class="box box-q">
         <div class="box-title">שאלה לדוגמה</div>
@@ -1284,7 +1332,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
         <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mn>1</mn><mo>&#x0002B;</mo><mi>i</mi><msqrt><mn>3</mn></msqrt><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><mn>7</mn></msup><mo>&#x0003D;</mo><msup><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mn>2</mn><msup><mi>e</mi><mrow><mi>i</mi><mfrac><mi>&#x003C0;</mi><mn>3</mn></mfrac></mrow></msup><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><mn>7</mn></msup><mo>&#x0003D;</mo><msup><mn>2</mn><mn>7</mn></msup><msup><mi>e</mi><mrow><mi>i</mi><mfrac><mrow><mn>7</mn><mi>&#x003C0;</mi></mrow><mn>3</mn></mfrac></mrow></msup><mo>&#x0003D;</mo><mn>128</mn><mspace width="0.167em" /><msup><mi>e</mi><mrow><mi>i</mi><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mfrac><mi>&#x003C0;</mi><mn>3</mn></mfrac><mo>&#x0002B;</mo><mn>2</mn><mi>&#x003C0;</mi><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow></mrow></msup><mo>&#x0003D;</mo><mn>128</mn><mspace width="0.167em" /><msup><mi>e</mi><mrow><mi>i</mi><mfrac><mi>&#x003C0;</mi><mn>3</mn></mfrac></mrow></msup></mrow></math></div>
         <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo>&#x0003D;</mo><mn>128</mn><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mi>cos</mi><mfrac><mi>&#x003C0;</mi><mn>3</mn></mfrac><mo>&#x0002B;</mo><mi>i</mi><mi>sin</mi><mfrac><mi>&#x003C0;</mi><mn>3</mn></mfrac><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><mo>&#x0003D;</mo><mn>128</mn><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>&#x0002B;</mo><mi>i</mi><mfrac><mrow><msqrt><mn>3</mn></msqrt></mrow><mn>2</mn></mfrac><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><mo>&#x0003D;</mo><mn>64</mn><mo>&#x0002B;</mo><mn>64</mn><msqrt><mn>3</mn></msqrt><mspace width="0.167em" /><mi>i</mi></mrow></math></div>
       </div>
-      <h4 class="sub">שימוש: זהויות טריגונומטריות של זווית כפולה</h4>
+      <h4 class="sub" id="ex1-s8-t1">שימוש: זהויות טריגונומטריות של זווית כפולה</h4>
       <p>מציבים <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>n</mi><mo>&#x0003D;</mo><mn>2</mn></mrow></math> בנוסחת דה מואבר ופותחים את הצד השמאלי:</p>
       <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo minsize="1.2em" maxsize="1.2em">(</mo><mi>cos</mi><mi>&#x003B8;</mi><mo>&#x0002B;</mo><mi>i</mi><mi>sin</mi><mi>&#x003B8;</mi><msup><mo minsize="1.2em" maxsize="1.2em">)</mo><mn>2</mn></msup><mo>&#x0003D;</mo><msup><mi>cos</mi><mn>2</mn></msup><mi>&#x003B8;</mi><mo>&#x0002B;</mo><mn>2</mn><mi>i</mi><mi>cos</mi><mi>&#x003B8;</mi><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x02212;</mo><msup><mi>sin</mi><mn>2</mn></msup><mi>&#x003B8;</mi><mo>&#x0003D;</mo><mi>cos</mi><mo stretchy="false">&#x00028;</mo><mn>2</mn><mi>&#x003B8;</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002B;</mo><mi>i</mi><mi>sin</mi><mo stretchy="false">&#x00028;</mo><mn>2</mn><mi>&#x003B8;</mi><mo stretchy="false">&#x00029;</mo></mrow></math></div>
       <p>משווים חלק ממשי לחלק ממשי וחלק מדומה לחלק מדומה, ומקבלים:</p>
@@ -1293,7 +1341,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
       </div>
 
       <!-- ===================== 9 ===================== -->
-      <h3 class="q" id="ex1-s9">9. המשוואה <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>z</mi><mi>n</mi></msup><mo>&#x0003D;</mo><mi>a</mi><mo>&#x0002B;</mo><mi>i</mi><mi>b</mi></mrow></math>: הוצאת שורש מסדר n</h3>
+      <h3 class="q" id="ex1-s9" data-plain="9. המשוואה z^n=a+ib: הוצאת שורש מסדר n">9. המשוואה <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>z</mi><mi>n</mi></msup><mo>&#x0003D;</mo><mi>a</mi><mo>&#x0002B;</mo><mi>i</mi><mi>b</mi></mrow></math>: הוצאת שורש מסדר n</h3>
       <div class="src-tag base">📑 מצגת מספרים מרוכבים - פרק 5: משוואה <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>z</mi><mi>n</mi></msup><mo>&#x0003D;</mo><mi>a</mi><mo>&#x0002B;</mo><mi>i</mi><mi>b</mi></mrow></math> - שורש n של a+ib</div>
       <div class="box box-q">
         <div class="box-title">שאלה לדוגמה</div>
@@ -1310,7 +1358,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
         </details>
       </div>
       <p>פתרונות המשוואה <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>z</mi><mi>n</mi></msup><mo>&#x0003D;</mo><mi>a</mi><mo>&#x0002B;</mo><mi>i</mi><mi>b</mi></mrow></math> נקראים <b>שורשי ה-n</b> של <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><mo>&#x0002B;</mo><mi>i</mi><mi>b</mi></mrow></math>. במרוכבים יש להם תמיד <b>בדיוק n פתרונות</b> (כש-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><mo>&#x0002B;</mo><mi>i</mi><mi>b</mi><mo>&#x02260;</mo><mn>0</mn></mrow></math>).</p>
-      <h4 class="sub">השיטה</h4>
+      <h4 class="sub" id="ex1-s9-t1">השיטה</h4>
       <ol class="steps">
         <li>מחפשים את <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math> בצורה קוטבית: <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi><mo>&#x0003D;</mo><mi>r</mi><msup><mi>e</mi><mrow><mi>i</mi><mi>&#x003B8;</mi></mrow></msup></mrow></math>. לפי דה מואבר <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>z</mi><mi>n</mi></msup><mo>&#x0003D;</mo><msup><mi>r</mi><mi>n</mi></msup><msup><mi>e</mi><mrow><mi>i</mi><mi>n</mi><mi>&#x003B8;</mi></mrow></msup></mrow></math>.</li>
         <li>כותבים גם את אגף ימין בצורה קוטבית: <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><mo>&#x0002B;</mo><mi>i</mi><mi>b</mi><mo>&#x0003D;</mo><mi>&#x003C1;</mi><msup><mi>e</mi><mrow><mi>i</mi><mi>&#x003B1;</mi></mrow></msup></mrow></math>.</li>
@@ -1370,7 +1418,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
       </div>
 
       <!-- ===================== 10 ===================== -->
-      <h3 class="q" id="ex1-s10">10. משוואה ריבועית עם מקדמים ממשיים ו-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00394;</mi><mo>&#x0003C;</mo><mn>0</mn></mrow></math></h3>
+      <h3 class="q" id="ex1-s10" data-plain="10. משוואה ריבועית עם מקדמים ממשיים ו-Δ&lt;0">10. משוואה ריבועית עם מקדמים ממשיים ו-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00394;</mi><mo>&#x0003C;</mo><mn>0</mn></mrow></math></h3>
       <div class="src-tag base">📑 מצגת מספרים מרוכבים - פרק 6: משוואה ריבועית, מקרה 1</div>
       <div class="box box-q">
         <div class="box-title">שאלה לדוגמה</div>
@@ -1395,7 +1443,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
         <p>שימי לב: <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>z</mi><mn>1</mn></msub><mo>&#x0003D;</mo><msub><mover><mi>z</mi><mo stretchy="true">&#x000AF;</mo></mover><mn>2</mn></msub></mrow></math> - שני הפתרונות צמודים זה לזה.</p>
       </div>
 
-      <h4 class="sub">המשפט: שורשים מרוכבים של פולינום ממשי באים בזוגות צמודים</h4>
+      <h4 class="sub" id="ex1-s10-t1">המשפט: שורשים מרוכבים של פולינום ממשי באים בזוגות צמודים</h4>
       <div class="box box-thm">
         <div class="box-title">משפט</div>
         <p>נתון פולינום <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi><mo stretchy="false">&#x00028;</mo><mi>z</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>a</mi><mi>n</mi></msub><msup><mi>z</mi><mi>n</mi></msup><mo>&#x0002B;</mo><msub><mi>a</mi><mrow><mi>n</mi><mo>&#x02212;</mo><mn>1</mn></mrow></msub><msup><mi>z</mi><mrow><mi>n</mi><mo>&#x02212;</mo><mn>1</mn></mrow></msup><mo>&#x0002B;</mo><mo>&#x02026;</mo><mo>&#x0002B;</mo><msub><mi>a</mi><mn>1</mn></msub><mi>z</mi><mo>&#x0002B;</mo><msub><mi>a</mi><mn>0</mn></msub></mrow></math> כך ש-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>a</mi><mi>n</mi></msub><mo>&#x0002C;</mo><msub><mi>a</mi><mrow><mi>n</mi><mo>&#x02212;</mo><mn>1</mn></mrow></msub><mo>&#x0002C;</mo><mo>&#x02026;</mo><mo>&#x0002C;</mo><msub><mi>a</mi><mn>1</mn></msub><mo>&#x0002C;</mo><msub><mi>a</mi><mn>0</mn></msub><mo>&#x02208;</mo><mi>&#x0211D;</mi></mrow></math>.</p>
@@ -1427,7 +1475,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
       </div>
 
       <!-- ===================== 11 ===================== -->
-      <h3 class="q" id="ex1-s11">11. משוואה ריבועית עם מקדמים מרוכבים</h3>
+      <h3 class="q" id="ex1-s11" data-plain="11. משוואה ריבועית עם מקדמים מרוכבים">11. משוואה ריבועית עם מקדמים מרוכבים</h3>
       <div class="src-tag base">📑 מצגת מספרים מרוכבים - פרק 6: משוואה ריבועית, מקרה 2</div>
       <div class="box box-q">
         <div class="box-title">שאלה לדוגמה</div>
@@ -1447,7 +1495,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
         <div class="box-title">שני פתרונות</div>
         <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>z</mi><mn>1</mn></msub><mo>&#x0003D;</mo><mfrac><mrow><mo>&#x02212;</mo><mi>b</mi><mo>&#x02212;</mo><mi>&#x003B4;</mi></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac><mspace width="2em" /><mspace width="2em" /><msub><mi>z</mi><mn>2</mn></msub><mo>&#x0003D;</mo><mfrac><mrow><mo>&#x02212;</mo><mi>b</mi><mo>&#x0002B;</mo><mi>&#x003B4;</mi></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac><mspace width="2em" /><mspace width="2em" /><mtext>כאשר&#x000A0;</mtext><mtext>&#x000A0;</mtext><msup><mi>&#x003B4;</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mi>&#x00394;</mi></mrow></math></div>
       </div>
-      <h4 class="sub">שלבי העבודה</h4>
+      <h4 class="sub" id="ex1-s11-t1">שלבי העבודה</h4>
       <ol class="steps">
         <li>מחשבים <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00394;</mi><mo>&#x0003D;</mo><msup><mi>b</mi><mn>2</mn></msup><mo>&#x02212;</mo><mn>4</mn><mi>a</mi><mi>c</mi></mrow></math>.</li>
         <li>מוצאים <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B4;</mi><mo>&#x0003D;</mo><mi>&#x003B1;</mi><mo>&#x0002B;</mo><mi>i</mi><mi>&#x003B2;</mi></mrow></math> (עם <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B1;</mi><mo>&#x0002C;</mo><mi>&#x003B2;</mi></mrow></math> ממשיים) כך ש-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003B4;</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mi>&#x00394;</mi></mrow></math>:
@@ -1498,7 +1546,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
       <p class="ex-intro">החומר כולו לפי סדר המצגת: הגדרת מטריצה וסימונים, שוויון מטריצות, סוגים מיוחדים של מטריצות, חיבור וכפל בסקלר, כפל מטריצות ותכונותיו, צירוף לינארי, המטריצה המשוחלפת ומטריצות סימטריות, ועקבה של מטריצה ריבועית.</p>
 
       <!-- ===================== 1 ===================== -->
-      <h3 class="q" id="ex2-s1">1. ההגדרה: מטריצה מסדר n×m</h3>
+      <h3 class="q" id="ex2-s1" data-plain="1. ההגדרה: מטריצה מסדר n×m">1. ההגדרה: מטריצה מסדר n×m</h3>
       <div class="src-tag base">📑 מצגת מטריצות - פרק 1: הגדרות</div>
       <div class="box box-q">
         <div class="box-title">שאלה לדוגמה</div>
@@ -1526,7 +1574,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
         <p>האיבר בשורה <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>i</mi><mo>&#x0003D;</mo><mn>1</mn></mrow></math> ובעמודה <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>j</mi><mo>&#x0003D;</mo><mn>2</mn></mrow></math> הוא <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>a</mi><mrow><mn>1</mn><mo>&#x0002C;</mo><mn>2</mn></mrow></msub><mo>&#x0003D;</mo><mn>3</mn></mrow></math>.</p>
       </div>
 
-      <h4 class="sub">שוויון בין מטריצות</h4>
+      <h4 class="sub" id="ex2-s1-t1">שוויון בין מטריצות</h4>
       <div class="box box-def">
         <div class="box-title">הגדרה - שוויון</div>
         <p>תהיינה <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi><mo>&#x0003D;</mo><mo stretchy="false">[</mo><msub><mi>a</mi><mrow><mi>i</mi><mo>&#x0002C;</mo><mi>j</mi></mrow></msub><mo stretchy="false">]</mo><mo>&#x02208;</mo><msub><mi>M</mi><mrow><mi>n</mi><mo>&#x0002C;</mo><mi>m</mi></mrow></msub><mo stretchy="false">&#x00028;</mo><mi>&#x0211D;</mi><mo stretchy="false">&#x00029;</mo></mrow></math> ו-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi><mo>&#x0003D;</mo><mo stretchy="false">[</mo><msub><mi>b</mi><mrow><mi>i</mi><mo>&#x0002C;</mo><mi>j</mi></mrow></msub><mo stretchy="false">]</mo><mo>&#x02208;</mo><msub><mi>M</mi><mrow><mi>n</mi><mo>&#x0002C;</mo><mi>m</mi></mrow></msub><mo stretchy="false">&#x00028;</mo><mi>&#x0211D;</mi><mo stretchy="false">&#x00029;</mo></mrow></math> <b>מאותו סדר</b>. אז</p>
@@ -1539,7 +1587,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
       </div>
 
       <!-- ===================== 2 ===================== -->
-      <h3 class="q" id="ex2-s2">2. מקרים מיוחדים של מטריצות</h3>
+      <h3 class="q" id="ex2-s2" data-plain="2. מקרים מיוחדים של מטריצות">2. מקרים מיוחדים של מטריצות</h3>
       <div class="src-tag base">📑 מצגת מטריצות - פרק 1: מקרים מיוחדים</div>
       <div class="box box-q">
         <div class="box-title">שאלה לדוגמה</div>
@@ -1587,7 +1635,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
       </div>
 
       <!-- ===================== 3 ===================== -->
-      <h3 class="q" id="ex2-s3">3. חיבור מטריצות וכפל בסקלר</h3>
+      <h3 class="q" id="ex2-s3" data-plain="3. חיבור מטריצות וכפל בסקלר">3. חיבור מטריצות וכפל בסקלר</h3>
       <div class="src-tag base">📑 מצגת מטריצות - פרק 2: פעולות על מטריצות</div>
       <div class="box box-q">
         <div class="box-title">שאלה לדוגמה</div>
@@ -1616,7 +1664,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
         <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mrow><mo stretchy="true" fence="true" form="prefix">[</mo><mtable><mtr><mtd><mn>2</mn></mtd><mtd><mn>3</mn></mtd><mtd><mn>4</mn></mtd></mtr><mtr><mtd><mn>3</mn></mtd><mtd><mn>4</mn></mtd><mtd><mn>5</mn></mtd></mtr></mtable><mo stretchy="true" fence="true" form="postfix">]</mo></mrow><mo>&#x0002B;</mo><mrow><mo stretchy="true" fence="true" form="prefix">[</mo><mtable><mtr><mtd><mn>1</mn></mtd><mtd><mo>&#x02212;</mo><mn>3</mn></mtd><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mn>9</mn></mtd><mtd><mo>&#x02212;</mo><mn>1</mn></mtd><mtd><mn>7</mn></mtd></mtr></mtable><mo stretchy="true" fence="true" form="postfix">]</mo></mrow><mo>&#x0003D;</mo><mrow><mo stretchy="true" fence="true" form="prefix">[</mo><mtable><mtr><mtd><mn>3</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>4</mn></mtd></mtr><mtr><mtd><mn>12</mn></mtd><mtd><mn>3</mn></mtd><mtd><mn>12</mn></mtd></mtr></mtable><mo stretchy="true" fence="true" form="postfix">]</mo></mrow></mrow></math></div>
         <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mn>5</mn><mrow><mo stretchy="true" fence="true" form="prefix">[</mo><mtable><mtr><mtd><mn>2</mn></mtd><mtd><mn>3</mn></mtd><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mn>3</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>5</mn></mtd></mtr></mtable><mo stretchy="true" fence="true" form="postfix">]</mo></mrow><mo>&#x0003D;</mo><mrow><mo stretchy="true" fence="true" form="prefix">[</mo><mtable><mtr><mtd><mn>10</mn></mtd><mtd><mn>15</mn></mtd><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mn>15</mn></mtd><mtd><mn>5</mn></mtd><mtd><mn>25</mn></mtd></mtr></mtable><mo stretchy="true" fence="true" form="postfix">]</mo></mrow></mrow></math></div>
       </div>
-      <h4 class="sub">תכונות (לכל <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi><mo>&#x0002C;</mo><mi>B</mi><mo>&#x0002C;</mo><mi>C</mi><mo>&#x02208;</mo><msub><mi>M</mi><mrow><mi>n</mi><mo>&#x0002C;</mo><mi>m</mi></mrow></msub><mo stretchy="false">&#x00028;</mo><mi>&#x0211D;</mi><mo stretchy="false">&#x00029;</mo></mrow></math> ו-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BB;</mi><mo>&#x0002C;</mo><mi>&#x003BC;</mi><mo>&#x02208;</mo><mi>&#x0211D;</mi></mrow></math>)</h4>
+      <h4 class="sub" id="ex2-s3-t1">תכונות (לכל <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi><mo>&#x0002C;</mo><mi>B</mi><mo>&#x0002C;</mo><mi>C</mi><mo>&#x02208;</mo><msub><mi>M</mi><mrow><mi>n</mi><mo>&#x0002C;</mo><mi>m</mi></mrow></msub><mo stretchy="false">&#x00028;</mo><mi>&#x0211D;</mi><mo stretchy="false">&#x00029;</mo></mrow></math> ו-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BB;</mi><mo>&#x0002C;</mo><mi>&#x003BC;</mi><mo>&#x02208;</mo><mi>&#x0211D;</mi></mrow></math>)</h4>
       <table class="props">
         <tr><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi><mo>&#x0002B;</mo><mi>B</mi><mo>&#x0003D;</mo><mi>B</mi><mo>&#x0002B;</mo><mi>A</mi></mrow></math></td><td>חוק החילוף</td></tr>
         <tr><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>A</mi><mo>&#x0002B;</mo><mi>B</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002B;</mo><mi>C</mi><mo>&#x0003D;</mo><mi>A</mi><mo>&#x0002B;</mo><mo stretchy="false">&#x00028;</mo><mi>B</mi><mo>&#x0002B;</mo><mi>C</mi><mo stretchy="false">&#x00029;</mo></mrow></math></td><td>חוק הקיבוץ</td></tr>
@@ -1625,7 +1673,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
       </table>
 
       <!-- ===================== 4 ===================== -->
-      <h3 class="q" id="ex2-s4">4. כפל מטריצות</h3>
+      <h3 class="q" id="ex2-s4" data-plain="4. כפל מטריצות">4. כפל מטריצות</h3>
       <div class="src-tag base">📑 מצגת מטריצות - פרק 2: כפל מטריצות</div>
       <div class="box box-q">
         <div class="box-title">שאלה לדוגמה</div>
@@ -1642,7 +1690,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
         <p>תהיינה <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi><mo>&#x0003D;</mo><mo stretchy="false">[</mo><msub><mi>a</mi><mrow><mi>i</mi><mo>&#x0002C;</mo><mi>j</mi></mrow></msub><mo stretchy="false">]</mo><mo>&#x02208;</mo><msub><mi>M</mi><mrow><mi>n</mi><mo>&#x0002C;</mo><mstyle mathcolor="#A23F35"><mrow><mi>m</mi></mrow></mstyle></mrow></msub><mo stretchy="false">&#x00028;</mo><mi>&#x0211D;</mi><mo stretchy="false">&#x00029;</mo></mrow></math> ו-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi><mo>&#x0003D;</mo><mo stretchy="false">[</mo><msub><mi>b</mi><mrow><mi>i</mi><mo>&#x0002C;</mo><mi>j</mi></mrow></msub><mo stretchy="false">]</mo><mo>&#x02208;</mo><msub><mi>M</mi><mrow><mstyle mathcolor="#A23F35"><mrow><mi>m</mi></mrow></mstyle><mo>&#x0002C;</mo><mi>p</mi></mrow></msub><mo stretchy="false">&#x00028;</mo><mi>&#x0211D;</mi><mo stretchy="false">&#x00029;</mo></mrow></math>. אז</p>
         <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>A</mi><mi>B</mi><mo>&#x0003D;</mo><mo stretchy="false">[</mo><msub><mi>c</mi><mrow><mi>i</mi><mo>&#x0002C;</mo><mi>j</mi></mrow></msub><mo stretchy="false">]</mo><mo>&#x02208;</mo><msub><mi>M</mi><mrow><mi>n</mi><mo>&#x0002C;</mo><mi>p</mi></mrow></msub><mo stretchy="false">&#x00028;</mo><mi>&#x0211D;</mi><mo stretchy="false">&#x00029;</mo></mrow></math></div><div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>c</mi><mrow><mi>i</mi><mo>&#x0002C;</mo><mi>j</mi></mrow></msub><mo>&#x0003D;</mo><munderover><mo>&#x02211;</mo><mrow><mi>k</mi><mo>&#x0003D;</mo><mn>1</mn></mrow><mrow><mi>m</mi></mrow></munderover><msub><mi>a</mi><mrow><mi>i</mi><mo>&#x0002C;</mo><mi>k</mi></mrow></msub><msub><mi>b</mi><mrow><mi>k</mi><mo>&#x0002C;</mo><mi>j</mi></mrow></msub><mo>&#x0003D;</mo><msub><mi>a</mi><mrow><mi>i</mi><mo>&#x0002C;</mo><mn>1</mn></mrow></msub><msub><mi>b</mi><mrow><mn>1</mn><mo>&#x0002C;</mo><mi>j</mi></mrow></msub><mo>&#x0002B;</mo><msub><mi>a</mi><mrow><mi>i</mi><mo>&#x0002C;</mo><mn>2</mn></mrow></msub><msub><mi>b</mi><mrow><mn>2</mn><mo>&#x0002C;</mo><mi>j</mi></mrow></msub><mo>&#x0002B;</mo><mo>&#x02026;</mo><mo>&#x0002B;</mo><msub><mi>a</mi><mrow><mi>i</mi><mo>&#x0002C;</mo><mi>m</mi></mrow></msub><msub><mi>b</mi><mrow><mi>m</mi><mo>&#x0002C;</mo><mi>j</mi></mrow></msub></mrow></math></div>
       </div>
-      <h4 class="sub">מתי המכפלה קיימת ומה הגודל שלה?</h4>
+      <h4 class="sub" id="ex2-s4-t1">מתי המכפלה קיימת ומה הגודל שלה?</h4>
       <div class="diagram size-rule">
         <div class="size-line" dir="ltr">
           <span class="sz"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi></mrow></math></span><span class="dim"><span class="out">n</span>×<span class="in">m</span></span>
@@ -1653,7 +1701,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
         </div>
         <div class="diagram-caption">המספרים ה<span style="color:var(--rust);font-weight:700">פנימיים</span> (מספר העמודות של <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi></mrow></math> ומספר השורות של <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi></mrow></math>) חייבים להיות שווים. המספרים ה<span style="color:var(--teal);font-weight:700">חיצוניים</span> נותנים את גודל התוצאה.</div>
       </div>
-      <h4 class="sub">איך מחשבים: שורה כפול עמודה</h4>
+      <h4 class="sub" id="ex2-s4-t2">איך מחשבים: שורה כפול עמודה</h4>
       <p>האיבר <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>c</mi><mrow><mi>i</mi><mo>&#x0002C;</mo><mi>j</mi></mrow></msub></mrow></math> של המכפלה מתקבל מ<b>שורה <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>i</mi></mrow></math> של <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi></mrow></math></b> ו<b>עמודה <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>j</mi></mrow></math> של <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi></mrow></math></b>: כופלים את האיברים זוג-זוג (ראשון בראשון, שני בשני, ...) ומחברים.</p>
       <div class="box box-ex">
         <div class="box-title">דוגמה</div>
@@ -1666,7 +1714,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
         <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mrow><mo stretchy="true" fence="true" form="prefix">[</mo><mtable><mtr><mtd><mn>2</mn></mtd><mtd><mn>3</mn></mtd></mtr><mtr><mtd><mn>1</mn></mtd><mtd><mo>&#x02212;</mo><mn>2</mn></mtd></mtr></mtable><mo stretchy="true" fence="true" form="postfix">]</mo></mrow><mrow><mo stretchy="true" fence="true" form="prefix">[</mo><mtable><mtr><mtd><mn>2</mn></mtd><mtd><mn>3</mn></mtd><mtd><mn>4</mn></mtd></mtr><mtr><mtd><mn>3</mn></mtd><mtd><mn>4</mn></mtd><mtd><mn>5</mn></mtd></mtr></mtable><mo stretchy="true" fence="true" form="postfix">]</mo></mrow><mo>&#x0003D;</mo><mrow><mo stretchy="true" fence="true" form="prefix">[</mo><mtable><mtr><mtd><mn>13</mn></mtd><mtd><mn>18</mn></mtd><mtd><mn>23</mn></mtd></mtr><mtr><mtd><mo>&#x02212;</mo><mn>4</mn></mtd><mtd><mo>&#x02212;</mo><mn>5</mn></mtd><mtd><mo>&#x02212;</mo><mn>6</mn></mtd></mtr></mtable><mo stretchy="true" fence="true" form="postfix">]</mo></mrow></mrow></math></div>
       </div>
 
-      <h4 class="sub">תכונות כפל מטריצות</h4>
+      <h4 class="sub" id="ex2-s4-t3">תכונות כפל מטריצות</h4>
       <table class="props">
         <tr><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>A</mi><mi>B</mi><mo stretchy="false">&#x00029;</mo><mi>C</mi><mo>&#x0003D;</mo><mi>A</mi><mo stretchy="false">&#x00028;</mo><mi>B</mi><mi>C</mi><mo stretchy="false">&#x00029;</mo></mrow></math></td><td>חוק הקיבוץ</td></tr>
         <tr><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi><mo stretchy="false">&#x00028;</mo><mi>B</mi><mo>&#x0002B;</mo><mi>C</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mi>A</mi><mi>B</mi><mo>&#x0002B;</mo><mi>A</mi><mi>C</mi></mrow></math></td><td rowspan="2">חוק הפילוג</td></tr>
@@ -1686,7 +1734,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
         <p>אבל <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi><mo>&#x02260;</mo><mi>C</mi></mrow></math>.</p>
       </div>
 
-      <h4 class="sub">כדאי לדעת: סגירות של מטריצות מיוחדות</h4>
+      <h4 class="sub" id="ex2-s4-t4">כדאי לדעת: סגירות של מטריצות מיוחדות</h4>
       <p>כאשר <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi><mo>&#x0002C;</mo><mi>B</mi><mo>&#x02208;</mo><msub><mi>M</mi><mi>n</mi></msub><mo stretchy="false">&#x00028;</mo><mi>&#x0211D;</mi><mo stretchy="false">&#x00029;</mo></mrow></math>:</p>
       <table class="props">
         <tr><th>אם <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi></mrow></math> ו-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>B</mi></mrow></math> שתיהן...</th><th>אז <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi><mo>&#x0002B;</mo><mi>B</mi></mrow></math> ו-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi><mi>B</mi></mrow></math> הן...</th></tr>
@@ -1704,7 +1752,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
       </div>
 
       <!-- ===================== 5 ===================== -->
-      <h3 class="q" id="ex2-s5">5. צירוף לינארי של מטריצות</h3>
+      <h3 class="q" id="ex2-s5" data-plain="5. צירוף לינארי של מטריצות">5. צירוף לינארי של מטריצות</h3>
       <div class="src-tag base">📑 מצגת מטריצות - פרק 2: צירוף לינארי של מטריצות</div>
       <div class="box box-q">
         <div class="box-title">שאלה לדוגמה</div>
@@ -1720,7 +1768,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
         <p>תהיינה <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi><mo>&#x0002C;</mo><msub><mi>B</mi><mn>1</mn></msub><mo>&#x0002C;</mo><msub><mi>B</mi><mn>2</mn></msub><mo>&#x0002C;</mo><mo>&#x02026;</mo><mo>&#x0002C;</mo><msub><mi>B</mi><mi>r</mi></msub><mo>&#x02208;</mo><msub><mi>M</mi><mrow><mi>n</mi><mo>&#x0002C;</mo><mi>p</mi></mrow></msub><mo stretchy="false">&#x00028;</mo><mi>&#x0211D;</mi><mo stretchy="false">&#x00029;</mo></mrow></math>. אומרים ש-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi></mrow></math> היא <b>צירוף לינארי</b> של המטריצות <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>B</mi><mn>1</mn></msub><mo>&#x0002C;</mo><mo>&#x02026;</mo><mo>&#x0002C;</mo><msub><mi>B</mi><mi>r</mi></msub></mrow></math> אם ורק אם קיימים מספרים <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003BB;</mi><mn>1</mn></msub><mo>&#x0002C;</mo><msub><mi>&#x003BB;</mi><mn>2</mn></msub><mo>&#x0002C;</mo><mo>&#x02026;</mo><mo>&#x0002C;</mo><msub><mi>&#x003BB;</mi><mi>r</mi></msub><mo>&#x02208;</mo><mi>&#x0211D;</mi></mrow></math> כך ש:</p>
         <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>A</mi><mo>&#x0003D;</mo><msub><mi>&#x003BB;</mi><mn>1</mn></msub><msub><mi>B</mi><mn>1</mn></msub><mo>&#x0002B;</mo><msub><mi>&#x003BB;</mi><mn>2</mn></msub><msub><mi>B</mi><mn>2</mn></msub><mo>&#x0002B;</mo><mo>&#x02026;</mo><mo>&#x0002B;</mo><msub><mi>&#x003BB;</mi><mi>r</mi></msub><msub><mi>B</mi><mi>r</mi></msub><mo>&#x0003D;</mo><munderover><mo>&#x02211;</mo><mrow><mi>k</mi><mo>&#x0003D;</mo><mn>1</mn></mrow><mrow><mi>r</mi></mrow></munderover><msub><mi>&#x003BB;</mi><mi>k</mi></msub><msub><mi>B</mi><mi>k</mi></msub></mrow></math></div>
       </div>
-      <h4 class="sub">איך בודקים אם מטריצה היא צירוף לינארי</h4>
+      <h4 class="sub" id="ex2-s5-t1">איך בודקים אם מטריצה היא צירוף לינארי</h4>
       <ol class="steps">
         <li>כותבים <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi><mo>&#x0003D;</mo><mi>&#x003B1;</mi><msub><mi>B</mi><mn>1</mn></msub><mo>&#x0002B;</mo><mi>&#x003B2;</mi><msub><mi>B</mi><mn>2</mn></msub><mo>&#x0002B;</mo><mo>&#x02026;</mo></mrow></math> עם מקדמים לא ידועים.</li>
         <li>מחשבים את אגף ימין ומשווים <b>איבר-איבר</b> (שוויון מטריצות) - מקבלים מערכת משוואות.</li>
@@ -1738,7 +1786,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
         <p>מטריצת האפס היא תמיד צירוף לינארי של כל קבוצת מטריצות (מאותו סדר) - עם כל המקדמים שווים לאפס: <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mrow><mo stretchy="true" fence="true" form="prefix">[</mo><mtable><mtr><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mn>0</mn></mtd><mtd><mn>0</mn></mtd></mtr></mtable><mo stretchy="true" fence="true" form="postfix">]</mo></mrow><mo>&#x0003D;</mo><mn>0</mn><mo>&#x000B7;</mo><msub><mi>M</mi><mn>1</mn></msub><mo>&#x0002B;</mo><mn>0</mn><mo>&#x000B7;</mo><msub><mi>M</mi><mn>2</mn></msub></mrow></math>.</p>
       </div>
 
-      <h4 class="sub">מכפלת מטריצה בווקטור = צירוף לינארי של העמודות</h4>
+      <h4 class="sub" id="ex2-s5-t2">מכפלת מטריצה בווקטור = צירוף לינארי של העמודות</h4>
       <p>זו אחת העובדות החשובות ביותר בקורס. אם <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi><mo>&#x02208;</mo><msub><mi>M</mi><mrow><mi>n</mi><mo>&#x0002C;</mo><mi>m</mi></mrow></msub><mo stretchy="false">&#x00028;</mo><mi>&#x0211D;</mi><mo stretchy="false">&#x00029;</mo></mrow></math> ו-<math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math> וקטור עמודה עם <math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>m</mi></mrow></math> רכיבים, אז</p>
       <div class="box box-thm">
         <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>A</mi><mrow><mo stretchy="true" fence="true" form="prefix">[</mo><mtable><mtr><mtd><msub><mi>x</mi><mn>1</mn></msub></mtd></mtr><mtr><mtd><msub><mi>x</mi><mn>2</mn></msub></mtd></mtr><mtr><mtd><mo>&#x022EE;</mo></mtd></mtr><mtr><mtd><msub><mi>x</mi><mi>m</mi></msub></mtd></mtr></mtable><mo stretchy="true" fence="true" form="postfix">]</mo></mrow><mo>&#x0003D;</mo><msub><mi>x</mi><mn>1</mn></msub><mrow><mo stretchy="true" fence="true" form="prefix">[</mo><mtable><mtr><mtd><msub><mi>a</mi><mrow><mn>1</mn><mo>&#x0002C;</mo><mn>1</mn></mrow></msub></mtd></mtr><mtr><mtd><msub><mi>a</mi><mrow><mn>2</mn><mo>&#x0002C;</mo><mn>1</mn></mrow></msub></mtd></mtr><mtr><mtd><mo>&#x022EE;</mo></mtd></mtr><mtr><mtd><msub><mi>a</mi><mrow><mi>n</mi><mo>&#x0002C;</mo><mn>1</mn></mrow></msub></mtd></mtr></mtable><mo stretchy="true" fence="true" form="postfix">]</mo></mrow><mo>&#x0002B;</mo><msub><mi>x</mi><mn>2</mn></msub><mrow><mo stretchy="true" fence="true" form="prefix">[</mo><mtable><mtr><mtd><msub><mi>a</mi><mrow><mn>1</mn><mo>&#x0002C;</mo><mn>2</mn></mrow></msub></mtd></mtr><mtr><mtd><msub><mi>a</mi><mrow><mn>2</mn><mo>&#x0002C;</mo><mn>2</mn></mrow></msub></mtd></mtr><mtr><mtd><mo>&#x022EE;</mo></mtd></mtr><mtr><mtd><msub><mi>a</mi><mrow><mi>n</mi><mo>&#x0002C;</mo><mn>2</mn></mrow></msub></mtd></mtr></mtable><mo stretchy="true" fence="true" form="postfix">]</mo></mrow><mo>&#x0002B;</mo><mo>&#x02026;</mo><mo>&#x0002B;</mo><msub><mi>x</mi><mi>m</mi></msub><mrow><mo stretchy="true" fence="true" form="prefix">[</mo><mtable><mtr><mtd><msub><mi>a</mi><mrow><mn>1</mn><mo>&#x0002C;</mo><mi>m</mi></mrow></msub></mtd></mtr><mtr><mtd><msub><mi>a</mi><mrow><mn>2</mn><mo>&#x0002C;</mo><mi>m</mi></mrow></msub></mtd></mtr><mtr><mtd><mo>&#x022EE;</mo></mtd></mtr><mtr><mtd><msub><mi>a</mi><mrow><mi>n</mi><mo>&#x0002C;</mo><mi>m</mi></mrow></msub></mtd></mtr></mtable><mo stretchy="true" fence="true" form="postfix">]</mo></mrow></mrow></math></div>
@@ -1751,7 +1799,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
       </div>
 
       <!-- ===================== 6 ===================== -->
-      <h3 class="q" id="ex2-s6">6. המטריצה המשוחלפת</h3>
+      <h3 class="q" id="ex2-s6" data-plain="6. המטריצה המשוחלפת">6. המטריצה המשוחלפת</h3>
       <div class="src-tag base">📑 מצגת מטריצות - פרק 3: מטריצה משוחלפת</div>
       <div class="box box-q">
         <div class="box-title">שאלה לדוגמה</div>
@@ -1775,7 +1823,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
         <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>A</mi><mo>&#x0003D;</mo><mrow><mo stretchy="true" fence="true" form="prefix">[</mo><mtable><mtr><mtd><mn>1</mn></mtd><mtd><mn>2</mn></mtd><mtd><mn>3</mn></mtd></mtr><mtr><mtd><mn>4</mn></mtd><mtd><mn>6</mn></mtd><mtd><mn>7</mn></mtd></mtr><mtr><mtd><mo>&#x02212;</mo><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>5</mn></mtd></mtr><mtr><mtd><mn>9</mn></mtd><mtd><mn>6</mn></mtd><mtd><mi>&#x003C0;</mi></mtd></mtr><mtr><mtd><mn>6</mn></mtd><mtd><msqrt><mn>2</mn></msqrt></mtd><mtd><mn>0.4</mn></mtd></mtr></mtable><mo stretchy="true" fence="true" form="postfix">]</mo></mrow><mo>&#x02208;</mo><msub><mi>M</mi><mrow><mn>5</mn><mo>&#x0002C;</mo><mn>3</mn></mrow></msub><mtext>&#x000A0;</mtext><mo>&#x021D2;</mo><mtext>&#x000A0;</mtext><msup><mi>A</mi><mi>t</mi></msup><mo>&#x0003D;</mo><mrow><mo stretchy="true" fence="true" form="prefix">[</mo><mtable><mtr><mtd><mn>1</mn></mtd><mtd><mn>4</mn></mtd><mtd><mo>&#x02212;</mo><mn>1</mn></mtd><mtd><mn>9</mn></mtd><mtd><mn>6</mn></mtd></mtr><mtr><mtd><mn>2</mn></mtd><mtd><mn>6</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>6</mn></mtd><mtd><msqrt><mn>2</mn></msqrt></mtd></mtr><mtr><mtd><mn>3</mn></mtd><mtd><mn>7</mn></mtd><mtd><mn>5</mn></mtd><mtd><mi>&#x003C0;</mi></mtd><mtd><mn>0.4</mn></mtd></mtr></mtable><mo stretchy="true" fence="true" form="postfix">]</mo></mrow><mo>&#x02208;</mo><msub><mi>M</mi><mrow><mn>3</mn><mo>&#x0002C;</mo><mn>5</mn></mrow></msub></mrow></math></div>
         <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mrow><mo stretchy="true" fence="true" form="prefix">[</mo><mtable><mtr><mtd><mn>1</mn></mtd></mtr><mtr><mtd><mn>0</mn></mtd></mtr><mtr><mtd><mn>9</mn></mtd></mtr><mtr><mtd><mn>7</mn></mtd></mtr></mtable><mo stretchy="true" fence="true" form="postfix">]</mo></mrow><mi>t</mi></msup><mo>&#x0003D;</mo><mrow><mo stretchy="true" fence="true" form="prefix">[</mo><mtable><mtr><mtd><mn>1</mn></mtd><mtd><mn>0</mn></mtd><mtd><mn>9</mn></mtd><mtd><mn>7</mn></mtd></mtr></mtable><mo stretchy="true" fence="true" form="postfix">]</mo></mrow><mspace width="2em" /><mspace width="2em" /><msup><mrow><mo stretchy="true" fence="true" form="prefix">[</mo><mtable><mtr><mtd><mn>1</mn></mtd><mtd><mn>2</mn></mtd></mtr><mtr><mtd><mn>3</mn></mtd><mtd><mn>4</mn></mtd></mtr></mtable><mo stretchy="true" fence="true" form="postfix">]</mo></mrow><mi>t</mi></msup><mo>&#x0003D;</mo><mrow><mo stretchy="true" fence="true" form="prefix">[</mo><mtable><mtr><mtd><mn>1</mn></mtd><mtd><mn>3</mn></mtd></mtr><mtr><mtd><mn>2</mn></mtd><mtd><mn>4</mn></mtd></mtr></mtable><mo stretchy="true" fence="true" form="postfix">]</mo></mrow></mrow></math></div>
       </div>
-      <h4 class="sub">תכונות המשוחלפת</h4>
+      <h4 class="sub" id="ex2-s6-t1">תכונות המשוחלפת</h4>
       <table class="props">
         <tr><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><msup><mi>A</mi><mi>t</mi></msup><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><mi>t</mi></msup><mo>&#x0003D;</mo><mi>A</mi></mrow></math></td><td>שחלוף פעמיים מחזיר את המטריצה</td></tr>
         <tr><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>A</mi><mo>&#x0002B;</mo><mi>B</mi><msup><mo stretchy="false">&#x00029;</mo><mi>t</mi></msup><mo>&#x0003D;</mo><msup><mi>A</mi><mi>t</mi></msup><mo>&#x0002B;</mo><msup><mi>B</mi><mi>t</mi></msup></mrow></math></td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi><mo>&#x0002C;</mo><mi>B</mi><mo>&#x02208;</mo><msub><mi>M</mi><mrow><mi>n</mi><mo>&#x0002C;</mo><mi>m</mi></mrow></msub><mo stretchy="false">&#x00028;</mo><mi>&#x0211D;</mi><mo stretchy="false">&#x00029;</mo></mrow></math></td></tr>
@@ -1788,7 +1836,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
         <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo stretchy="false">&#x00028;</mo><mi>A</mi><mi>B</mi><mi>C</mi><msup><mo stretchy="false">&#x00029;</mo><mi>t</mi></msup><mo>&#x0003D;</mo><msup><mi>C</mi><mi>t</mi></msup><msup><mi>B</mi><mi>t</mi></msup><msup><mi>A</mi><mi>t</mi></msup><mspace width="2em" /><mspace width="2em" /><mo stretchy="false">&#x00028;</mo><mi>A</mi><mi>B</mi><mi>C</mi><mi>D</mi><msup><mo stretchy="false">&#x00029;</mo><mi>t</mi></msup><mo>&#x0003D;</mo><msup><mi>D</mi><mi>t</mi></msup><msup><mi>C</mi><mi>t</mi></msup><msup><mi>B</mi><mi>t</mi></msup><msup><mi>A</mi><mi>t</mi></msup></mrow></math></div>
       </div>
 
-      <h4 class="sub">מטריצה סימטרית ואנטי-סימטרית</h4>
+      <h4 class="sub" id="ex2-s6-t2">מטריצה סימטרית ואנטי-סימטרית</h4>
       <div class="two-col">
         <div class="box box-def">
           <div class="box-title">מטריצה סימטרית</div>
@@ -1811,7 +1859,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
       </div>
 
       <!-- ===================== 7 ===================== -->
-      <h3 class="q" id="ex2-s7">7. עקבה של מטריצה ריבועית</h3>
+      <h3 class="q" id="ex2-s7" data-plain="7. עקבה של מטריצה ריבועית">7. עקבה של מטריצה ריבועית</h3>
       <div class="src-tag base">📑 מצגת מטריצות - פרק 3: עקבה של מטריצה ריבועית</div>
       <div class="box box-q">
         <div class="box-title">שאלה לדוגמה</div>
@@ -1832,7 +1880,7 @@ math .ovl{ border-top:1.3px solid currentColor; padding-top:2px; }
         <div class="box-title">דוגמה</div>
         <div class="formula"><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>A</mi><mo>&#x0003D;</mo><mrow><mo stretchy="true" fence="true" form="prefix">[</mo><mtable><mtr><mtd><mrow><mn mathvariant="bold">1</mn></mrow></mtd><mtd><mn>3</mn></mtd><mtd><mo>&#x02212;</mo><mn>5</mn></mtd></mtr><mtr><mtd><mn>7</mn></mtd><mtd><mrow><mn mathvariant="bold">8</mn></mrow></mtd><mtd><mn>3</mn></mtd></mtr><mtr><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd><mtd><mrow><mn mathvariant="bold">3</mn></mrow></mtd></mtr></mtable><mo stretchy="true" fence="true" form="postfix">]</mo></mrow><mspace width="2em" /><mo>tr</mo><mo stretchy="false">&#x00028;</mo><mi>A</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>1</mn><mo>&#x0002B;</mo><mn>8</mn><mo>&#x0002B;</mo><mn>3</mn><mo>&#x0003D;</mo><mn>12</mn></mrow></math></div>
       </div>
-      <h4 class="sub">תכונות העקבה</h4>
+      <h4 class="sub" id="ex2-s7-t1">תכונות העקבה</h4>
       <table class="props">
         <tr><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>tr</mo><mo stretchy="false">&#x00028;</mo><mi>A</mi><mo>&#x0002B;</mo><mi>B</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo>tr</mo><mo stretchy="false">&#x00028;</mo><mi>A</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002B;</mo><mo>tr</mo><mo stretchy="false">&#x00028;</mo><mi>B</mi><mo stretchy="false">&#x00029;</mo></mrow></math></td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi><mo>&#x0002C;</mo><mi>B</mi><mo>&#x02208;</mo><msub><mi>M</mi><mi>n</mi></msub><mo stretchy="false">&#x00028;</mo><mi>&#x0211D;</mi><mo stretchy="false">&#x00029;</mo></mrow></math></td></tr>
         <tr><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>tr</mo><mo stretchy="false">&#x00028;</mo><mi>&#x003BB;</mi><mi>A</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mi>&#x003BB;</mi><mo>tr</mo><mo stretchy="false">&#x00028;</mo><mi>A</mi><mo stretchy="false">&#x00029;</mo></mrow></math></td><td><math dir="ltr" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi><mo>&#x02208;</mo><msub><mi>M</mi><mi>n</mi></msub><mo stretchy="false">&#x00028;</mo><mi>&#x0211D;</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002C;</mo><mtext>&#x000A0;</mtext><mi>&#x003BB;</mi><mo>&#x02208;</mo><mi>&#x0211D;</mi></mrow></math></td></tr>
@@ -2136,6 +2184,250 @@ try {
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && t.checked) t.checked = false; });
 } catch (err) {}
 
+</script>
+
+<div class="ai-overlay" id="aiOverlay" hidden>
+  <div class="ai-panel" role="dialog" aria-modal="true" aria-labelledby="aiTitle">
+    <div class="ai-head">
+      <h2 id="aiTitle">✨ חיפוש חכם</h2>
+      <button type="button" class="ai-close" id="aiClose" aria-label="סגירה">✕</button>
+    </div>
+    <p class="ai-sub">העלי תמונה של תרגיל, או כתבי אותו במילים. Claude יבין מה התרגיל שואל ויפנה אותך לסעיפים באתר שצריך בשבילו.</p>
+    <label for="aiText" class="ai-status">התרגיל במילים (לא חובה אם יש תמונה)</label>
+    <textarea id="aiText" placeholder="למשל: מצאו את כל הפתרונות של z^4 = -16 ושרטטו אותם"></textarea>
+    <div class="ai-drop" id="aiDrop" tabindex="0" role="button" aria-label="העלאת תמונה">
+      📷 <b>העלאת תמונה של התרגיל</b> - לחיצה, גרירה לכאן, או הדבקה (Ctrl+V)
+      <input type="file" id="aiFile" accept="image/jpeg,image/png,image/webp,image/gif" multiple hidden>
+    </div>
+    <div class="ai-thumbs" id="aiThumbs"></div>
+    <div class="ai-actions">
+      <button type="button" class="ai-go" id="aiGo">חיפוש</button>
+      <button type="button" class="ai-stop" id="aiStop" hidden>עצירה</button>
+      <span class="ai-status" id="aiStatus" aria-live="polite"></span>
+    </div>
+    <div class="ai-understood" id="aiUnderstood" hidden><div class="lbl">מה הבנתי מהתרגיל</div><div id="aiUnderstoodText"></div></div>
+    <div class="ai-results" id="aiResults"></div>
+    <details class="ai-key" id="aiKeyBox" hidden>
+      <summary>הגדרת מפתח API (נדרש באתר שמחוץ ל-Claude)</summary>
+      <p>באתר הזה החיפוש החכם עובד דרך מפתח API אישי של Anthropic (נוצר ב-console.anthropic.com, בתשלום לפי שימוש). המפתח נשמר רק בדפדפן שלך ונשלח רק ל-Anthropic. אל תשתפי את המפתח עם אף אחד.</p>
+      <input type="password" id="aiKey" placeholder="sk-ant-..." autocomplete="off">
+      <div class="row"><button type="button" id="aiKeySave">שמירה</button><button type="button" id="aiKeyClear">מחיקת המפתח</button></div>
+    </details>
+  </div>
+</div>
+
+<script>
+(function(){
+  try {
+  const $ = id => document.getElementById(id);
+  const overlay=$('aiOverlay'), textEl=$('aiText'), fileEl=$('aiFile'), drop=$('aiDrop'), thumbs=$('aiThumbs'),
+        goBtn=$('aiGo'), stopBtn=$('aiStop'), statusEl=$('aiStatus'), undBox=$('aiUnderstood'), undText=$('aiUnderstoodText'),
+        results=$('aiResults'), keyBox=$('aiKeyBox'), keyIn=$('aiKey');
+  const KEY_STORE='algebraAiKey_v1';
+  let images=[];            // File/Blob list
+  let mode=null;            // 'claude' | 'api' | 'none'
+  let sample=null, imgLimits=null, ctl=null;
+
+  // ---------- section catalog from the page itself ----------
+  const catalog=[]; const byId={};
+  document.querySelectorAll('section.exercise').forEach(sec=>{
+    const part=(sec.querySelector('.ex-title')||{}).textContent||'';
+    sec.querySelectorAll('h3.q').forEach(h3=>{
+      const subs=[]; let el=h3.nextElementSibling; let snippet='';
+      while(el && !(el.matches && el.matches('h3.q, .summary-sheet'))){
+        if(el.matches('h4.sub') && el.id) subs.push({id:el.id, title:el.textContent.trim()});
+        if(!el.classList.contains('box-q') && snippet.length<260) snippet+=' '+el.textContent.replace(/\s+/g,' ').trim();
+        el=el.nextElementSibling;
+      }
+      const item={id:h3.id, title:(h3.dataset.plain||h3.textContent).trim(), part:part.trim(), subs, snippet:snippet.trim().slice(0,260)};
+      catalog.push(item); byId[item.id]={title:item.title, part:item.part};
+      subs.forEach(s=>{ byId[s.id]={title:s.title, part:item.part, parent:item.title}; });
+    });
+    const sum=sec.querySelector('.summary-sheet[id]');
+    if(sum){ const t=sum.querySelector('.summary-sheet-title').textContent.trim(); catalog.push({id:sum.id,title:t,part:part.trim(),subs:[],snippet:''}); byId[sum.id]={title:t,part:part.trim()}; }
+  });
+  function catalogText(){
+    return catalog.map(c=>{
+      let s='['+c.id+'] '+c.part+' > '+c.title;
+      if(c.snippet) s+='\n   תקציר: '+c.snippet;
+      c.subs.forEach(x=>{ s+='\n   ['+x.id+'] תת-נושא: '+x.title; });
+      return s;
+    }).join('\n');
+  }
+  function buildPrompt(userText, nImages){
+    return 'את/ה עוזר/ת לימוד בקורס אלגברה לינארית (מספרים מרוכבים ומטריצות). סטודנטית שלחה תרגיל'
+      +(nImages? ' ב-'+nImages+' תמונה/ות מצורפות':'')+(userText? ' ובטקסט':'')+'.\n'
+      +'המשימה: להבין מה התרגיל שואל, ולהפנות אותה לסעיפים באתר הלימוד שמכילים את החומר הדרוש כדי לפתור אותו. אל תפתור/י את התרגיל.\n\n'
+      +'רשימת הסעיפים באתר (המזהה בסוגריים מרובעים):\n'+catalogText()+'\n\n'
+      +(userText? 'טקסט התרגיל כפי שהסטודנטית כתבה:\n"""\n'+userText+'\n"""\n\n':'')
+      +'החזר/י JSON בלבד בצורה הזאת:\n'
+      +'{"understood":"1-2 משפטים בעברית: מה התרגיל שואל ואיזה סוג שאלה זה","matches":[{"id":"מזהה מהרשימה","why":"משפט אחד בעברית: מה בסעיף הזה עוזר לתרגיל הזה"}]}\n'
+      +'כללים: 1-4 התאמות, החשובה ביותר ראשונה. השתמש/י רק במזהים מהרשימה. העדף/י תת-נושא מדויק כשהוא מתאים. כתוב/י ביטויים מתמטיים בטקסט פשוט (למשל z^4 = -16). '
+      +'אם התמונה לא קריאה או שהתרגיל לא קשור לחומר באתר, החזר/י matches ריק והסבר/י זאת ב-understood.';
+  }
+
+  // ---------- mode detection ----------
+  function setStatus(t, err){ statusEl.textContent=t||''; statusEl.classList.toggle('err', !!err); }
+  async function detect(){
+    if(window.claude && typeof window.claude.use==='function'){
+      mode='pending';
+      try { sample = await window.claude.use('sample'); } catch(e){ sample=null; }
+      if(sample){
+        mode='claude';
+        try { const l=await sample.limits(); imgLimits=l && l.images ? l.images : null; } catch(e){ imgLimits=null; }
+        drop.hidden=!imgLimits;
+      } else { mode='none'; }
+    } else {
+      mode='api';
+    }
+    refreshKeyBox();
+  }
+  function getKey(){ try { return localStorage.getItem(KEY_STORE)||''; } catch(e){ return ''; } }
+  function refreshKeyBox(){
+    keyBox.hidden = mode!=='api';
+    if(mode==='api' && !getKey()) keyBox.open=true;
+    if(mode==='none') setStatus('החיפוש החכם לא זמין בתצוגה הזאת.', true);
+  }
+  $('aiKeySave').onclick=()=>{ const v=keyIn.value.trim(); if(!v) return; try{ localStorage.setItem(KEY_STORE,v); setStatus('המפתח נשמר בדפדפן הזה.'); keyIn.value=''; keyBox.open=false; }catch(e){ setStatus('לא ניתן לשמור בדפדפן הזה (חלון פרטי?).', true); } };
+  $('aiKeyClear').onclick=()=>{ try{ localStorage.removeItem(KEY_STORE); }catch(e){} setStatus('המפתח נמחק.'); keyBox.open=true; };
+
+  // ---------- open / close ----------
+  let lastFocus=null;
+  function open(){
+    lastFocus=document.activeElement; overlay.hidden=false; document.body.style.overflow='hidden';
+    const mt=document.getElementById('menuToggle'); if(mt) mt.checked=false;
+    setTimeout(()=>textEl.focus(),30);
+  }
+  function close(){ overlay.hidden=true; document.body.style.overflow=''; if(lastFocus&&lastFocus.focus) lastFocus.focus(); }
+  document.querySelectorAll('[data-ai-open]').forEach(b=>b.addEventListener('click',open));
+  $('aiClose').onclick=close;
+  overlay.addEventListener('click',e=>{ if(e.target===overlay) close(); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape' && !overlay.hidden) close(); });
+
+  // ---------- images ----------
+  const OK_TYPES=['image/jpeg','image/png','image/webp','image/gif'];
+  function maxCount(){ return mode==='claude' ? (imgLimits? imgLimits.maxCount:0) : 3; }
+  function addFiles(list){
+    const arr=Array.from(list||[]).filter(f=>f && OK_TYPES.includes(f.type));
+    if(!arr.length){ if(list && list.length) setStatus('אפשר להעלות רק תמונות (JPG, PNG, WebP, GIF).', true); return; }
+    for(const f of arr){ if(images.length>=maxCount()){ setStatus('אפשר עד '+maxCount()+' תמונות.', true); break; } images.push(f); }
+    renderThumbs();
+  }
+  function renderThumbs(){
+    thumbs.textContent='';
+    images.forEach((f,i)=>{
+      const d=document.createElement('div'); d.className='ai-thumb';
+      const img=document.createElement('img'); img.alt='תמונת תרגיל '+(i+1); img.src=URL.createObjectURL(f);
+      const x=document.createElement('button'); x.type='button'; x.textContent='✕'; x.setAttribute('aria-label','הסרת תמונה');
+      x.onclick=()=>{ images.splice(i,1); renderThumbs(); };
+      d.append(img,x); thumbs.append(d);
+    });
+  }
+  drop.addEventListener('click',()=>fileEl.click());
+  drop.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); fileEl.click(); } });
+  fileEl.addEventListener('change',()=>{ addFiles(fileEl.files); fileEl.value=''; });
+  ['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{ e.preventDefault(); drop.classList.add('drag'); }));
+  ['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{ e.preventDefault(); drop.classList.remove('drag'); }));
+  drop.addEventListener('drop',e=>addFiles(e.dataTransfer && e.dataTransfer.files));
+  overlay.addEventListener('paste',e=>{
+    const items=Array.from((e.clipboardData&&e.clipboardData.items)||[]).filter(it=>it.kind==='file');
+    if(items.length){ e.preventDefault(); addFiles(items.map(it=>it.getAsFile())); }
+  });
+
+  // downscale for direct API calls
+  function toJpegBase64(file){
+    return new Promise((res,rej)=>{
+      const img=new Image(); const url=URL.createObjectURL(file);
+      img.onload=()=>{ const M=1568; let w=img.naturalWidth,h=img.naturalHeight; const s=Math.min(1,M/Math.max(w,h)); w=Math.round(w*s); h=Math.round(h*s);
+        const c=document.createElement('canvas'); c.width=w; c.height=h; const g=c.getContext('2d'); g.fillStyle='#fff'; g.fillRect(0,0,w,h); g.drawImage(img,0,0,w,h);
+        URL.revokeObjectURL(url); res(c.toDataURL('image/jpeg',0.88).split(',')[1]); };
+      img.onerror=()=>{ URL.revokeObjectURL(url); rej(new Error('image')); };
+      img.src=url;
+    });
+  }
+  function parseJsonLoose(t){
+    try { return JSON.parse(t); } catch(e){}
+    const m=t.match(/```(?:json)?\s*([\s\S]*?)```/); if(m){ try{ return JSON.parse(m[1]); }catch(e){} }
+    const a=t.indexOf('{'), b=t.lastIndexOf('}'); if(a>=0&&b>a){ return JSON.parse(t.slice(a,b+1)); }
+    throw new Error('json');
+  }
+  async function askApi(prompt, signal){
+    const key=getKey();
+    if(!key){ keyBox.open=true; throw {code:'no_key'}; }
+    const content=[];
+    for(const f of images){ content.push({type:'image', source:{type:'base64', media_type:'image/jpeg', data: await toJpegBase64(f)}}); }
+    content.push({type:'text', text:prompt});
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',signal,
+      headers:{'content-type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:'claude-sonnet-5-5', max_tokens:1200, messages:[{role:'user',content}]})});
+    if(!r.ok){ throw {code: r.status===401? 'bad_key' : (r.status===429? 'rate_limited':'upstream_error')}; }
+    const data=await r.json();
+    const text=(data.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('');
+    return parseJsonLoose(text);
+  }
+  const MSG={not_granted:'לא אושר שימוש ב-Claude בדף הזה.', sampling_disabled:'Claude לא זמין בחשבון הזה.', rate_limited:'יותר מדי בקשות כרגע. נסי שוב בעוד כמה דקות.',
+    session_expired:'צריך להתחבר מחדש ל-Claude.', image_rejected:'התמונה לא התקבלה. נסי תמונה אחרת (JPG או PNG).', images_unavailable:'אי אפשר לשלוח תמונות בתצוגה הזאת - כתבי את התרגיל במילים.',
+    refused:'הבקשה לא עובדה. נסי לנסח את התרגיל אחרת.', invalid_json:'התשובה לא הגיעה בפורמט הנכון. נסי שוב.', no_key:'צריך להזין מפתח API (למטה) כדי להשתמש בחיפוש החכם באתר הזה.',
+    bad_key:'מפתח ה-API לא תקין. בדקי אותו בהגדרות למטה.', prompt_too_large:'הטקסט ארוך מדי. קצרי אותו.'};
+
+  // ---------- run ----------
+  goBtn.onclick=async ()=>{
+    const userText=textEl.value.trim();
+    if(!userText && !images.length){ setStatus('כתבי את התרגיל או העלי תמונה.', true); return; }
+    if(mode==='pending'){ setStatus('מתחבר ל-Claude, נסי שוב בעוד רגע.'); return; }
+    if(mode==='none'){ setStatus('החיפוש החכם לא זמין בתצוגה הזאת.', true); return; }
+    results.textContent=''; undBox.hidden=true;
+    goBtn.disabled=true; stopBtn.hidden=false; setStatus('Claude קורא את התרגיל…');
+    ctl=new AbortController();
+    try {
+      const prompt=buildPrompt(userText, images.length);
+      let ans;
+      if(mode==='claude'){
+        const opts={signal:ctl.signal};
+        if(images.length) opts.images=images.slice();
+        ans=await sample.json(prompt, opts);
+      } else {
+        ans=await askApi(prompt, ctl.signal);
+      }
+      show(ans); setStatus('');
+    } catch(e){
+      if(e && (e.code==='cancelled' || e.name==='AbortError')) setStatus('נעצר.');
+      else setStatus((e && MSG[e.code]) || 'משהו השתבש בחיבור. נסי שוב.', true);
+    } finally { goBtn.disabled=false; stopBtn.hidden=true; }
+  };
+  stopBtn.onclick=()=>{ if(ctl) ctl.abort(); };
+
+  function show(ans){
+    const u=(ans && typeof ans.understood==='string')? ans.understood.trim():'';
+    if(u){ undText.textContent=u; undBox.hidden=false; }
+    const ms=(ans && Array.isArray(ans.matches)? ans.matches:[]).filter(m=>m && byId[String(m.id)] && document.getElementById(String(m.id))).slice(0,4);
+    if(!ms.length){ const p=document.createElement('p'); p.className='ai-status'; p.textContent='לא נמצא סעיף מתאים באתר. נסי לפרט יותר את התרגיל.'; results.append(p); return; }
+    ms.forEach((m,i)=>{
+      const info=byId[String(m.id)];
+      const b=document.createElement('button'); b.type='button'; b.className='ai-result';
+      const t=document.createElement('div'); t.className='t';
+      const tt=document.createElement('span'); tt.textContent=(i===0?'⭐ ':'')+(info.parent? info.parent+' ← '+info.title : info.title);
+      const pp=document.createElement('span'); pp.className='part'; pp.textContent=info.part;
+      t.append(tt,pp);
+      const w=document.createElement('div'); w.className='w'; w.textContent=String(m.why||'');
+      const g=document.createElement('div'); g.className='go'; g.textContent='מעבר לסעיף ←';
+      b.append(t,w,g);
+      b.onclick=()=>jump(String(m.id));
+      results.append(b);
+    });
+  }
+  function jump(id){
+    const el=document.getElementById(id); if(!el) return;
+    close();
+    const y=el.getBoundingClientRect().top+window.scrollY-45;
+    const reduce=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({top:Math.max(0,y), behavior: reduce?'auto':'smooth'});
+    el.classList.remove('ai-flash'); void el.offsetWidth; el.classList.add('ai-flash');
+  }
+
+  detect();
+  } catch(err){ console.error(err); }
+})();
 </script>
 </body>
 </html>
